@@ -9,7 +9,7 @@ The plugin runs three compute passes on VapourSynth's Vulkan device. It provides
 Install the Windows or Linux x86-64 wheel from [api4-wheels](https://github.com/AliceTeaParty/vapoursynth-api4-wheels) into the Python environment used by VapourSynth:
 
 ```console
-python -m pip install --extra-index-url https://aliceteaparty.github.io/vapoursynth-api4-wheels/simple/ "vapoursynth-krigbilateralvk==0.2.2+alice.1"
+python -m pip install --extra-index-url https://aliceteaparty.github.io/vapoursynth-api4-wheels/simple/ vapoursynth-krigbilateralvk
 ```
 
 This is the recommended installation method. It installs the native plugin, autoload manifest and licenses, and selects the matching VapourSynth R81 dependency. No compiler or manual DLL/SO copying is needed. Use Python 3.12 or newer; Linux wheels require glibc 2.28 or newer. A Vulkan 1.4 GPU and driver are still required for rendering.
