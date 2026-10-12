@@ -1,0 +1,135 @@
+// Adapted from KrigBilateral by Shiandow. LGPL-3.0-or-later.
+
+#extension GL_EXT_shader_8bit_storage : require
+#extension GL_EXT_shader_16bit_storage : require
+#extension GL_EXT_shader_explicit_arithmetic_types_int8 : require
+#extension GL_EXT_shader_explicit_arithmetic_types_int16 : require
+#extension GL_EXT_shader_explicit_arithmetic_types_float16 : require
+layout(local_size_x=8,local_size_y=8) in;
+layout(push_constant) uniform Params { int sy; int su; int sv; int du; int dv; } p;
+layout(binding=0,std430) readonly buffer SrcY { SAMPLE yy[]; };
+layout(binding=1,std430) readonly buffer SrcU { SAMPLE uu[]; };
+layout(binding=2,std430) readonly buffer SrcV { SAMPLE vv[]; };
+layout(binding=3,std430) buffer Vertical { vec2 vert[]; };
+layout(binding=4,std430) buffer Guide { vec2 guide[]; };
+layout(binding=5,std430) writeonly buffer DstU { OUTPUT outU[]; };
+layout(binding=6,std430) writeonly buffer DstV { OUTPUT outV[]; };
+#if DEBUG_STAGE
+layout(binding=7,std430) writeonly buffer DstY { float outY[]; };
+#endif
+layout(binding=8,std430) readonly buffer RowWeights { vec2 weights[]; };
+float divRound(float a,float b) {
+    precise float q=a/b;
+    precise float residual=fma(-q,b,a);
+    precise float corrected=fma(residual,1.0/b,q);
+    return (isnan(corrected)||isinf(q)) ? q : corrected;
+}
+float norm(SAMPLE x) {
+#if INTEGER
+#if REFERENCE_PYTHON
+    precise float scaled=float(x)*(1.0/(MAXVAL+1.0));
+    precise float result=fma(scaled,1.0/MAXVAL,scaled);
+    return result;
+#else
+    return float(x)/MAXVAL;
+#endif
+#else
+    return float(x);
+#endif
+}
+uint halfTruncate(float x) {
+    uint raw=floatBitsToUint(x), sign=(raw>>16)&32768u;
+    int exponent=int((raw>>23)&255u)-127;
+    uint mantissa=raw&8388607u;
+    if(exponent==128) return sign|(mantissa==0u ? 31744u : 32256u);
+    if(exponent>15) return sign|31744u;
+    if(exponent>=-14) return sign|(uint(exponent+15)<<10)|(mantissa>>13);
+    if(exponent<-24) return sign;
+    return sign|((mantissa|8388608u)>>uint(-exponent-1));
+}
+float halfDown(float x) {
+    uint b=halfTruncate(x);
+    float h=unpackHalf2x16(b).x;
+    if(h>x) b+=1u;
+    return unpackHalf2x16(b).x;
+}
+float halfNearestUp(float x) {
+    float lower=halfDown(x);
+    uint b=halfTruncate(lower);
+    b += (b & 32768u)!=0u ? (b==32768u ? 1u : 0xffffffffu) : 1u;
+    float upper=unpackHalf2x16(b).x;
+    precise float midpoint=(lower+upper)*0.5;
+    return x>=midpoint ? upper : lower;
+}
+float halfNearestEven(float x) {
+    float lower=halfDown(x);
+    uint bits=halfTruncate(lower);
+    uint next=bits+((bits&32768u)!=0u ? (bits==32768u ? 1u : 0xffffffffu) : 1u);
+    float upper=unpackHalf2x16(next).x;
+    precise float midpoint=(lower+upper)*0.5;
+    return x==midpoint ? (((bits&1u)==0u) ? lower : upper) : (x>midpoint ? upper : lower);
+}
+OUTPUT storeValue(float x) {
+#if DEBUG_STAGE
+    return x;
+#else
+    x=clamp(x,0.0,1.0);
+#if INTEGER
+    return SAMPLE(roundEven(halfDown(x)*MAXVAL));
+#elif HALF_OUTPUT
+    return SAMPLE(halfNearestEven(x));
+#else
+    return SAMPLE(x);
+#endif
+#endif
+}
+
+#if REFERENCE_PYTHON
+
+void main() {
+    ivec2 q=ivec2(gl_GlobalInvocationID.xy);
+    if(q.x>=WIDTH || q.y>=HEIGHT/2) return;
+    precise float rows=float(q.y);
+    precise float pos=divRound(rows+0.5,float(HEIGHT/2));
+    precise float pt=1.0/float(HEIGHT);
+    precise float low=pt*(2.0*rows+0.5);
+    precise float high=pt*(2.0*rows+1.5);
+    precise float a=1.0-abs((low-pos)*float(HEIGHT/2));
+    precise float b=1.0-abs((high-pos)*float(HEIGHT/2));
+#if REFERENCE_PYTHON
+    a=weights[q.y].x;
+    b=weights[q.y].y;
+#endif
+    precise float top=norm(yy[(2*q.y)*p.sy+q.x]);
+    precise float bottom=norm(yy[(2*q.y+1)*p.sy+q.x]);
+    precise float mean=divRound(a*top+b*bottom,a+b);
+    precise float second=divRound(a*(top*top)+b*(bottom*bottom),a+b);
+    precise float variance=abs(second-mean*mean);
+    vert[q.y*WIDTH+q.x]=vec2(halfDown(mean),halfDown(variance));
+}
+
+#else
+
+void main() {
+    ivec2 q=ivec2(gl_GlobalInvocationID.xy);
+    if(q.x>=WIDTH || q.y>=HEIGHT/2) return;
+    float rows=float(q.y);
+    float pos=(rows+0.5)/float(HEIGHT/2);
+    float pt=1.0/float(HEIGHT);
+    float low=pt*(2.0*rows+0.5);
+    float high=pt*(2.0*rows+1.5);
+    float a=1.0-abs((low-pos)*float(HEIGHT/2));
+    float b=1.0-abs((high-pos)*float(HEIGHT/2));
+#if REFERENCE_PYTHON
+    a=weights[q.y].x;
+    b=weights[q.y].y;
+#endif
+    float top=norm(yy[(2*q.y)*p.sy+q.x]);
+    float bottom=norm(yy[(2*q.y+1)*p.sy+q.x]);
+    float mean=(a*top+b*bottom)/(a+b);
+    float second=(a*(top*top)+b*(bottom*bottom))/(a+b);
+    precise float variance=abs(second-mean*mean);
+    vert[q.y*WIDTH+q.x]=vec2(halfDown(mean),halfDown(variance));
+}
+
+#endif

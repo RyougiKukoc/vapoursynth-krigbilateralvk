@@ -1,0 +1,7 @@
+/build*/
+/dependencies/
+/dist/
+/results/
+__pycache__/
+*.py[cod]
+.venv/

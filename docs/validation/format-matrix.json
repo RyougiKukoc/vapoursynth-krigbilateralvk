@@ -1,0 +1,2583 @@
+{
+  "dll_sha256": "c567599daf0086d3f7591a9ba13d81c53fa8f6daaf451ce3a84443450819630e",
+  "cases": [
+    {
+      "format": "YUV420P8",
+      "width": 2,
+      "height": 2,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "8d65a89d33fc69d31f85fd8ed396d6dd5672cd59f80bd2ced560d4bbaeb43222"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "8d65a89d33fc69d31f85fd8ed396d6dd5672cd59f80bd2ced560d4bbaeb43222"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "bac0ca61e0e0ecd3c3bf9f60648a1c7227503fcfbf2d69f8a5c1d2327f122df6"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "bac0ca61e0e0ecd3c3bf9f60648a1c7227503fcfbf2d69f8a5c1d2327f122df6"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "79f06f8fde333461739f220090a23cb2a79f6d714bee100d0e4b4af249294619"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "b451d8a7cc6defde9cb05a0bdc0b13e9c01860479d86fce7db4d093e0793b349"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "b356a29fe3fecfdaea506a652e3a325a78c7d087b8fda4d1da6eef23bc7bf21c"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "41621d2a2480d4b3cf74f8bb841f79e4f806f2f9c957ddc83f1ec7d55358c6fe"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P8",
+      "width": 10,
+      "height": 6,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "c1b03e8f89a761d9c17e4033b842eb6782f531192b9bed5d490edd8837c6180e"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "c1b03e8f89a761d9c17e4033b842eb6782f531192b9bed5d490edd8837c6180e"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "10bc463fbf8e82d9b9df67f6d808abd3d4faf9a1f1c0b9c1e09119005883ecb9"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "10bc463fbf8e82d9b9df67f6d808abd3d4faf9a1f1c0b9c1e09119005883ecb9"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "988610bad41d4af4d998c975f7e628b8c32f0f73a71fe4a0068f06d4ade297d8"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "4b496b0aaf4ffc343fd1ccd82d874041a10f48d308e3dcefe1c9b6d57899102a"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "c1ee6f64c4e37c23496a7249fece44fa93b0ec1ab87c82b1c94863c145396389"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "c1ee6f64c4e37c23496a7249fece44fa93b0ec1ab87c82b1c94863c145396389"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "1cab63b09add2ec41e323bf8d9d4c5e142598751d603b3946f6ace72b7d24ad0"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "12bf60af66618ac8fdda29561584fd13e938581f267981e7d1d9a84b8a910cd0"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P8",
+      "width": 34,
+      "height": 26,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "47f70134c00f4254ced12b5997bb33f06a9a288c45cff5c1276c43c1542f4c34"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "47f70134c00f4254ced12b5997bb33f06a9a288c45cff5c1276c43c1542f4c34"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "b31176fd7e547db26584569c80c362c42a56d1f4f9e1343a6c0c591279b42470"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "b31176fd7e547db26584569c80c362c42a56d1f4f9e1343a6c0c591279b42470"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "4ac5b182dc0ea98a26ca7fa49ee41c1df7fec3122572997ff4ca1e50d3ab5ef3"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "dc2c8ba640a8447dd37fe8c1005492d2d1afb372e0642dc84e8bc01ae8535745"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "d3a3e1c1930d0c2b2b9a4e104fd5b46ee1c64b7839eabf040e5bb0fd1ee8257a"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "d3a3e1c1930d0c2b2b9a4e104fd5b46ee1c64b7839eabf040e5bb0fd1ee8257a"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "a2087628f598337c5bdbe7285981073f12e91cc146836a28de949a8db715deb5"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "a64b1eda751e71290220cf6ba7672b79840e7b1da3df1232473badf194256e7a"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P9",
+      "width": 2,
+      "height": 2,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "9d523143304148a2b2d887da817f10830e37f50d7689ca5a9e69f10d7b2eb31f"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "9d523143304148a2b2d887da817f10830e37f50d7689ca5a9e69f10d7b2eb31f"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "2419c07677752cdb2bc4ccc2b6f650471eb1a81697692a532e408b434c4e5e62"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "2419c07677752cdb2bc4ccc2b6f650471eb1a81697692a532e408b434c4e5e62"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "2afb062399bb001d6b15e88b7b7aad73d2079a1d0cc26f41b425e6439698f530"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "b5fb0d37d27598afbfa92ca9bf83cdc1ea8606c2a0a1468a886a45f354d960e7"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "719259f6010495fd14382b31ad777abf43eb457ae4e72a01c989f9f8335f3d39"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "50fbe650f6b38cf97c003108d39791144a448b1578654edb69d1be40809b78b5"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P9",
+      "width": 10,
+      "height": 6,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "4e6c3a6aa7b85cc3918a4e6a0cf4ebab18fc5bdd06817dcf7921149b5c88a1de"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "4e6c3a6aa7b85cc3918a4e6a0cf4ebab18fc5bdd06817dcf7921149b5c88a1de"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "d7dbd7e16fa705bcc7793e05c73844024127f7c578a0a00fc12cc827fda528df"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "d7dbd7e16fa705bcc7793e05c73844024127f7c578a0a00fc12cc827fda528df"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "290aa7c202536b2bb89c396e60d9db46cc9e47b9999ac74c0b88b49bb595fb39"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "7871c976c113156e13f0a78ae41db88a2cf71326edb5b53dcfa2b1e83c877ae8"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "4ba5100f92231a55ed42a67e61e6abb28695e1eef57464f51b1134d7906975c6"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "4ba5100f92231a55ed42a67e61e6abb28695e1eef57464f51b1134d7906975c6"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "3d286fc1888cfd89acbdf0a5eea0f00dc73f4bb3909827be305a00156d3a7009"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "26cf6006a23762979ecbe74f7569935b56ee07bc5f6d70ef4a168369b3907df9"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P9",
+      "width": 34,
+      "height": 26,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "2c3aa16dc1ff8b9777c25500cd3b07c68abe91f57e0fe70b012e2f9895936d29"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "2c3aa16dc1ff8b9777c25500cd3b07c68abe91f57e0fe70b012e2f9895936d29"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "0d9ed09977ad1642b80949d486aa3227f2cb96ed36a586d7cf0d6b6116ca80f5"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "0d9ed09977ad1642b80949d486aa3227f2cb96ed36a586d7cf0d6b6116ca80f5"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "8793bb71a53b3133393a075fddb6f71981b17bd71dd76706995b49929a27978b"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "51b58a16421da40c63cd17284587aff80b2e825c0324e85b8b0029e8399b2cdf"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "c9001933521f2755086382823aeb629ae490cce416aa95dcbf8987cbda966078"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "c9001933521f2755086382823aeb629ae490cce416aa95dcbf8987cbda966078"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "39756d99bed2f3f626a9f595e9f616f74d87c8da195a5ba95dbcb85bfe7de90e"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "0827cdeb25692868bf6bd0adc568a78e12d545f19ca36ef7d3e56f2749a1160e"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P10",
+      "width": 2,
+      "height": 2,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "8dfefa928bce3fc28b887e1959530be108e38fc46fb3c67a74529dee61007248"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "8dfefa928bce3fc28b887e1959530be108e38fc46fb3c67a74529dee61007248"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "c160d13eb28e278b01ce7538bb68659fc40550c4bae0f2e560f59efe1db0ffb5"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "c160d13eb28e278b01ce7538bb68659fc40550c4bae0f2e560f59efe1db0ffb5"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ce62217cf1edd65eec3a948ab5f857850e52580958b1b652a02391784b1a57bb"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "20096539441080f442d67592b0b3c9b6703589e8e3474653072b84b30309d222"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ec1aa63a71267c88a2424dd61aed8a10d2845ec260b542046948e9006166897f"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "cc9bd878f249815bccc2f4ed37adf1dc6646ab2997ff097b3f03b6c3c65d1b7d"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P10",
+      "width": 10,
+      "height": 6,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ab61527f3edfe99cc70849e343d9dfded83beabcdeb12b53ff6f7b379634e23b"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ab61527f3edfe99cc70849e343d9dfded83beabcdeb12b53ff6f7b379634e23b"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "aad47441c80331b3b12c410ddc112ac510f1f75b5fd78f53f7975c73ad82d952"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "aad47441c80331b3b12c410ddc112ac510f1f75b5fd78f53f7975c73ad82d952"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ce132688a38afba25a42508c165ffef8378493708e3672eecfed609391259f22"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "40cb21bf20dbd05f48fd4d033b5f56131d8e1dbd9b0eb8e98668abc54afa47a1"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "4c3e54086ad81e63c1b31ae5370287b8d8d8a5136e39f479cfb518c68fc2594b"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "4c3e54086ad81e63c1b31ae5370287b8d8d8a5136e39f479cfb518c68fc2594b"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "3e61fa3e9d6c6cf5957acf536acbe2e6645ae13edcc0a41a217c8362347196b3"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "2ae6d4f27720c8a50a5ec0197c5742d9d5221900013992f8778e81a6a13f099c"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P10",
+      "width": 34,
+      "height": 26,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "b4f6b8ba10b446589a92250e446737d98cbd0d4bdfc5c223cc28017812a7ec34"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "b4f6b8ba10b446589a92250e446737d98cbd0d4bdfc5c223cc28017812a7ec34"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "671d98ff4cb6434e2559b54232fb88ba61dc3ea0543a4c035118aeb21a3eaadf"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "671d98ff4cb6434e2559b54232fb88ba61dc3ea0543a4c035118aeb21a3eaadf"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "5c308208210973c285663cbf9e3c8cc3700389c9094a7af3296a75c0a8f2d957"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "e4bb7a94111b046cce642851387558fd36962c0485be52bdf1339837f3762de0"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "97774857d5615e50886d14adf03f2a624c78a3e1771bd9581ab6287df123171d"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "97774857d5615e50886d14adf03f2a624c78a3e1771bd9581ab6287df123171d"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "a59033f1542b6d0248d6e187beff56ee3b61fd47f37063e873c4ef424cb291a9"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "45bbadd65defc6d326e96fb1a6884da23890e3ebd8a7614b3449c5040e90b9b4"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P12",
+      "width": 2,
+      "height": 2,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "7971bdefa5d350222fbe3aa926ee2bdbd685341db331bea9e81324b49dc78544"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "7971bdefa5d350222fbe3aa926ee2bdbd685341db331bea9e81324b49dc78544"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ca00f24e8a6fe58dccc38234a407bfd109a71adb789e02e22922b91304b22465"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ca00f24e8a6fe58dccc38234a407bfd109a71adb789e02e22922b91304b22465"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "e72f6d1b9ed249d699f90e64eabd72518549aa1459dccca2ac9e80a2fd4c4694"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "d2c3324b287fa9484f3c929d50d99cab070d0a99315e88e8e9d2a939e0995df7"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ea36205fdca3bfaee64bfa2089d0be811677fc6f997a9e09798c607693344ca1"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "0f6097d81fb5d6fb3e062b8bd541fd968cb0e8c18201250f26a705de4d959416"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P12",
+      "width": 10,
+      "height": 6,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "bd439600f23f7c197e2feb9c2aa0f3c3b86d83c3d1c51fd92159a843d7b2c1c9"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "bd439600f23f7c197e2feb9c2aa0f3c3b86d83c3d1c51fd92159a843d7b2c1c9"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ae04d701edd383ad837e74e17fc5d04bc5d199f9e5a052167101cd9dbd366ede"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ae04d701edd383ad837e74e17fc5d04bc5d199f9e5a052167101cd9dbd366ede"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "2e8d5b26c21e305bcd2929321351cd2ba0accca5df297da4e974d7a8aaa8e860"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "56fdc3e40209fe151fec5c5954a595c8017b1c8325382914f682006c74364e1c"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "9e23c2add469647ea6138a7730c02e59a46852b4effeb33dc8e6d4584b129225"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "9e23c2add469647ea6138a7730c02e59a46852b4effeb33dc8e6d4584b129225"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "3f7ee07c645b6af12105839c4ac7ee6bb867fea86085416cd11b233f45e6fd72"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "9b638c397e3c116d52c4e11989899e596434ff352eda04fa67d1a082d58f1ef9"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P12",
+      "width": 34,
+      "height": 26,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "508f8494f18b6d51cf9a0b34ae6b7f1067d651704a9c38ea4e3df98612119f0f"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "508f8494f18b6d51cf9a0b34ae6b7f1067d651704a9c38ea4e3df98612119f0f"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "eb3fe54d2ad055dfe4ea3a6329ec36525b19093eefeba0bb3029eac11e278bf9"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "eb3fe54d2ad055dfe4ea3a6329ec36525b19093eefeba0bb3029eac11e278bf9"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "9bed4ceadd70a4090c04b5a9fa467f0d22acf8ed5c99f7383245915b9acf2336"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "bf7863eae4d278d177683ce7da79082fb8e79fc2d1ae059759690d047cf24153"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "36afdf2c2b208c4db9aa8484e04db9cb59970c2b5f41d6b89607b1abc6b887ce"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "36afdf2c2b208c4db9aa8484e04db9cb59970c2b5f41d6b89607b1abc6b887ce"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "6df136ac95015c9a0ca9fc0a686c2f90f2a7e4a7a295d1dff310a8f223991c2c"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "cda2abe0cc16ab11d3a14370c16072f6d897092be0e291ca6d4933c69d12b273"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P14",
+      "width": 2,
+      "height": 2,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "571c2442b51cf6dfbdbd9f1e6389ffa2806b72e1f5879483dd9ebb680037fe0e"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "571c2442b51cf6dfbdbd9f1e6389ffa2806b72e1f5879483dd9ebb680037fe0e"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "cc011d36590c83122a704a15859ce12b846af0d27f100a9cca205a35ebc38610"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "cc011d36590c83122a704a15859ce12b846af0d27f100a9cca205a35ebc38610"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "9c9dbd18d78ee4f6b4ba8552cdf50a5aaef90a5e92c982ebce57e01f87fc6e35"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "bf8f880dfdfa9b4d38a360bc4bb70df08421256978fa17ca66f13b0d230f50e3"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "201943ee78b5d3bfc646569d87d67cfe9a13d65472ac739c7adb263eef06fd36"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "93cfee8c452249ceb365ccbd58f6b6f98bbd2531d72fe5acbbf47771d6e1a782"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P14",
+      "width": 10,
+      "height": 6,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "0d3505caf88e142a9d6d49b041d5ced66a850f54eb20b8a8974f7d094104e4a3"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "0d3505caf88e142a9d6d49b041d5ced66a850f54eb20b8a8974f7d094104e4a3"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "dcde161c595b42215602e0682e2e5d6e9d799383a5dc31b37b5cd3c5ba20cc14"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "dcde161c595b42215602e0682e2e5d6e9d799383a5dc31b37b5cd3c5ba20cc14"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "8328d6d149d73e0687727dc573aa7ccbfb81705d054972710397c1a79d51bc0d"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "4d89383f8ff4a92bbb8ea536be5b0ddead0c71779bad3b1c95b3ec2eb9b51b0e"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "64e805c9151154d2f8c3154cc6258421e7029b052bae64cf1399b2bc1bf62ef8"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "64e805c9151154d2f8c3154cc6258421e7029b052bae64cf1399b2bc1bf62ef8"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "efd569c51030eb1d6537c7f1ea0faaf98105d8f6a12df83973001405fac812d8"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "74d8121cc86f94dfd1c1651cc5850705880b9b3a8047b11de428240b8723b41f"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P14",
+      "width": 34,
+      "height": 26,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "54a3e334fa4c1c05022e0f1669d3a032f6cbb1c23fa0458b040ea1da4a4cb4e6"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "54a3e334fa4c1c05022e0f1669d3a032f6cbb1c23fa0458b040ea1da4a4cb4e6"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "b93aaf85822d973a6f3cf90255a4cdefe607d8c306d045a98cf23f56b0129efe"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "b93aaf85822d973a6f3cf90255a4cdefe607d8c306d045a98cf23f56b0129efe"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "3c373076ab4d3c8754e95f87d1295df085f6024bb57e733021f7ae5d26920264"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "f69770722f6a3b9e4018c64c6a9cd4942c585410725b6ec3e310ece7c0ba2e4b"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "63b161a70d5f3bde5ab8ed29114d1c257e4a67ebbb0ca81869a278a8a553156c"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "63b161a70d5f3bde5ab8ed29114d1c257e4a67ebbb0ca81869a278a8a553156c"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "f388694d22089c6651a7cf3253a2f1a8ef2d5ff169423c6e906195f34f24e4fe"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "6f5c73b88c87352bb2b43d3cfbb1c1d91da7955aaf0fb993444b503a7e9528b2"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P16",
+      "width": 2,
+      "height": 2,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ca48b1fec35bc33d07feab9c5763b21a856552fa51bbadfae3c41a4a599972b6"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ca48b1fec35bc33d07feab9c5763b21a856552fa51bbadfae3c41a4a599972b6"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "bbd149354f41eb102cce81e8e79bb0f677ff2789af56131f86ebc7ed4b0ddcc6"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "bbd149354f41eb102cce81e8e79bb0f677ff2789af56131f86ebc7ed4b0ddcc6"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "d3548a8987fc3e0ce97c09f2db2d05b945282709e95e43d8106dfd7419e04cc3"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "444fa4399b908ac37cff25b444478f58ddd31443144d9b1f6ca0b3c6913303dc"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "40e70d43925ee3fc0373e4cbf8bfff1de0eeedc3ef3205e9ba5230b0747da3f6"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "62b2c356dfc4ba305650face7416ef3197da69d76b87e98eaa642c8f3b082048"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P16",
+      "width": 10,
+      "height": 6,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "c7152df680b318fe508ec020793c76a3f7ab68a1bb5e6bae822dc738aab1485e"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "c7152df680b318fe508ec020793c76a3f7ab68a1bb5e6bae822dc738aab1485e"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "86c2722628e347dc055353fa3d5b12007bddfa4a485f333ec40d1974fab9b54d"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "86c2722628e347dc055353fa3d5b12007bddfa4a485f333ec40d1974fab9b54d"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "850a0eea0731262880643f77d611980776959ce6c5a717e83fa16b83f9dde77e"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "4c29638b453fbe10b4fb6279753009ea73440d42b391929bfea649ec5e86c7ec"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "9fdf86f07cdbc758e308dc5786d1204a522494fd36cfde2ef24046e0e683a97e"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "9fdf86f07cdbc758e308dc5786d1204a522494fd36cfde2ef24046e0e683a97e"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "3810858b9fb348dc087efe010a4c051e2b3505a7e949ccd388e1f299d1e1e885"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "3bba1661b25df8ad2e0ecfa6229316124af26196eb7849b8c96e83f525317bf7"
+        }
+      ]
+    },
+    {
+      "format": "YUV420P16",
+      "width": 34,
+      "height": 26,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "fc014a85de18e037918587d46fda8d89db0487591f49a86db6ae916750858589"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "fc014a85de18e037918587d46fda8d89db0487591f49a86db6ae916750858589"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "6ee8b5de538526e95417711980137eead839996098793a39344ef1488d71d405"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "6ee8b5de538526e95417711980137eead839996098793a39344ef1488d71d405"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "a2df6696fc1412ca1dcba2caf487fbc4f8b608ce896d837fe66c9170915a2645"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "3275f2d319c38aa618d2a1bf318a803accb8a633f89f4de55eac2b7cfe1294cd"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "2d9f05996015f60bd4182e95aeddf3d93b8951e8c11ff3f6c3c5756997c81154"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "2d9f05996015f60bd4182e95aeddf3d93b8951e8c11ff3f6c3c5756997c81154"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "d38a87e29cbcc7c609e5f2feb229fe1cf50d82bf15e1218b8f728dc077bba352"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "d99f49e0997dadc3e3c6c4c69ff752578040ef0438a88bb8ed298aaf335be5ec"
+        }
+      ]
+    },
+    {
+      "format": "YUV420PH",
+      "width": 2,
+      "height": 2,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "f93d981d5763020514a4923037c6a588f79c01a24e981de68ac1100b9113aa4e"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "f93d981d5763020514a4923037c6a588f79c01a24e981de68ac1100b9113aa4e"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "f1ea8fbd1528665bc12bfcb4ff4b36d8818479d7f8e0ca63998a65dbc1ce3e9c"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "f1ea8fbd1528665bc12bfcb4ff4b36d8818479d7f8e0ca63998a65dbc1ce3e9c"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "df67556333df5c864f93a57b2c1273cb50f140f0d06921d2419c89524ddfd364"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "5da8de4f9cb7f75ebb66131cfe181feb30ff2393de821803b63dd628e4d02e21"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "44b6f68057a908f5294993eb2990d53ce4d7ca3f4bc37c06ca38d96cf72ebcb0"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "70d173cc95904a70587367b25ac06f707efd467cc2a9678e601c72e7910d215b"
+        }
+      ]
+    },
+    {
+      "format": "YUV420PH",
+      "width": 10,
+      "height": 6,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "244a2ab22046d07df9abba2241a0a92e541a06ac0e5c6b6e68e31d531a7ad97b"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "244a2ab22046d07df9abba2241a0a92e541a06ac0e5c6b6e68e31d531a7ad97b"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "c71b6a05ef3f57963412e760e388b8e606d1095b231e05909b1fcb41f2b7ad6a"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "c71b6a05ef3f57963412e760e388b8e606d1095b231e05909b1fcb41f2b7ad6a"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "23e041770f91c5b6cfd7e186faecfdd07b13290544d147b4cea86bf26634d605"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "a95f58a4f3ac3fabf18bd3799f61ceeecfa094ff51ee051e40194e2129cb159b"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "8dd274a9d507060a972121fc1a85fa3a796c2679c934aafc979fdd2a67e61e0e"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "8dd274a9d507060a972121fc1a85fa3a796c2679c934aafc979fdd2a67e61e0e"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "8797dcdc22a456ad7833e60ade437456baf2c6b7e3d87b8e8b97c296281fe271"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "8c101bedb0859c45672aaa8b9baa4742d6e03190f9e1e5dd42178a12d55e1a31"
+        }
+      ]
+    },
+    {
+      "format": "YUV420PH",
+      "width": 34,
+      "height": 26,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ece1dec59b050febd1208d2dc67757bfba0e8a6249bcd10288749e95c1c8d445"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ece1dec59b050febd1208d2dc67757bfba0e8a6249bcd10288749e95c1c8d445"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "6ef51ff2afb88bebb2a02eb24adfb13d0f40ecbbb66715458b49053705541e47"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "6ef51ff2afb88bebb2a02eb24adfb13d0f40ecbbb66715458b49053705541e47"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "4762ae9a99de2240757795386b95daebe7f495ae6fba3205a694d96277eb7819"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": false,
+          "different": 1,
+          "max": 7.62939453125e-06,
+          "rms": 2.566043067918062e-07,
+          "finite": true,
+          "sha256": "7365d9dfc0c16c12335db3e8a35e77c2100ed69f507e285c2d5779fd90bdb946"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ef32de1952ae821afd748da0bcb31c99e971008b90aeb404f11331432116281e"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ef32de1952ae821afd748da0bcb31c99e971008b90aeb404f11331432116281e"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ba48a169bc647694ce77fd19c707d5005321943b237d993eda323d888618143d"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "28ab1f9db7117aec06d8d02be127218f16980bc9390eae9ca81a61fd2cab190e"
+        }
+      ]
+    },
+    {
+      "format": "YUV420PS",
+      "width": 2,
+      "height": 2,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "1dc5c8e021c663cd8f7ecf1fb0c6d4112bc8d7f3c9e0095cd26bd7af7b8d7f13"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "1dc5c8e021c663cd8f7ecf1fb0c6d4112bc8d7f3c9e0095cd26bd7af7b8d7f13"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "94bc92e99332f838f9171af2f1b522a82032ae8f0ca065707239916d157883f1"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "94bc92e99332f838f9171af2f1b522a82032ae8f0ca065707239916d157883f1"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "edaec5b15c389881ac507d24bf738a163e179ade3b6a0cba3525b746aa931109"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "bcdb9b6343f02730ef6c0da2e99011fab002092fb8d4d11c519c29ca18c430fe"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "3c05b7def74850cba75e02bdc73e844aeb013f91322a95b4d7628c5cded0d5c8"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "4c48e376097d2595e25fa9f703d1fc63f3f38f216387b7262af62a10c5231bd2"
+        }
+      ]
+    },
+    {
+      "format": "YUV420PS",
+      "width": 10,
+      "height": 6,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "89f2118641686d83fa787326b8c1b81ce29df485502d2193e3d143fd6b5fb648"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "89f2118641686d83fa787326b8c1b81ce29df485502d2193e3d143fd6b5fb648"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": false,
+          "different": 3,
+          "max": 2.9802322387695312e-08,
+          "rms": 6.664001874625056e-09,
+          "finite": true,
+          "sha256": "e91bc21fea7478ebcacd310a9cba14010872555db215ff3ecd803bf06848f0e4"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": false,
+          "different": 3,
+          "max": 2.9802322387695312e-08,
+          "rms": 6.664001874625056e-09,
+          "finite": true,
+          "sha256": "e91bc21fea7478ebcacd310a9cba14010872555db215ff3ecd803bf06848f0e4"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": false,
+          "different": 3,
+          "max": 2.980232238769531e-07,
+          "rms": 3.998401124775034e-08,
+          "finite": true,
+          "sha256": "2c0c7de9f0be7d100bc86ef2855ae30253e9486387579524fd5dcce0acf1402b"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": false,
+          "different": 7,
+          "max": 1.7881393432617188e-07,
+          "rms": 3.4466485697687795e-08,
+          "finite": true,
+          "sha256": "305a891e27566020f4ae1aa4971a360f186577840582376c413108f1a845c8cb"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "dccec7068bb698166fa6f8cceb65c345e8129c204048e94f8a53cef78285e2e7"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "dccec7068bb698166fa6f8cceb65c345e8129c204048e94f8a53cef78285e2e7"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": false,
+          "different": 16,
+          "max": 1.1920928955078125e-07,
+          "rms": 3.089970551927048e-08,
+          "finite": true,
+          "sha256": "01d644f307fbe7acf60e66419f37c56047ae6e84125515e461959c860381e281"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": false,
+          "different": 16,
+          "max": 1.1920928955078125e-07,
+          "rms": 2.672533403300167e-08,
+          "finite": true,
+          "sha256": "5ee9108a17dc13ec7d2602bf512f7e4f82b509d850d9568e6f0ab308b58e0a05"
+        }
+      ]
+    },
+    {
+      "format": "YUV420PS",
+      "width": 34,
+      "height": 26,
+      "rows": [
+        {
+          "frame": 0,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ab88f82ac9faca22108a4d60a80bdfd0cd05e2b9606a70aa62e11e6e276d744b"
+        },
+        {
+          "frame": 0,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "ab88f82ac9faca22108a4d60a80bdfd0cd05e2b9606a70aa62e11e6e276d744b"
+        },
+        {
+          "frame": 1,
+          "plane": 1,
+          "equal": false,
+          "different": 170,
+          "max": 1.1920928955078125e-07,
+          "rms": 2.2261658837670865e-08,
+          "finite": true,
+          "sha256": "e26beeaa7591fb7c4fbdf14a27e90a6fa7349955b55134e277bf6758f7138237"
+        },
+        {
+          "frame": 1,
+          "plane": 2,
+          "equal": false,
+          "different": 170,
+          "max": 1.1920928955078125e-07,
+          "rms": 2.2261658837670865e-08,
+          "finite": true,
+          "sha256": "e26beeaa7591fb7c4fbdf14a27e90a6fa7349955b55134e277bf6758f7138237"
+        },
+        {
+          "frame": 3,
+          "plane": 1,
+          "equal": false,
+          "different": 149,
+          "max": 8.344650268554688e-07,
+          "rms": 5.478126058737067e-08,
+          "finite": true,
+          "sha256": "b5a4014abafd1c40736a1c79829a253d541fd0ef59d80ffac4223cbf19febdee"
+        },
+        {
+          "frame": 3,
+          "plane": 2,
+          "equal": false,
+          "different": 164,
+          "max": 7.003545761108398e-07,
+          "rms": 5.379814964530546e-08,
+          "finite": true,
+          "sha256": "eb1f57a8431edfaa64a15f4464e4daf1c20827be7d6508e1513df58aa27c5f87"
+        },
+        {
+          "frame": 6,
+          "plane": 1,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "3a235330c4c510359f6c8805aa83fb83ded8d8544e82ce558f15b3eeda0d7ac4"
+        },
+        {
+          "frame": 6,
+          "plane": 2,
+          "equal": true,
+          "different": 0,
+          "max": 0.0,
+          "rms": 0.0,
+          "finite": true,
+          "sha256": "3a235330c4c510359f6c8805aa83fb83ded8d8544e82ce558f15b3eeda0d7ac4"
+        },
+        {
+          "frame": 7,
+          "plane": 1,
+          "equal": false,
+          "different": 142,
+          "max": 1.1920928955078125e-07,
+          "rms": 1.8115431671142915e-08,
+          "finite": true,
+          "sha256": "c2c26acc84337e819a7edc5661711ebb13db1c36c0043c32e3d8fe6e5f485a17"
+        },
+        {
+          "frame": 7,
+          "plane": 2,
+          "equal": false,
+          "different": 136,
+          "max": 1.1920928955078125e-07,
+          "rms": 1.7655493893015113e-08,
+          "finite": true,
+          "sha256": "265e87060d9e5f8ccabc450772103d83dc82a1920639dceab83932ad5af83052"
+        }
+      ]
+    }
+  ],
+  "luma_exact": true,
+  "properties_preserved": true,
+  "cpu_gpu_entries_identical": true,
+  "multiple_instances_concurrent_random_requests_exact": true,
+  "invalid_inputs_rejected": [
+    "KrigBilateral: KrigBilateral: expected constant-format even-sized YUV420",
+    "KrigBilateral: KrigBilateral: expected constant-format even-sized YUV420",
+    "KrigBilateral: KrigBilateral: reference must be python or shader",
+    "KrigBilateral: KrigBilateral: debug must be in 0..7"
+  ]
+}

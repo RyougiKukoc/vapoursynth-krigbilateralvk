@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "scope": "Historical Windows RTX3090Ti native validation; measured data retained, machine-local paths and device UUID removed.",
+  "measured_plugin_sha256": "c567599daf0086d3f7591a9ba13d81c53fa8f6daaf451ce3a84443450819630e",
+  "reference_files_sha256": {
+    "reference/KrigBilateral.glsl": "a84951b430905176f381a009552b3153dc01142c86b3d17740a25514fe2128e2",
+    "reference/KrigBilateral.py": "0f296beb079ef7257997cad6d1e765c3800dea451c7245972376368b84b9d521"
+  },
+  "published_files_sha256": {
+    "docs/validation/final-128x72.json": "1bcee6dc6e5327cdec53600460d327c9a3b2ef4dfbd83af2453fb2bdbdcc8d48",
+    "docs/validation/final-binary-real-1080p.json": "d742297c9ffbca5c3222ae4a6d423317e23f8ac5db67c3ba211d78d40f354989",
+    "docs/validation/format-matrix.json": "d89a6bcfcf4b518625df612873a1607373cfbec61e602efff0a86bf00568c462",
+    "docs/validation/sustained/placebo-python-r0.json": "a503f6c510b4b96f912ba4bf9ef7adbed654a9256d9727dbf23799cd09868116",
+    "docs/validation/sustained/placebo-python-r0.log": "7db290bf37e0c33ca25e6666e03b793b5891b4f39dd47d5ef78e3a7e1cc4c058",
+    "docs/validation/sustained/placebo-python-r0.telemetry.csv": "1ff86a9c0ef80ec65c18d9debc77a66b9f3189f49a1c25bd446a0848c8935bb1",
+    "docs/validation/sustained/placebo-python-r1.json": "3da45b967eab9a770c97b6ab460362a761eb753891002d18fde959e6cc653b09",
+    "docs/validation/sustained/placebo-python-r1.log": "b4a64b56224e153e759b38cc2d11b3cb81b1b779ab7c627df5553d3630bffe92",
+    "docs/validation/sustained/placebo-python-r1.telemetry.csv": "f27bc89dfbd830bd59a9ff503f30c25b3e08c419615be0462cfd7fc99c4ed734",
+    "docs/validation/sustained/placebo-python-r2.json": "ba7ee129662d44cbd0f702d3f71d9853ffac9a66873feeab6e39f4825cb11dd5",
+    "docs/validation/sustained/placebo-python-r2.log": "f9d4d1a4afb82c78c378e316d3b1d14477bc7efbbe210a4e3411d6e33aaf5032",
+    "docs/validation/sustained/placebo-python-r2.telemetry.csv": "ecb98478df9478031ec3678056c3e9ba39787abcb23f5009897d9ee0f58753aa",
+    "docs/validation/sustained/python-python-r0.json": "cce8613623096ccb709167b0a4c3b59a1a78fdb89430d723efec4269635f8b6d",
+    "docs/validation/sustained/python-python-r0.log": "7ba03247c0c4816314284c6da8b2a33c849c77f76041293e8e35d1ab324264e6",
+    "docs/validation/sustained/python-python-r0.telemetry.csv": "1dc2aef5662c33cb56ab867ef5f4f8d59cc37dd21da3ececb180b0b4150b12ff",
+    "docs/validation/sustained/python-python-r1.json": "bb02536ba3fc46d2d75633fe1a7460a3a42e87f8cb7a75736a613329807a49d6",
+    "docs/validation/sustained/python-python-r1.log": "887ad5d857a72bb47c29f4c810309bb59a36cf41a0173379449f849b1f3e0d51",
+    "docs/validation/sustained/python-python-r1.telemetry.csv": "85ed82fd8bcd024ac7fdaac1b780a9cffc56363e6c8e24135a6eb32444d12372",
+    "docs/validation/sustained/python-python-r2.json": "6b8aa3c59dc49ac672b58f7fae7ead22ab22b87ce3beae49adc04c91c89aec10",
+    "docs/validation/sustained/python-python-r2.log": "8c79a1c913ca0cf713fd58b877c4167c3968c9303808da6ebeb2da7300029f80",
+    "docs/validation/sustained/python-python-r2.telemetry.csv": "7aa6c0c218a6de73cdb79e5db5bc832fb1dfd5ac4824e4de52fa28a5171978c6",
+    "docs/validation/sustained/summary.json": "b0f31b0a7ea540151d9f6c8d78f0ff3abf4f6bfb0c12890f9ffec47a83675361",
+    "docs/validation/sustained/vk-python-r0.json": "184beb15ce3e4fa3a07dbd953f67b0fac6131a3e3f759175b2eb31d3ae1de9d7",
+    "docs/validation/sustained/vk-python-r0.log": "ee7985193573bc00554bfe71008ae3463236f3f5be10c7e66e41431442b3ca77",
+    "docs/validation/sustained/vk-python-r0.telemetry.csv": "f9ab1820dd40a23d0f9b379f842900493ed6fc393d17cbe9a0e95a9577549cd9",
+    "docs/validation/sustained/vk-python-r1.json": "346b43fe12e319f4031d9c9269e5261e1df9131dfd183a0b63f22c6e7b2f5ee7",
+    "docs/validation/sustained/vk-python-r1.log": "5c553d586b0d81803185679c393822c9be15b55032cb0ba8edb94cc7a43f48da",
+    "docs/validation/sustained/vk-python-r1.telemetry.csv": "e064ce17b1c459540a86c1ebc0f87d8fd096694dfb8a950389c15a874dec4e8d",
+    "docs/validation/sustained/vk-python-r2.json": "2366392573799b24f42b6149fe498b2488a7fa6438f7d61b5b4f36bd41081dc1",
+    "docs/validation/sustained/vk-python-r2.log": "4be5fa3f5a319930981a010529723b7905e13c92f24335a726d787dc145ed81c",
+    "docs/validation/sustained/vk-python-r2.telemetry.csv": "c5124f72eed2bbc906ec49acee2c32808c64c83d344bac424334c151afc07268",
+    "docs/validation/sustained/vk-shader-r0.json": "82bcd14ffd93c19996ce3b6f1831143c0d408e87cb49a5d9d1d6abd036c09f6d",
+    "docs/validation/sustained/vk-shader-r0.log": "991f7ffb04ff02079ea7563180cc7b7d15998602ab182a17f08e454a1d155600",
+    "docs/validation/sustained/vk-shader-r0.telemetry.csv": "f9e6213103ee367a52962174b9c0e8460b83108ecf07213e5510417826937e25",
+    "docs/validation/sustained/vk-shader-r1.json": "41b0e25fdc180ebc892e47dfe2b5c22e04987f00597d0857cdb94d93ddcff15a",
+    "docs/validation/sustained/vk-shader-r1.log": "3a2efbd3db86cec573b96221f0745ba6d4e093e20a7e3cb956fe0481d3d5abac",
+    "docs/validation/sustained/vk-shader-r1.telemetry.csv": "05c0844066f969984884b7cb2abbacd7670284e4368e39a6779ee255879beb3f",
+    "docs/validation/sustained/vk-shader-r2.json": "7a0e1a4bbc8873a6e8eb9bff61444c82736954b8a4a521099ef55bea0ca2c1e1",
+    "docs/validation/sustained/vk-shader-r2.log": "f5c201e9a119de0d4d0df31856afc242fdaf578159aa2bff4d9707f06bfb4d67",
+    "docs/validation/sustained/vk-shader-r2.telemetry.csv": "903c6bc114d600b3549f12cc71fb25713083fe4e57744ebe713623b51f94e8d3"
+  },
+  "gpu_spirv_validation": {
+    "tool": "SPIRV-Tools v2024.4",
+    "target": "vulkan1.4",
+    "stages": [
+      "vertical",
+      "horizontal",
+      "reconstruct"
+    ],
+    "passed": true
+  },
+  "validation_layer": "Khronos validation layer was not installed; no layer-based synchronization check is claimed."
+}

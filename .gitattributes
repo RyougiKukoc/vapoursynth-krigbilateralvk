@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.dll binary
+*.so binary
+*.spv binary
+*.zip binary
+reference/* whitespace=-blank-at-eol,-blank-at-eof
