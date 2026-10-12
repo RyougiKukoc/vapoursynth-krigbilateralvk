@@ -44,7 +44,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           objdump -p build/krigbilateralvk.dll | Select-String 'DLL Name:'
       - name: Package
-        run: python -X utf8 tools/package_release.py --plugin build/krigbilateralvk.dll --output dist/krigbilateralvk-0.1.0-windows-x86_64.zip
+        run: python -X utf8 tools/package_release.py --plugin build/krigbilateralvk.dll --output dist/krigbilateralvk-0.2.0-windows-x86_64.zip
       - uses: actions/upload-artifact@v4
         with:
           name: krigbilateralvk-windows-x86_64

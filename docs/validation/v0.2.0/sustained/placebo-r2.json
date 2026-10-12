@@ -1,0 +1,59 @@
+{
+  "backend": "placebo",
+  "width": 1920,
+  "height": 1080,
+  "frames": 2048,
+  "warmup": 16,
+  "prefetch": 4,
+  "threads": 4,
+  "seconds": 19.46410740003921,
+  "fps": 105.21931254838196,
+  "construction_seconds": 0.5250919999671169,
+  "warmup_seconds": 0.47989529999904335,
+  "source": "external-1080p-yuv420p16le.yuv",
+  "source_frame_indices": [
+    0,
+    18,
+    36,
+    54,
+    72,
+    90,
+    108,
+    126
+  ],
+  "source_sha256": "9bd42cbecbd611156f6633757d83a2c83e53c18adc7b0a3a452588bd947e798c",
+  "environment": {
+    "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+    "os": "Windows-10-10.0.19045-SP0",
+    "core": "VapourSynth Video Processing Library\nCopyright (c) 2012-2026 Fredrik Mellbin\n\tCore R81\n\tAPI R4.3\n\tOptions: -\n\tNumber of Threads: 4\n\tMax Cache Size: 32723\n",
+    "numpy": "2.5.3",
+    "plugins": [
+      {
+        "namespace": "krigvk",
+        "path": "krigbilateralvk.dll",
+        "sha256": "887add4b96c8edb61bfe5d74218c8743abe982d1e7587773e48b22dbc89b7d4d"
+      },
+      {
+        "namespace": "placebo",
+        "path": "libvs_placebo.dll",
+        "sha256": "b0a0689946e03f6f7467b798fba4678018bb28ba6b1caecdded8d08945049310"
+      }
+    ],
+    "vulkan_devices": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 3090 Ti",
+        "api_version": [
+          1,
+          4,
+          351
+        ],
+        "type": "discrete",
+        "device_memory": 25489833984,
+        "usable": true,
+        "reason": ""
+      }
+    ],
+    "gpu": "NVIDIA GeForce RTX 3090 Ti, 617.42"
+  }
+}

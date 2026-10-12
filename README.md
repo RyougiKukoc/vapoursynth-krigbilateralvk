@@ -2,7 +2,7 @@
 
 A native Vulkan implementation of **KrigBilateral**, the luma-guided chroma upscaler by Shiandow. It reconstructs YUV 4:2:0 chroma at full luma resolution and returns YUV 4:4:4 at the original size and bit depth. The luma plane is preserved exactly.
 
-The plugin runs three compute passes on VapourSynth's Vulkan device. It provides both a convenient CPU-frame interface and a GPU-resident interface for processing chains. NumPy and libplacebo are used only by optional comparison tests; neither is a runtime dependency.
+The plugin runs three compute passes on VapourSynth's Vulkan device. It provides both a convenient CPU-frame interface and a GPU-resident interface for processing chains. NumPy is used only by optional comparison tests; neither NumPy nor libplacebo is a runtime dependency.
 
 ## Requirements
 
@@ -15,7 +15,7 @@ The initial binary targets the **R81 release headers**. The GPU interface evolve
 
 ## Installation
 
-Download `krigbilateralvk-0.1.0-windows-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the DLL explicitly:
+Download `krigbilateralvk-0.2.0-windows-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the DLL explicitly:
 
 ```python
 import vapoursynth as vs
@@ -51,14 +51,13 @@ output = core.std.GPUDownload(gpu_output)
 ### API
 
 ```python
-core.krigvk.KrigBilateral(clip, reference="python", debug=0)
-core.krigvk.KrigBilateralGPU(clip, reference="python", debug=0)
+core.krigvk.KrigBilateral(clip, debug=0)
+core.krigvk.KrigBilateralGPU(clip, debug=0)
 ```
 
 | Argument | Default | Meaning |
 |---|---|---|
 | `clip` | required | YUV420 input. `KrigBilateral` accepts CPU frames; `KrigBilateralGPU` accepts GPU-resident frames. |
-| `reference` | `"python"` | Arithmetic path: `"python"` follows the included NumPy reference closely; `"shader"` uses the original GLSL arithmetic style. |
 | `debug` | `0` | Normal output at `0`. Values `1..7` expose intermediate results as YUV444PS; see [diagnostics](docs/development.md#diagnostics). |
 
 With `debug=0`, output is YUV444 with the input's dimensions, sample type, bit depth, frame count and frame rate. Frame properties are copied from the input.
@@ -71,30 +70,28 @@ The filter uses the fixed **left chroma placement** of the reference implementat
 
 FP16 and FP32 are also accepted, using the reference's **0–1 chroma convention** and clipping reconstructed U/V to `[0, 1]`. Conventional VapourSynth float YUV uses signed chroma; for that convention, convert to an integer YUV420 format before using this filter. Passing signed chroma directly does not preserve its range.
 
-## Precision
+## Algorithm fidelity
 
-The default mode preserves the reference's fixed elimination order, explicit fused operations and intermediate half-precision rounding. It also controls contraction and fast math and uses residual corrections for division and square root. Its aim is to closely reproduce [the included Python reference](reference/KrigBilateral.py).
+Version 0.2.0 uses a single implementation derived directly from Shiandow's original GLSL. It retains the weighted moments, covariance equations, packed matrix, fixed elimination and back-substitution order. Guide buffers store FP32 values; the plugin does not introduce half-precision truncation or emulate NumPy arithmetic.
 
-**It is not guaranteed bit-exact for every input, GPU, driver or NumPy implementation.** In the recorded tests:
+The comparison harness executes the original shader's hook bodies without rewriting the covariance or solver. Both programs receive the same texel inputs, coordinates, FP32 intermediate storage and output format. This isolates the **KrigBilateral algorithm** from renderer-specific texture interpolation and color conversions.
 
-- All 18 integer format/size configurations in the small-frame matrix matched the Python reference exactly.
-- Eight 128×72 synthetic cases had one differing chroma sample, with a maximum difference of 16 in 16-bit output.
-- Three distinct 1080p frames had 12 differing samples out of 12,441,600 chroma samples. The maximum difference was 32 in 16-bit output, or approximately **0.125 on an 8-bit scale**. Luma matched exactly.
+On the tested RTX 3090 Ti, all 32 format/size configurations (256 synthetic frames) were bit-exact, including integer, FP16 and FP32 output. Tests of intermediate stages and three distinct 1080p frames also matched byte-for-byte, including unquantized FP32 reconstruction. See [the validation report](docs/validation.md) for scope and evidence.
 
-Matching the Python reference does not establish equivalence to `placebo.Shader`. The original renderer has different texture sampling, rounding and color-processing behavior. `reference="shader"` retains the shader's arithmetic style but does not reproduce the complete libplacebo rendering pipeline. Detailed comparisons are in [the validation report](docs/validation.md).
+This is measured parity with the original GLSL algorithm under common inputs, not a claim that every GPU/driver produces identical results or that the complete `placebo.Shader` rendering pipeline has identical output.
+
+The former Python implementation, arithmetic-emulation path and `reference` argument have been removed. Calls using `reference=` must drop that argument.
 
 ## Performance
 
-1080p YUV420P16 → YUV444P16, RTX 3090 Ti / Ryzen 9 5950X / VapourSynth R81:
+The native algorithm and the original `placebo.Shader` pipeline are measured in three serial, fresh-process runs on the same 1080p YUV420P16 workload. Timings include completed CPU frames and required transfers; decoding, preloading and shader compilation are excluded.
 
 | Backend | Median fps | Three-run range |
 |---|---:|---:|
-| KrigBilateral Vulkan, default mode | **148.61** | 148.49–149.03 |
-| KrigBilateral Vulkan, shader arithmetic | 191.50 | 191.06–191.63 |
-| Original `placebo.Shader` | 94.17 | 93.37–101.14 |
-| Included Python/NumPy reference | 0.104 | 0.103–0.104 |
+| Vulkan, original shader algorithm | **196.48** | 196.44?196.64 |
+| Original placebo.Shader pipeline | 103.63 | 102.42?105.22 |
 
-These measurements include completed CPU output frames and the required transfers, with decoding, preloading and shader compilation excluded. Each backend ran in three fresh processes under the same thread/prefetch budget. The arithmetic modes produce different numerical results. See [the workload, environment and evidence](docs/validation.md#performance) before comparing these numbers with another system.
+Current results, repeat ranges, environment and workload details are in [the performance report](docs/validation.md#performance). The source-algorithm parity test and the whole-renderer throughput test serve different purposes: the latter includes placebo's rendering work.
 
 ## Building from source
 
@@ -124,4 +121,4 @@ The header script pins VapourSynth R81 and Vulkan-Headers SDK 1.4.357.0. You can
 
 KrigBilateral was written by **Shiandow**. The [original GLSL](reference/KrigBilateral.glsl) and its license notice are preserved. This plugin and its adaptations are distributed under **LGPL-3.0-or-later**; see [LICENSE](LICENSE) and [GPLv3](licenses/GPL.txt).
 
-The exponential approximation follows NumPy's AVX2/FMA implementation and coefficients, covered by the [NumPy BSD license](licenses/NUMPY.txt). Source references and component licenses are listed in [THIRD_PARTY.md](THIRD_PARTY.md).
+Component origins and header licenses are listed in [THIRD_PARTY.md](THIRD_PARTY.md).

@@ -1,10 +1,9 @@
 {
   "schema_version": 1,
-  "scope": "Historical Windows RTX3090Ti native validation; measured data retained, machine-local paths and device UUID removed.",
+  "scope": "Historical v0.1.0 measurements, superseded by the original-shader algorithm path in v0.2.0. Removed source is recorded by hash only.",
   "measured_plugin_sha256": "c567599daf0086d3f7591a9ba13d81c53fa8f6daaf451ce3a84443450819630e",
   "reference_files_sha256": {
-    "reference/KrigBilateral.glsl": "a84951b430905176f381a009552b3153dc01142c86b3d17740a25514fe2128e2",
-    "reference/KrigBilateral.py": "0f296beb079ef7257997cad6d1e765c3800dea451c7245972376368b84b9d521"
+    "reference/KrigBilateral.glsl": "a84951b430905176f381a009552b3153dc01142c86b3d17740a25514fe2128e2"
   },
   "published_files_sha256": {
     "docs/validation/final-128x72.json": "1bcee6dc6e5327cdec53600460d327c9a3b2ef4dfbd83af2453fb2bdbdcc8d48",
@@ -46,7 +45,29 @@
     "docs/validation/sustained/vk-shader-r1.telemetry.csv": "05c0844066f969984884b7cb2abbacd7670284e4368e39a6779ee255879beb3f",
     "docs/validation/sustained/vk-shader-r2.json": "7a0e1a4bbc8873a6e8eb9bff61444c82736954b8a4a521099ef55bea0ca2c1e1",
     "docs/validation/sustained/vk-shader-r2.log": "f5c201e9a119de0d4d0df31856afc242fdaf578159aa2bff4d9707f06bfb4d67",
-    "docs/validation/sustained/vk-shader-r2.telemetry.csv": "903c6bc114d600b3549f12cc71fb25713083fe4e57744ebe713623b51f94e8d3"
+    "docs/validation/sustained/vk-shader-r2.telemetry.csv": "903c6bc114d600b3549f12cc71fb25713083fe4e57744ebe713623b51f94e8d3",
+    "docs/validation/v0.2.0/format-matrix.json": "93dd145adf5f2593b0e9dfb91dfe66afcd89696dad2fde12a5349659d079888d",
+    "docs/validation/v0.2.0/real-stages-1080p.json": "d1b016892c443f4a8f226694f81e055462a27df9b0bf52349aac68ca4e4ee68e",
+    "docs/validation/v0.2.0/stages-128x72.json": "7b08e71e57bd3be5cd004494b332b46f565adf615839d430fe81f00aff37dadd",
+    "docs/validation/v0.2.0/sustained/placebo-r0.json": "92d1c470a00cb4a8f2f880f1fc42a8ee1258f7c33b8c4c048f0ecb29d49f813a",
+    "docs/validation/v0.2.0/sustained/placebo-r0.log": "e6a215b5e57b13b7eefb08a2db67e89c2be369cbb739c29035b6068c02c196c8",
+    "docs/validation/v0.2.0/sustained/placebo-r0.telemetry.csv": "dd42424eccfd9af63b93907b56356a776bfd3eadd61d5e03361c2d52a191170b",
+    "docs/validation/v0.2.0/sustained/placebo-r1.json": "b439396b27d0e49cd882320a5e679b1a6e0a15fe09f253e36eba0e159c3707c0",
+    "docs/validation/v0.2.0/sustained/placebo-r1.log": "a776270813025582dc4d697c1e0dc85380f750045b3526e0ad4cab77f2b8a634",
+    "docs/validation/v0.2.0/sustained/placebo-r1.telemetry.csv": "73afa098953409e0736380d45bad64fa577015c542be82ea90a12c31b5e62cc8",
+    "docs/validation/v0.2.0/sustained/placebo-r2.json": "ac20169a547d2ddad87b89b95952644ddc9f7d96f60f9ffbc1fc627c6623c80b",
+    "docs/validation/v0.2.0/sustained/placebo-r2.log": "9e11dea18a49a5b1e4f520ae9b25b95f5d773640930b5a0c8f08e9f8882ffc25",
+    "docs/validation/v0.2.0/sustained/placebo-r2.telemetry.csv": "2dab0363939a24413a3fea42c9ad204714f93850b71f72f599da0bed43d37e56",
+    "docs/validation/v0.2.0/sustained/summary.json": "e07bbf784be11667f15b441eacdaa20873ffe34c86f2c5541c798aa76746702f",
+    "docs/validation/v0.2.0/sustained/vk-r0.json": "f0fe53d618581ef40cc531d92b90e155833dc130c4ad919bad59020cdde598cf",
+    "docs/validation/v0.2.0/sustained/vk-r0.log": "323fea14f55d9245120d007657f733eada8885646cf9e9100b423cb42be6d589",
+    "docs/validation/v0.2.0/sustained/vk-r0.telemetry.csv": "68bb7391a8460ebd48ddc2d39abc40db5807353b2a6f23a948bde0b35ecfe9dc",
+    "docs/validation/v0.2.0/sustained/vk-r1.json": "ef502f29f554d2eecffb7ce354c218f12636c5271d283e456f328eb7441d2010",
+    "docs/validation/v0.2.0/sustained/vk-r1.log": "c73abf07ad16a3088325568184926c61faf924fb492023f4cfd824d22673b5eb",
+    "docs/validation/v0.2.0/sustained/vk-r1.telemetry.csv": "69f18837a29c88a600f1275f93a08f1e5f205909a88fbc1a9d13cd83c8258c9f",
+    "docs/validation/v0.2.0/sustained/vk-r2.json": "9db572ef80345116b752f92a7cf63d08b024705890944942e3b913fca88c5293",
+    "docs/validation/v0.2.0/sustained/vk-r2.log": "402c3c36621f7f7353e11d6d91e1171f8806cf741cb13f6c68ea57d47f884056",
+    "docs/validation/v0.2.0/sustained/vk-r2.telemetry.csv": "f309784d691e84763bd5aa997aa30b73b25baf584c2cba4b8f7b327fe61aca98"
   },
   "gpu_spirv_validation": {
     "tool": "SPIRV-Tools v2024.4",
@@ -58,5 +79,21 @@
     ],
     "passed": true
   },
-  "validation_layer": "Khronos validation layer was not installed; no layer-based synchronization check is claimed."
+  "validation_layer": "Khronos validation layer was not installed; no layer-based synchronization check is claimed.",
+  "archived_reference_files_sha256": {
+    "reference/KrigBilateral.py": "0f296beb079ef7257997cad6d1e765c3800dea451c7245972376368b84b9d521"
+  },
+  "current_algorithm": {
+    "version": "0.2.0",
+    "basis": "Literal original GLSL hook bodies, common clamped texel inputs and fixed coordinates, FP32 intermediates; no renderer reproduction.",
+    "all_comparisons_exact": true,
+    "matrix_configurations": 32,
+    "matrix_frames": 256,
+    "sampled_real_frames": 3,
+    "measured_plugin_sha256": "887add4b96c8edb61bfe5d74218c8743abe982d1e7587773e48b22dbc89b7d4d",
+    "spv_validation": {
+      "target": "vulkan1.4",
+      "passed": true
+    }
+  }
 }

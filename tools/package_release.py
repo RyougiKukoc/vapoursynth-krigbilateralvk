@@ -33,12 +33,12 @@ def main():
         "repository": "https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk",
         "runtime": "VapourSynth R81 / API 4.3, Vulkan 1.4, Windows x86-64",
         "file_sha256": {"krigbilateralvk.dll": hashlib.sha256(dll).hexdigest()},
-        "license": "LGPL-3.0-or-later; NumPy approximation under BSD-3-Clause",
+        "license": "LGPL-3.0-or-later",
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(args.output, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
         archive.writestr("krigbilateralvk/krigbilateralvk.dll", dll)
-        for filename in ("README.md", "LICENSE", "THIRD_PARTY.md", "licenses/LGPL.txt", "licenses/GPL.txt", "licenses/NUMPY.txt"):
+        for filename in ("README.md", "LICENSE", "THIRD_PARTY.md", "licenses/LGPL.txt", "licenses/GPL.txt"):
             archive.write(ROOT / filename, "krigbilateralvk/" + filename)
         archive.writestr("krigbilateralvk/manifest.json", json.dumps(manifest, indent=2) + "\n")
     digest = hashlib.sha256(args.output.read_bytes()).hexdigest()

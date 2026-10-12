@@ -10,10 +10,7 @@ import sys
 import time
 import numpy as np
 import vapoursynth as vs
-from compare import ROOT,make_source
-from common import load_plugin
-sys.path.insert(0,str(ROOT/'reference'))
-from KrigBilateral import krig_bilateral
+from common import ROOT,make_source,load_plugin
 def environment(core):
     result={'python':sys.version,'os':platform.platform(),'core':str(core),'numpy':np.__version__,
             'plugins':[{'namespace':p.namespace,'path':p.plugin_path,
@@ -26,8 +23,7 @@ def environment(core):
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument('--backend',choices=('vk','python','placebo','baseline'),required=True)
-    ap.add_argument('--reference',default='python',choices=('python','shader'))
+    ap.add_argument('--backend',choices=('vk','placebo','baseline'),required=True)
     ap.add_argument('--width',type=int,default=1920);ap.add_argument('--height',type=int,default=1080)
     ap.add_argument('--frames',type=int,default=256);ap.add_argument('--warmup',type=int,default=8)
     ap.add_argument('--prefetch',type=int,default=4);ap.add_argument('--threads',type=int,default=4)
@@ -55,8 +51,7 @@ def main():
     held=[src.get_frame(n) for n in range(8)]
     template=core.std.BlankClip(src,length=args.warmup+args.frames+32)
     src=core.std.ModifyFrame(template,template,lambda n,f:held[n%8])
-    if args.backend=='vk':out=core.krigvk.KrigBilateral(src,reference=args.reference)
-    elif args.backend=='python':out=krig_bilateral(src)
+    if args.backend=='vk':out=core.krigvk.KrigBilateral(src)
     elif args.backend=='placebo':out=core.placebo.Shader(src,shader=str(ROOT/'reference/KrigBilateral.glsl'))
     else:out=src
     constructed=time.perf_counter()-before
@@ -68,7 +63,7 @@ def main():
         f.close();count+=1
     seconds=time.perf_counter()-before
     assert count==args.frames
-    result={'backend':args.backend,'reference':args.reference,'width':args.width,'height':args.height,
+    result={'backend':args.backend,'width':args.width,'height':args.height,
             'frames':args.frames,'warmup':args.warmup,'prefetch':args.prefetch,'threads':args.threads,
             'seconds':seconds,'fps':args.frames/seconds,'construction_seconds':constructed,
             'warmup_seconds':warmed,'source':str(args.raw) if args.raw else 'synthetic eight patterns',
@@ -77,6 +72,6 @@ def main():
             'environment':environment(core)}
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_text(json.dumps(result,indent=2),encoding='utf-8')
-    print(args.backend,args.reference,result['fps'],flush=True)
+    print(args.backend,result['fps'],flush=True)
 
 if __name__=='__main__':main()

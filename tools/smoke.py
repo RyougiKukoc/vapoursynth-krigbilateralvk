@@ -29,7 +29,7 @@ def check(path):
             for plane in (1, 2):
                 assert all(value == 32768 for row in frame[plane].tolist() for value in row)
     # Exercise the optional path and diagnostic pipeline without NumPy.
-    with core.krigvk.KrigBilateral(source, reference="shader").get_frame(0) as frame:
+    with core.krigvk.KrigBilateral(source).get_frame(0) as frame:
         assert frame.format.id == int(vs.YUV444P16)
     with core.krigvk.KrigBilateral(source, debug=2).get_frame(0) as frame:
         assert frame.format.id == int(vs.YUV444PS)

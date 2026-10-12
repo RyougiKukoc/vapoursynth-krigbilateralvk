@@ -17,119 +17,59 @@ layout(binding=6,std430) writeonly buffer DstV { OUTPUT outV[]; };
 #if DEBUG_STAGE
 layout(binding=7,std430) writeonly buffer DstY { float outY[]; };
 #endif
-layout(binding=8,std430) readonly buffer RowWeights { vec2 weights[]; };
-float divRound(float a,float b) {
-    precise float q=a/b;
-    precise float residual=fma(-q,b,a);
-    precise float corrected=fma(residual,1.0/b,q);
-    return (isnan(corrected)||isinf(q)) ? q : corrected;
-}
-float norm(SAMPLE x) {
-#if INTEGER
-#if REFERENCE_PYTHON
-    precise float scaled=float(x)*(1.0/(MAXVAL+1.0));
-    precise float result=fma(scaled,1.0/MAXVAL,scaled);
-    return result;
-#else
-    return float(x)/MAXVAL;
-#endif
-#else
-    return float(x);
-#endif
-}
-uint halfTruncate(float x) {
-    uint raw=floatBitsToUint(x), sign=(raw>>16)&32768u;
-    int exponent=int((raw>>23)&255u)-127;
-    uint mantissa=raw&8388607u;
-    if(exponent==128) return sign|(mantissa==0u ? 31744u : 32256u);
-    if(exponent>15) return sign|31744u;
-    if(exponent>=-14) return sign|(uint(exponent+15)<<10)|(mantissa>>13);
-    if(exponent<-24) return sign;
-    return sign|((mantissa|8388608u)>>uint(-exponent-1));
-}
-float halfDown(float x) {
-    uint b=halfTruncate(x);
-    float h=unpackHalf2x16(b).x;
-    if(h>x) b+=1u;
-    return unpackHalf2x16(b).x;
-}
-float halfNearestUp(float x) {
-    float lower=halfDown(x);
-    uint b=halfTruncate(lower);
-    b += (b & 32768u)!=0u ? (b==32768u ? 1u : 0xffffffffu) : 1u;
-    float upper=unpackHalf2x16(b).x;
-    precise float midpoint=(lower+upper)*0.5;
-    return x>=midpoint ? upper : lower;
-}
-float halfNearestEven(float x) {
-    float lower=halfDown(x);
-    uint bits=halfTruncate(lower);
-    uint next=bits+((bits&32768u)!=0u ? (bits==32768u ? 1u : 0xffffffffu) : 1u);
-    float upper=unpackHalf2x16(next).x;
-    precise float midpoint=(lower+upper)*0.5;
-    return x==midpoint ? (((bits&1u)==0u) ? lower : upper) : (x>midpoint ? upper : lower);
-}
-OUTPUT storeValue(float x) {
+ivec2 q;
+float norm(SAMPLE value) { return float(value)/MAXVAL; }
+float luma(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT-1)); return norm(yy[c.y*p.sy+c.x]); }
+vec2 verticalAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT/2-1));return vert[c.y*WIDTH+c.x]; }
+vec2 guideAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH/2-1,HEIGHT/2-1));return guide[c.y*(WIDTH/2)+c.x]; }
+vec2 chromaAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH/2-1,HEIGHT/2-1));return vec2(norm(uu[c.y*p.su+c.x]),norm(vv[c.y*p.sv+c.x])); }
+OUTPUT storeValue(float value) {
 #if DEBUG_STAGE
-    return x;
+    return value;
+#elif INTEGER
+    return OUTPUT(roundEven(clamp(value,0.0,1.0)*MAXVAL));
 #else
-    x=clamp(x,0.0,1.0);
-#if INTEGER
-    return SAMPLE(roundEven(halfDown(x)*MAXVAL));
-#elif HALF_OUTPUT
-    return SAMPLE(halfNearestEven(x));
-#else
-    return SAMPLE(x);
-#endif
+    return OUTPUT(clamp(value,0.0,1.0));
 #endif
 }
 
-#if REFERENCE_PYTHON
+#define LUMA_size vec2(WIDTH,HEIGHT)
+#define LUMA_pt (1.0/LUMA_size)
+#define LUMA_pos ((vec2(q)+0.5)/vec2(WIDTH,HEIGHT/2))
+#define CHROMA_size vec2(WIDTH/2,HEIGHT/2)
+#define CHROMA_pt (1.0/CHROMA_size)
+#define LUMA_mul 1.0
+#define textureLod(tex,position,lod) vec4(luma(ivec2(q.x,int(k))))
 
-void main() {
-    ivec2 q=ivec2(gl_GlobalInvocationID.xy);
-    if(q.x>=WIDTH || q.y>=HEIGHT/2) return;
-    precise float rows=float(q.y);
-    precise float pos=divRound(rows+0.5,float(HEIGHT/2));
-    precise float pt=1.0/float(HEIGHT);
-    precise float low=pt*(2.0*rows+0.5);
-    precise float high=pt*(2.0*rows+1.5);
-    precise float a=1.0-abs((low-pos)*float(HEIGHT/2));
-    precise float b=1.0-abs((high-pos)*float(HEIGHT/2));
-#if REFERENCE_PYTHON
-    a=weights[q.y].x;
-    b=weights[q.y].y;
-#endif
-    precise float top=norm(yy[(2*q.y)*p.sy+q.x]);
-    precise float bottom=norm(yy[(2*q.y+1)*p.sy+q.x]);
-    precise float mean=divRound(a*top+b*bottom,a+b);
-    precise float second=divRound(a*(top*top)+b*(bottom*bottom),a+b);
-    precise float variance=abs(second-mean*mean);
-    vert[q.y*WIDTH+q.x]=vec2(halfDown(mean),halfDown(variance));
+#define lumaOffset  (-vec2(0.0, 0.0)*LUMA_size*CHROMA_pt)
+
+#define axis 1
+
+#define Kernel(x)   (1. - abs(x))
+
+vec4 hook() {
+    // Calculate bounds
+    float low  = ceil((LUMA_pos - 0.5*CHROMA_pt) * LUMA_size - lumaOffset - 0.5)[axis];
+    float high = floor((LUMA_pos + 0.5*CHROMA_pt) * LUMA_size - lumaOffset - 0.5)[axis];
+
+    float W = 0.0;
+    vec4 avg = vec4(0);
+    vec2 pos = LUMA_pos;
+
+    for (float k = low; k <= high; k++) {
+        pos[axis] = LUMA_pt[axis] * (k - lumaOffset[axis] + 0.5);
+        float rel = (pos[axis] - LUMA_pos[axis])*CHROMA_size[axis];
+        float w = Kernel(rel);
+
+        vec4 y = textureLod(LUMA_raw, pos, 0.0).xxxx * LUMA_mul;
+        y.y *= y.y;
+        avg += w * y;
+        W += w;
+    }
+    avg /= W;
+    avg.y = abs(avg.y - pow(avg.x, 2.0));
+    return avg;
 }
 
-#else
 
-void main() {
-    ivec2 q=ivec2(gl_GlobalInvocationID.xy);
-    if(q.x>=WIDTH || q.y>=HEIGHT/2) return;
-    float rows=float(q.y);
-    float pos=(rows+0.5)/float(HEIGHT/2);
-    float pt=1.0/float(HEIGHT);
-    float low=pt*(2.0*rows+0.5);
-    float high=pt*(2.0*rows+1.5);
-    float a=1.0-abs((low-pos)*float(HEIGHT/2));
-    float b=1.0-abs((high-pos)*float(HEIGHT/2));
-#if REFERENCE_PYTHON
-    a=weights[q.y].x;
-    b=weights[q.y].y;
-#endif
-    float top=norm(yy[(2*q.y)*p.sy+q.x]);
-    float bottom=norm(yy[(2*q.y+1)*p.sy+q.x]);
-    float mean=(a*top+b*bottom)/(a+b);
-    float second=(a*(top*top)+b*(bottom*bottom))/(a+b);
-    precise float variance=abs(second-mean*mean);
-    vert[q.y*WIDTH+q.x]=vec2(halfDown(mean),halfDown(variance));
-}
-
-#endif
+void main(){q=ivec2(gl_GlobalInvocationID.xy);if(q.x>=WIDTH||q.y>=HEIGHT/2)return;vert[q.y*WIDTH+q.x]=hook().xy;}
