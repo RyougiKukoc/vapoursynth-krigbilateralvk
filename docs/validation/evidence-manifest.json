@@ -67,7 +67,10 @@
     "docs/validation/v0.2.0/sustained/vk-r1.telemetry.csv": "69f18837a29c88a600f1275f93a08f1e5f205909a88fbc1a9d13cd83c8258c9f",
     "docs/validation/v0.2.0/sustained/vk-r2.json": "9db572ef80345116b752f92a7cf63d08b024705890944942e3b913fca88c5293",
     "docs/validation/v0.2.0/sustained/vk-r2.log": "402c3c36621f7f7353e11d6d91e1171f8806cf741cb13f6c68ea57d47f884056",
-    "docs/validation/v0.2.0/sustained/vk-r2.telemetry.csv": "f309784d691e84763bd5aa997aa30b73b25baf584c2cba4b8f7b327fe61aca98"
+    "docs/validation/v0.2.0/sustained/vk-r2.telemetry.csv": "f309784d691e84763bd5aa997aa30b73b25baf584c2cba4b8f7b327fe61aca98",
+    "docs/validation/v0.2.1/format-matrix.json": "6f1001a75a51bc7fdbbcce3b27b9954e0571508070a9371cb17602cb00ee568a",
+    "docs/validation/v0.2.1/input-output-contract.json": "8c22af423522f5352a9d24129a50c9af7b55749277de01e15e733b86a4c0020e",
+    "docs/validation/v0.2.1/real-stages-1080p.json": "58b65bec19ecb625cb4533b2e98e05cf1112644a192ed8d1bdb2312ec5921c53"
   },
   "gpu_spirv_validation": {
     "tool": "SPIRV-Tools v2024.4",
@@ -84,16 +87,18 @@
     "reference/KrigBilateral.py": "0f296beb079ef7257997cad6d1e765c3800dea451c7245972376368b84b9d521"
   },
   "current_algorithm": {
-    "version": "0.2.0",
+    "version": "0.2.1",
     "basis": "Literal original GLSL hook bodies, common clamped texel inputs and fixed coordinates, FP32 intermediates; no renderer reproduction.",
     "all_comparisons_exact": true,
     "matrix_configurations": 32,
     "matrix_frames": 256,
     "sampled_real_frames": 3,
-    "measured_plugin_sha256": "887add4b96c8edb61bfe5d74218c8743abe982d1e7587773e48b22dbc89b7d4d",
+    "measured_plugin_sha256": "2f45d8aba570e44cc94cb9abaa0d760e9c0cd42075322cf9f6443c31a985defa",
     "spv_validation": {
       "target": "vulkan1.4",
       "passed": true
-    }
+    },
+    "float_transport": "VapourSynth signed chroma -> +0.5 before original GLSL -> -0.5 on output",
+    "input_output_contract_cases": 42
   }
 }

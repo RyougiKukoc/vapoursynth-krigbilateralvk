@@ -23,18 +23,23 @@ def check(path):
     assert cpu.format.id == int(vs.YUV444P16)
     for n in (0, 3, 1):
         with source.get_frame(n) as original, cpu.get_frame(n) as frame, gpu.get_frame(n) as other:
+            assert "_ChromaLocation" not in frame.props
             assert frame[0].tobytes() == original[0].tobytes()
             for plane in range(3):
                 assert frame[plane].tobytes() == other[plane].tobytes()
             for plane in (1, 2):
                 assert all(value == 32768 for row in frame[plane].tolist() for value in row)
-    # Exercise the optional path and diagnostic pipeline without NumPy.
-    with core.krigvk.KrigBilateral(source).get_frame(0) as frame:
-        assert frame.format.id == int(vs.YUV444P16)
+    # Float YUV must preserve the standard signed chroma convention.
+    for fmt in (vs.YUV420PH, vs.YUV420PS):
+        floating=core.std.BlankClip(source,format=fmt,color=[0.25,-0.25,0.25])
+        with core.krigvk.KrigBilateral(floating).get_frame(0) as frame:
+            assert all(value==-0.25 for row in frame[1].tolist() for value in row)
+            assert all(value==0.25 for row in frame[2].tolist() for value in row)
     with core.krigvk.KrigBilateral(source, debug=2).get_frame(0) as frame:
         assert frame.format.id == int(vs.YUV444PS)
+        assert frame.props["KrigBilateralDebug"]==2
     return {"plugin_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "cpu_gpu_equal": True,
-            "luma_exact": True, "constant_chroma_exact": True, "core": str(core)}
+            "luma_exact": True, "constant_chroma_exact": True, "signed_float_chroma":True, "core": str(core)}
 
 
 def main():

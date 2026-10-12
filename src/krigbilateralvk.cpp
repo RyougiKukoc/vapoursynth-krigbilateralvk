@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
+#include <limits>
 #include <memory>
 #include <stdexcept>
 #include <string>
@@ -16,6 +17,49 @@ constexpr int errSize=8192;
 [[noreturn]] void fail(const std::string& s) { throw std::runtime_error("KrigBilateral: "+s); }
 void check(VkResult r, const char* operation) { if(r!=VK_SUCCESS) fail(std::string(operation)+" failed ("+std::to_string(r)+")"); }
 struct Kernel { VkDescriptorSetLayout set{}; VkPipelineLayout layout{}; VkPipeline pipeline{}; };
+
+void validateInput(const VSVideoInfo& vi) {
+    const auto& format=vi.format;
+    if(format.colorFamily!=cfYUV || format.numPlanes!=3 || format.subSamplingW!=1 || format.subSamplingH!=1)
+        fail("expected constant-format, three-plane YUV420 input");
+    if(vi.width<=0 || vi.height<=0 || vi.width%2 || vi.height%2)
+        fail("expected fixed, positive, even width and height");
+    const bool integer=format.sampleType==stInteger && format.bitsPerSample>=8 && format.bitsPerSample<=16 &&
+        format.bytesPerSample==(format.bitsPerSample==8 ? 1 : 2);
+    const bool floating=format.sampleType==stFloat && (format.bitsPerSample==16 || format.bitsPerSample==32) &&
+        format.bytesPerSample==format.bitsPerSample/8;
+    if(!integer && !floating)
+        fail("supported sample types are integer 8..16-bit, FP16 and FP32");
+    if(uint64_t(vi.width)*vi.height>uint64_t(std::numeric_limits<int32_t>::max()))
+        fail("dimensions exceed the shader's signed 32-bit indexing limit");
+}
+
+int parseDebug(const VSMap* in,const VSAPI* api) {
+    int count=api->mapNumElements(in,"debug");
+    if(count<0) return 0;
+    if(count!=1) fail("debug must be one integer in 0..7");
+    int error{};
+    int64_t value=api->mapGetInt(in,"debug",0,&error);
+    if(error || value<0 || value>7) fail("debug must be one integer in 0..7");
+    return static_cast<int>(value);
+}
+
+void validateFrameProperties(const VSFrame* frame,const VSAPI* api) {
+    const VSMap* properties=api->getFramePropertiesRO(frame);
+    for(const char* key:{"_ChromaLocation","_FieldBased"}) {
+        int count=api->mapNumElements(properties,key);
+        if(count<0) continue; // untagged input assumes left placement and progressive frames
+        int error{};
+        int64_t value=api->mapGetInt(properties,key,0,&error);
+        if(count!=1 || error) fail(std::string(key)+" must be one integer");
+        if(value!=0) {
+            if(std::string(key)=="_ChromaLocation")
+                fail("only left chroma placement (_ChromaLocation=0) is supported; resite chroma before filtering");
+            fail("only progressive frames (_FieldBased=0) are supported; deinterlace or separate fields before filtering");
+        }
+    }
+}
+
 struct Filter {
     const VSAPI* api{};
     const VSVULKANAPI* gpu{};
@@ -25,6 +69,7 @@ struct Filter {
     VSVideoInfo vi{};
     VSVideoFormat inputFormat{};
     int debug{};
+    VkDeviceSize maxStorageRange{};
     VSGPUExecPool* pool{};
     std::array<Kernel,3> kernels{};
     ~Filter() {
@@ -76,6 +121,22 @@ struct Filter {
         check(result,"compute pipeline");
     }
 };
+
+VSVulkanPlaneInfo checkedPlane(const Filter& filter,const VSFrame* frame,int plane,int width,int height,int bytes,int32_t& stride) {
+    if(filter.api->getFrameWidth(frame,plane)!=width || filter.api->getFrameHeight(frame,plane)!=height)
+        fail("frame plane dimensions do not match the declared video format");
+    int64_t byteStride=filter.api->getStride(frame,plane);
+    if(byteStride<int64_t(width)*bytes || byteStride%bytes ||
+       uint64_t(byteStride/bytes)*height>uint64_t(std::numeric_limits<int32_t>::max()))
+        fail("frame stride exceeds supported shader addressing");
+    VSVulkanPlaneInfo info{};
+    if(filter.gpu->getGPUPlane(frame,plane,&info)) fail("frame must be GPU resident");
+    VkDeviceSize required=VkDeviceSize(byteStride)*height;
+    if(info.bufferSize<required || info.bufferSize>filter.maxStorageRange)
+        fail("frame plane buffer is too small or exceeds the device storage-buffer range");
+    stride=static_cast<int32_t>(byteStride/bytes);
+    return info;
+}
 struct FrameDel { const VSAPI* api; void operator()(const VSFrame* f)const {if(f) api->freeFrame(f);} };
 using Frame=std::unique_ptr<const VSFrame,FrameDel>;
 struct Recording {
@@ -89,11 +150,26 @@ const VSFrame* VS_CC getFrame(int n,int reason,void* instance,void**,VSFrameCont
     if(reason!=arAllFramesReady) return nullptr;
     try {
         Frame src{api->getFrameFilter(n,f->node,ctx),{api}};
+        if(!src) fail("failed to obtain input frame");
+        const auto& actual=*api->getVideoFrameFormat(src.get());
+        const auto& declared=f->inputFormat;
+        if(actual.colorFamily!=declared.colorFamily || actual.sampleType!=declared.sampleType ||
+           actual.bitsPerSample!=declared.bitsPerSample || actual.bytesPerSample!=declared.bytesPerSample ||
+           actual.numPlanes!=declared.numPlanes || actual.subSamplingW!=declared.subSamplingW || actual.subSamplingH!=declared.subSamplingH)
+            fail("frame format does not match the declared fixed input format");
+        validateFrameProperties(src.get(),api);
         const VSFrame* planes[3]={src.get(),nullptr,nullptr}; int indices[3]={0,1,2};
         VSFrame* raw=f->debug ? f->gpu->newGPUVideoFrame(&f->vi.format,f->vi.width,f->vi.height,src.get(),core) :
             api->newVideoFrame2(&f->vi.format,f->vi.width,f->vi.height,planes,indices,src.get(),core);
         if(!raw) fail("output allocation failed");
         Frame dst{raw,{api}};
+        VSMap* properties=api->getFramePropertiesRW(raw);
+        api->mapDeleteKey(properties,"_ChromaLocation"); // full-resolution chroma has no subsampling siting
+        if(f->debug) {
+            for(const char* key:{"_Matrix","_Primaries","_Transfer","_Range","_ColorRange"})
+                api->mapDeleteKey(properties,key);
+            api->mapSetInt(properties,"KrigBilateralDebug",f->debug,maReplace);
+        }
         char err[errSize]{};
         Recording record{f->gpu,f->gpu->gpuExecAcquire(f->pool,err,errSize)};
         if(!record.context) fail(err);
@@ -104,21 +180,19 @@ const VSFrame* VS_CC getFrame(int n,int reason,void* instance,void**,VSFrameCont
         std::array<VkDescriptorBufferInfo,8> buffers{};
         std::array<int32_t,5> push{};
         for(int plane=0;plane<3;++plane) {
-            VSVulkanPlaneInfo info{};
-            if(f->gpu->getGPUPlane(src.get(),plane,&info)) fail("input must be GPU resident");
-            buffers[plane]={info.buffer,0,VK_WHOLE_SIZE};
-            push[plane]=int32_t(api->getStride(src.get(),plane)/f->inputFormat.bytesPerSample);
+            auto info=checkedPlane(*f,src.get(),plane,f->vi.width/(plane ? 2 : 1),f->vi.height/(plane ? 2 : 1),
+                f->inputFormat.bytesPerSample,push[plane]);
+            buffers[plane]={info.buffer,0,info.bufferSize};
         }
         if(f->debug) {
-            VSVulkanPlaneInfo info{};
-            if(f->gpu->getGPUPlane(dst.get(),0,&info)) fail("debug output is not GPU resident");
-            buffers[7]={info.buffer,0,VK_WHOLE_SIZE};
+            int32_t stride{};
+            auto info=checkedPlane(*f,dst.get(),0,f->vi.width,f->vi.height,4,stride);
+            if(api->getStride(dst.get(),0)!=api->getStride(dst.get(),1)) fail("diagnostic output planes must have equal strides");
+            buffers[7]={info.buffer,0,info.bufferSize};
         } else buffers[7]=buffers[0];
         for(int plane=1;plane<3;++plane) {
-            VSVulkanPlaneInfo info{};
-            if(f->gpu->getGPUPlane(dst.get(),plane,&info)) fail("output is not GPU resident");
-            buffers[4+plane]={info.buffer,0,VK_WHOLE_SIZE};
-            push[2+plane]=int32_t(api->getStride(dst.get(),plane)/f->vi.format.bytesPerSample);
+            auto info=checkedPlane(*f,dst.get(),plane,f->vi.width,f->vi.height,f->vi.format.bytesPerSample,push[2+plane]);
+            buffers[4+plane]={info.buffer,0,info.bufferSize};
         }
         for(int i=0;i<2;++i) {
             VSVulkanBufferInfo info{};
@@ -161,22 +235,26 @@ void VS_CC createGPU(const VSMap* in,VSMap* out,void*,VSCore* core,const VSAPI* 
     try {
         auto f=std::make_unique<Filter>();f->api=api;f->gpu=api->getVulkanAPI();
         f->node=api->mapGetNode(in,"clip",0,nullptr); f->vi=*api->getVideoInfo(f->node);
+        validateInput(f->vi);
+        if(api->getNodeResidency(f->node)!=nrGPU) fail("GPU entry requires GPU-resident input");
         f->inputFormat=f->vi.format;
-        int mapError{};f->debug=int(api->mapGetInt(in,"debug",0,&mapError));
-        if(mapError) f->debug=0;
-        if(f->debug<0 || f->debug>7) fail("debug must be in 0..7");
+        f->debug=parseDebug(in,api);
         const auto& fmt=f->vi.format;
-        if(fmt.colorFamily!=cfYUV || fmt.subSamplingW!=1 || fmt.subSamplingH!=1 || f->vi.width%2 || f->vi.height%2)
-            fail("expected constant-format even-sized YUV420");
-        if((fmt.sampleType==stInteger && (fmt.bitsPerSample<8 || fmt.bitsPerSample>16)) ||
-           (fmt.sampleType==stFloat && fmt.bitsPerSample!=16 && fmt.bitsPerSample!=32)) fail("unsupported pixel type");
         char err[errSize]{};
         if(f->gpu->getVulkanHandles(core,&f->handles,err,errSize)) fail(err);
         f->vk=f->gpu->getVulkanFunctions(core,err,errSize);if(!f->vk) fail(err);
         VkPhysicalDeviceProperties2 properties{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2};
         f->vk->vkGetPhysicalDeviceProperties2(f->handles.physicalDevice,&properties);
         const auto& limits=properties.properties.limits;
+        f->maxStorageRange=limits.maxStorageBufferRange;
+        if(fmt.sampleType==stFloat && fmt.bitsPerSample==16) {
+            VkPhysicalDeviceVulkan12Features features12{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_FEATURES};
+            VkPhysicalDeviceFeatures2 features{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2};features.pNext=&features12;
+            f->vk->vkGetPhysicalDeviceFeatures2(f->handles.physicalDevice,&features);
+            if(!features12.shaderFloat16) fail("FP16 input requires the device's shaderFloat16 feature; use FP32 or integer input");
+        }
         if(limits.maxComputeWorkGroupInvocations<64 || limits.maxComputeWorkGroupSize[0]<8 || limits.maxComputeWorkGroupSize[1]<8 ||
+           limits.maxPerStageDescriptorStorageBuffers<8 || limits.maxDescriptorSetStorageBuffers<8 || limits.maxPushConstantsSize<20 ||
            (uint64_t(f->vi.width)+7)/8>limits.maxComputeWorkGroupCount[0] ||
            (uint64_t(f->vi.height)+7)/8>limits.maxComputeWorkGroupCount[1] ||
            uint64_t(f->vi.width)*f->vi.height*4>limits.maxStorageBufferRange)
@@ -184,7 +262,8 @@ void VS_CC createGPU(const VSMap* in,VSMap* out,void*,VSCore* core,const VSAPI* 
         f->pool=f->gpu->createGPUExecPool(core,vqCompute,err,errSize);if(!f->pool) fail(err);
         f->kernel(f->kernels[0],"vertical",shader::vertical,core);f->kernel(f->kernels[1],"horizontal",shader::horizontal,core);
         f->kernel(f->kernels[2],"reconstruct",shader::reconstruct,core);
-        api->queryVideoFormat(&f->vi.format,cfYUV,f->debug ? stFloat : fmt.sampleType,f->debug ? 32 : fmt.bitsPerSample,0,0,core);
+        if(!api->queryVideoFormat(&f->vi.format,cfYUV,f->debug ? stFloat : fmt.sampleType,f->debug ? 32 : fmt.bitsPerSample,0,0,core))
+            fail("could not construct the requested YUV444 output format");
         VSFilterDependency dependency{f->node,rpStrictSpatial};
         VSNode* result=api->createVideoFilterEx2("KrigBilateralGPU",&f->vi,getFrame,freeFilter,fmParallel,
             ffGPUOutput,&dependency,1,f.get(),core);
@@ -210,6 +289,8 @@ void VS_CC createCPU(const VSMap* in,VSMap* out,void*,VSCore* core,const VSAPI* 
     try {
         node=api->mapGetNode(in,"clip",0,nullptr);
         if(api->getNodeResidency(node)!=nrCPU) fail("CPU entry expects a CPU clip; use KrigBilateralGPU for resident input");
+        validateInput(*api->getVideoInfo(node));
+        parseDebug(in,api);
         auto* stdPlugin=api->getPluginByID("com.vapoursynth.std",core);
         auto* self=api->getPluginByID("com.ryougikukoc.krigbilateralvk",core);
         for(auto [plugin,name]:std::array<std::pair<VSPlugin*,const char*>,3>{{{stdPlugin,"GPUUpload"},{self,"KrigBilateralGPU"},{stdPlugin,"GPUDownload"}}}) {

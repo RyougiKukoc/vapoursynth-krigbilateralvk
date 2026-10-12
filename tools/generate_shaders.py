@@ -26,14 +26,21 @@ float norm(SAMPLE value) { return float(value)/MAXVAL; }
 float luma(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT-1)); return norm(yy[c.y*p.sy+c.x]); }
 vec2 verticalAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT/2-1));return vert[c.y*WIDTH+c.x]; }
 vec2 guideAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH/2-1,HEIGHT/2-1));return guide[c.y*(WIDTH/2)+c.x]; }
-vec2 chromaAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH/2-1,HEIGHT/2-1));return vec2(norm(uu[c.y*p.su+c.x]),norm(vv[c.y*p.sv+c.x])); }
+vec2 chromaAt(ivec2 c) {
+    c=clamp(c,ivec2(0),ivec2(WIDTH/2-1,HEIGHT/2-1));
+    vec2 value=vec2(norm(uu[c.y*p.su+c.x]),norm(vv[c.y*p.sv+c.x]));
+#if !INTEGER
+    value+=vec2(0.5); // VapourSynth signed chroma -> original shader's normalized samples
+#endif
+    return value;
+}
 OUTPUT storeValue(float value) {
 #if DEBUG_STAGE
     return value;
 #elif INTEGER
     return OUTPUT(roundEven(clamp(value,0.0,1.0)*MAXVAL));
 #else
-    return OUTPUT(clamp(value,0.0,1.0));
+    return OUTPUT(clamp(value-0.5,-0.5,0.5));
 #endif
 }
 '''

@@ -15,7 +15,7 @@ The initial binary targets the **R81 release headers**. The GPU interface evolve
 
 ## Installation
 
-Download `krigbilateralvk-0.2.0-windows-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the DLL explicitly:
+Download `krigbilateralvk-0.2.1-windows-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the DLL explicitly:
 
 ```python
 import vapoursynth as vs
@@ -60,15 +60,17 @@ core.krigvk.KrigBilateralGPU(clip, debug=0)
 | `clip` | required | YUV420 input. `KrigBilateral` accepts CPU frames; `KrigBilateralGPU` accepts GPU-resident frames. |
 | `debug` | `0` | Normal output at `0`. Values `1..7` expose intermediate results as YUV444PS; see [diagnostics](docs/development.md#diagnostics). |
 
-With `debug=0`, output is YUV444 with the input's dimensions, sample type, bit depth, frame count and frame rate. Frame properties are copied from the input.
+With `debug=0`, output is YUV444 with the input's dimensions, sample type, bit depth, frame count and frame rate. Luma is shared unchanged. Frame properties, including range, colorimetry and timestamps, are copied except `_ChromaLocation`, which is removed because chroma is no longer subsampled. Diagnostic output also removes colorimetry/range tags and sets `KrigBilateralDebug` to the selected stage.
 
 ### Sample formats and chroma placement
 
-Integer input supports 8–16 bits per sample; the validation matrix covers 8, 9, 10, 12, 14 and 16 bits. Values are normalized by the format's full integer range without limited/full-range color conversion.
+Integer input supports every bit depth from 8 to 16. Values are normalized by the format's full integer range without limited/full-range color conversion. The input `_Range` is preserved; reconstructed integer U/V are clipped to the storage range and rounded to nearest, ties to even.
 
-The filter uses the fixed **left chroma placement** of the reference implementation. It does not read `_ChromaLocation` to select a different sampling geometry, and it performs only 4:2:0 → 4:4:4 reconstruction, not arbitrary resizing.
+The filter uses fixed **left chroma placement** and progressive sampling geometry. An absent `_ChromaLocation` or `_FieldBased` is assumed to mean left or progressive respectively; if present, each must be a single integer equal to `0`. Other placement/field tags fail when the affected frame is requested. Resite chroma or deinterlace/separate fields before filtering if required. The filter performs only 4:2:0 → 4:4:4 reconstruction, not arbitrary resizing.
 
-FP16 and FP32 are also accepted, using the reference's **0–1 chroma convention** and clipping reconstructed U/V to `[0, 1]`. Conventional VapourSynth float YUV uses signed chroma; for that convention, convert to an integer YUV420 format before using this filter. Passing signed chroma directly does not preserve its range.
+FP16 and FP32 use the **standard VapourSynth float YUV convention**: Y in `[0, 1]`, U/V in `[-0.5, 0.5]`. The transport maps signed U/V to the shader's `[0, 1]` samples and maps reconstruction back to signed chroma. Luma stays bit-exact; reconstructed U/V are clipped to `[-0.5, 0.5]`. FP16 requires the device's `shaderFloat16` feature, otherwise node creation fails with a specific error.
+
+Node creation rejects variable format/resolution, non-YUV420 input, nonpositive/odd dimensions, unsupported storage types and `debug` outside `0..7`, including integers that would overflow a 32-bit cast. Frame evaluation checks the actual format, plane dimensions, strides and Vulkan buffer sizes before dispatching. Finite samples are required; the filter does not scan every input pixel to reject NaN/Inf or nominal-range violations. Range overshoot in reconstructed chroma is clipped as described above.
 
 ## Algorithm fidelity
 
@@ -88,8 +90,8 @@ The native algorithm and the original `placebo.Shader` pipeline are measured in 
 
 | Backend | Median fps | Three-run range |
 |---|---:|---:|
-| Vulkan, original shader algorithm | **196.48** | 196.44?196.64 |
-| Original placebo.Shader pipeline | 103.63 | 102.42?105.22 |
+| Vulkan, original shader algorithm | **196.48** | 196.44–196.64 |
+| Original placebo.Shader pipeline | 103.63 | 102.42–105.22 |
 
 Current results, repeat ranges, environment and workload details are in [the performance report](docs/validation.md#performance). The source-algorithm parity test and the whole-renderer throughput test serve different purposes: the latter includes placebo's rendering work.
 

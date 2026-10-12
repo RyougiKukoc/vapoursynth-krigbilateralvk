@@ -36,8 +36,12 @@ def main():
                     assert frame.format.subsampling_w == frame.format.subsampling_h == 0
                     assert frame.format.bits_per_sample == original.format.bits_per_sample
                     assert np.array_equal(np.asarray(original[0]),np.asarray(frame[0]))
-                    for prop in ('_Range','_Matrix','_Transfer','_Primaries','_ChromaLocation','_FieldBased'):
+                    for prop in ('_Range','_Matrix','_Transfer','_Primaries','_FieldBased'):
                         assert frame.props[prop] == original.props[prop]
+                    assert '_ChromaLocation' not in frame.props
+                    if frame.format.sample_type==vs.FLOAT:
+                        for plane in (1,2):
+                            assert np.min(np.asarray(frame[plane]))>=-0.5 and np.max(np.asarray(frame[plane]))<=0.5
                     for plane in (1,2):
                         row = metric(np.asarray(expected[plane]),np.asarray(frame[plane]))
                         assert row['finite'] and row['equal'], (name,width,height,n,plane,row)
@@ -70,7 +74,8 @@ def main():
               'oracle_sha256':hashlib.sha256(oracle.read_bytes()).hexdigest(),
               'shader_sha256':hashlib.sha256((ROOT/'reference/KrigBilateral.glsl').read_bytes()).hexdigest(),
               'reference':'original GLSL hooks with common buffer transport; FP32 guide storage',
-              'cases':cases,'all_exact':True,'luma_exact':True,'properties_preserved':True,
+              'cases':cases,'all_exact':True,'luma_exact':True,'color_properties_preserved':True,
+              'output_chroma_location_removed':True,'float_chroma_convention':'signed -0.5..0.5',
               'cpu_gpu_entries_identical':True,'multiple_instances_concurrent_random_requests_exact':True,
               'invalid_inputs_and_removed_arguments_rejected':errors}
     args.output.parent.mkdir(parents=True,exist_ok=True)

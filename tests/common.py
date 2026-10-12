@@ -48,8 +48,10 @@ def make_source(w,h,fmt,length=8):
             else: value=0.1+0.8*xx/max(ww,1)+rng.normal(0,0.01,a.shape)
             if f.format.sample_type==vs.INTEGER:
                 value=np.rint(np.clip(value,0,1)*((1<<f.format.bits_per_sample)-1))
+            elif p:
+                value=value-0.5
             a[:]=value
-        f.props.update(_Range=0,_Matrix=1,_Transfer=1,_Primaries=1,_ChromaLocation=0,_FieldBased=0)
+        f.props.update(_Range=1,_Matrix=1,_Transfer=1,_Primaries=1,_ChromaLocation=0,_FieldBased=0)
         return f
     return core.std.ModifyFrame(blank,blank,fill)
 
