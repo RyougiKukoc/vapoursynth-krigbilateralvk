@@ -3,6 +3,7 @@ name: Build
 on:
   push:
     branches: [main]
+    tags: ['v*']
   pull_request:
   workflow_dispatch:
 
@@ -44,7 +45,17 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           objdump -p build/krigbilateralvk.dll | Select-String 'DLL Name:'
       - name: Package
-        run: python -X utf8 tools/package_release.py --plugin build/krigbilateralvk.dll --output dist/krigbilateralvk-0.2.1-windows-x86_64.zip
+        shell: pwsh
+        run: |
+          $version = python -c "import pathlib,re; print(re.search(r'project\(krigbilateralvk VERSION ([\d.]+)',pathlib.Path('CMakeLists.txt').read_text()).group(1))"
+          if ($env:GITHUB_REF_TYPE -eq 'tag' -and $env:GITHUB_REF_NAME -ne "v$version") { throw 'Release tag does not match CMake version' }
+          $archive = "dist/krigbilateralvk-$version-windows-x86_64.zip"
+          python -X utf8 tools/package_release.py --plugin build/krigbilateralvk.dll --output $archive
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip install "VapourSynth>=81,<82"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -X utf8 tools/smoke.py --archive $archive --registration-only
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - uses: actions/upload-artifact@v4
         with:
           name: krigbilateralvk-windows-x86_64
@@ -55,22 +66,56 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Build and package manylinux_2_28 library
+        shell: bash
+        run: |
+          docker run --rm -e GITHUB_REF_TYPE -e GITHUB_REF_NAME -v "$GITHUB_WORKSPACE:/workspace" -w /workspace \
+            quay.io/pypa/manylinux_2_28_x86_64 bash -lc '
+              set -euxo pipefail
+              export PATH=/opt/python/cp312-cp312/bin:$PATH
+              git config --global --add safe.directory /workspace
+              python -m pip install cmake ninja
+              python tools/check_sources.py
+              python tools/fetch_dependencies.py --with-vapoursynth
+              cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
+                -DVAPOURSYNTH_INCLUDE_DIR=dependencies/vapoursynth/include \
+                "-DCMAKE_MODULE_LINKER_FLAGS=-static-libstdc++ -static-libgcc -Wl,--exclude-libs,ALL"
+              cmake --build build
+              nm -D --defined-only build/krigbilateralvk.so | grep VapourSynthPluginInit2
+              version=$(sed -n "s/^project(krigbilateralvk VERSION \([0-9.]*\).*/\1/p" CMakeLists.txt)
+              if [ "$GITHUB_REF_TYPE" = tag ]; then test "$GITHUB_REF_NAME" = "v$version"; fi
+              python tools/package_release.py --plugin build/krigbilateralvk.so \
+                --output "dist/krigbilateralvk-$version-linux-x86_64.zip" --max-glibc 2.28
+            '
       - uses: actions/setup-python@v5
         with:
           python-version: '3.14'
-      - name: Install build tools
-        run: sudo apt-get update && sudo apt-get install -y g++ cmake ninja-build
-      - name: Check sources and fetch pinned headers
+      - name: Check packaged library registration
         run: |
-          python tools/check_sources.py
-          python tools/fetch_dependencies.py --with-vapoursynth
-      - name: Build
-        run: |
-          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DVAPOURSYNTH_INCLUDE_DIR=dependencies/vapoursynth/include
-          cmake --build build
-          nm -D --defined-only build/krigbilateralvk.so | grep VapourSynthPluginInit2
+          python -m pip install "VapourSynth>=81,<82"
+          python tools/smoke.py --archive dist/*-linux-x86_64.zip --registration-only
       - uses: actions/upload-artifact@v4
         with:
           name: krigbilateralvk-linux-x86_64
-          path: build/krigbilateralvk.so
+          path: dist/*
           if-no-files-found: error
+
+  publish:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [windows, linux]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: krigbilateralvk-*
+          path: release-assets
+          merge-multiple: true
+      - name: Publish both platform packages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" release-assets/* --repo "$GITHUB_REPOSITORY" \
+            --title "KrigBilateral Vulkan $GITHUB_REF_NAME" --notes-file .github/release-notes.md

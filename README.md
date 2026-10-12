@@ -4,27 +4,40 @@ A native Vulkan implementation of **KrigBilateral**, the luma-guided chroma upsc
 
 The plugin runs three compute passes on VapourSynth's Vulkan device. It provides both a convenient CPU-frame interface and a GPU-resident interface for processing chains. NumPy is used only by optional comparison tests; neither NumPy nor libplacebo is a runtime dependency.
 
+## Recommended installation: api4-wheels
+
+Install the Windows or Linux x86-64 wheel from [api4-wheels](https://github.com/AliceTeaParty/vapoursynth-api4-wheels) into the Python environment used by VapourSynth:
+
+```console
+python -m pip install --extra-index-url https://aliceteaparty.github.io/vapoursynth-api4-wheels/simple/ "vapoursynth-krigbilateralvk==0.2.2+alice.1"
+```
+
+This is the recommended installation method. It installs the native plugin, autoload manifest and licenses, and selects the matching VapourSynth R81 dependency. No compiler or manual DLL/SO copying is needed. Use Python 3.12 or newer; Linux wheels require glibc 2.28 or newer. A Vulkan 1.4 GPU and driver are still required for rendering.
+
+The native source is maintained here and included in api4-wheels as a git submodule. The central repository owns pip packaging, Windows/Linux wheel publication and the package index. After installation, `vs.core.krigvk` is available automatically; see [usage](#usage).
+
 ## Requirements
 
 - **VapourSynth R81 / API 4.3**, with `std.GPUUpload`, `std.GPUDownload` and the core Vulkan API.
 - A GPU and driver supporting **Vulkan 1.4** and VapourSynth's required device features.
 - Constant-format YUV 4:2:0 input with even width and height.
-- Windows x86-64 for the prebuilt DLL. Other platforms can build from source; GPU runtime validation has currently been performed on Windows with an RTX 3090 Ti.
+- Windows or Linux x86-64 for prebuilt packages. GPU runtime validation has passed on Windows with an RTX 3090 Ti and Linux with an NVIDIA A100. Other platforms require a source build and remain unvalidated.
 
 The initial binary targets the **R81 release headers**. The GPU interface evolves with VapourSynth: when changing core versions, rebuild against matching headers rather than assuming GPU ABI compatibility.
 
-## Installation
+## Manual installation
 
-Download `krigbilateralvk-0.2.1-windows-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the DLL explicitly:
+For manual installation, download `krigbilateralvk-0.2.2-windows-x86_64.zip` or `krigbilateralvk-0.2.2-linux-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the native library explicitly:
 
 ```python
 import vapoursynth as vs
 
 core = vs.core
 core.std.LoadPlugin(r"C:\plugins\krigbilateralvk\krigbilateralvk.dll")
+# Linux: core.std.LoadPlugin("/path/to/krigbilateralvk/krigbilateralvk.so")
 ```
 
-Alternatively, place `krigbilateralvk.dll` in your VapourSynth plugin autoload directory. Use one copy per environment to avoid duplicate plugin registrations. The Windows DLL includes its C++ runtime; VapourSynth and a Vulkan-capable graphics driver must already be installed.
+Alternatively, place the extracted `krigbilateralvk` directory in your VapourSynth plugin autoload directory. Use one copy per environment to avoid duplicate plugin registrations. Both release binaries include their C++ runtime; Linux releases are built for glibc 2.28 or newer. VapourSynth and a Vulkan-capable graphics driver must already be installed.
 
 ## Usage
 

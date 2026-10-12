@@ -1,6 +1,16 @@
-# Original-shader algorithm validation ? v0.2.1
+# Original-shader algorithm and platform validation
 
 The implementation follows the original KrigBilateral GLSL algorithm directly. The Python implementation and the `reference` argument were removed in v0.2.0. Version 0.2.1 adds explicit input/output contracts and standard VapourSynth signed-float chroma transport.
+
+Version 0.2.2 adds Windows/Linux release packaging and installation documentation. It does not change the native algorithm or shaders; the numerical reports below remain evidence for v0.2.1.
+
+## Windows and Linux runtime validation
+
+The central v0.2.1+alice.1 packages passed actual GPU rendering on Windows (RTX 3090 Ti, driver 617.42, Vulkan 1.4.351) and Linux (Ubuntu 22.04, glibc 2.35, NVIDIA A100-PCIE-40GB, driver 580.95.05, Vulkan 1.4.312). Linux used an isolated mamba environment with Python 3.13, VapourSynth R81 and a Vulkan 1.4 loader, without changing the system driver.
+
+The published Linux wheel, its release-payload source-install loopback and a native source rebuild each passed integer reconstruction, signed FP16/FP32 chroma, nonuniform chroma, exact luma preservation and CPU-frame/GPU-resident entry equality. The published Windows wheel passed the same rendering checks. Hosted Linux CI also renders with software Vulkan; physical NVIDIA testing was performed separately over SSH.
+
+These platform checks validate installation, transport and rendering. They do not extend the Windows original-GLSL bit-exact matrix below to Linux, and they are not cross-platform performance measurements. Machine addresses, account paths and device identifiers are excluded from public documentation.
 
 ## Input/output validation
 

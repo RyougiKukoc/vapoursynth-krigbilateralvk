@@ -71,13 +71,16 @@ spirv-val --target-env vulkan1.4 reconstruct.spv
 
 ## CI and packages
 
-GitHub Actions compiles Windows x86-64 and Linux x86-64 libraries against pinned R81 headers and checks source regeneration. Hosted runners are used for compilation; those checks are not GPU runtime verification.
+GitHub Actions compiles Windows x86-64 and Linux x86-64 libraries against pinned R81 headers and checks source regeneration. Linux releases build in manylinux_2_28 with static C++/GCC runtimes and hidden archive symbols; packaging rejects dependencies outside the system C runtime and a GLIBC requirement above 2.28. A matching `v<version>` tag publishes both platform ZIPs and SHA-256 files after packaged-library registration checks. Hosted registration checks do not claim physical GPU rendering; see [platform validation](validation.md#windows-and-linux-runtime-validation).
 
-Package an explicitly selected Windows DLL with the licenses and build information:
+Package an explicitly selected Windows DLL or Linux SO with licenses, an autoload manifest and build information, after committing the source:
 
 ```sh
-python tools/package_release.py --plugin build/krigbilateralvk.dll --output dist/krigbilateralvk-0.2.1-windows-x86_64.zip
-python tools/smoke.py --archive dist/krigbilateralvk-0.2.1-windows-x86_64.zip
+python tools/package_release.py --plugin build/krigbilateralvk.dll --output dist/krigbilateralvk-0.2.2-windows-x86_64.zip
+python tools/smoke.py --archive dist/krigbilateralvk-0.2.2-windows-x86_64.zip
+# Linux:
+python tools/package_release.py --plugin build/krigbilateralvk.so --output dist/krigbilateralvk-0.2.2-linux-x86_64.zip
+python tools/smoke.py --archive dist/krigbilateralvk-0.2.2-linux-x86_64.zip
 ```
 
-The smoke command runs on a machine with VapourSynth R81 and a usable Vulkan device. It checks the packaged DLL's hash, constant-color reconstruction, luma preservation, format, and CPU/GPU entry equality. Release source is provided by the repository's matching tag; the plugin zip contains the DLL, licenses, installation notes and a manifest. No graphics-driver or VapourSynth DLLs are bundled.
+The smoke command runs on a machine with VapourSynth R81 and a usable Vulkan device. It checks the packaged library's hash, constant-color reconstruction, signed floating-point chroma, luma preservation, format, and CPU/GPU entry equality. Use `--registration-only` when checking package loading on a host without a usable Vulkan device. Run archive smoke tests in a clean environment without another autoloaded copy of this plugin. Release source is provided by the repository's matching tag; the ZIP contains the native library, licenses, installation notes and manifests. No graphics-driver or VapourSynth libraries are bundled. Pip users should use the [central api4-wheels package](https://github.com/AliceTeaParty/vapoursynth-api4-wheels/tree/main/packaging/vapoursynth-krigbilateralvk).

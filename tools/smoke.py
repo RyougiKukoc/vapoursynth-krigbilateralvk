@@ -1,4 +1,4 @@
-"""Load a standalone or packaged DLL and compute CPU/GPU outputs on a Vulkan device."""
+"""Load a Windows/Linux plugin and compute CPU/GPU outputs on a Vulkan device."""
 import argparse
 import hashlib
 import json
@@ -9,11 +9,17 @@ import tempfile
 import zipfile
 
 
-def check(path):
+def check(path, registration_only=False):
     import vapoursynth as vs
     core = vs.core
     core.num_threads = 4
     core.std.LoadPlugin(str(path.resolve()))
+    functions = {f.name: f.signature for f in core.krigvk.functions()}
+    assert set(functions) == {"KrigBilateral", "KrigBilateralGPU"}
+    assert all("reference:" not in signature for signature in functions.values())
+    if registration_only:
+        return {"plugin_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                "functions": functions, "rendered": False}
     source = core.std.BlankClip(width=16, height=12, format=vs.YUV420P16, color=[16384, 32768, 32768], length=4)
     cpu = core.krigvk.KrigBilateral(source)
     resident = core.krigvk.KrigBilateralGPU(core.std.GPUUpload(source))
@@ -47,6 +53,7 @@ def main():
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--plugin", type=Path)
     mode.add_argument("--archive", type=Path)
+    parser.add_argument("--registration-only", action="store_true", help="Load and check the API without requesting GPU frames")
     args = parser.parse_args()
     if args.archive:
         with tempfile.TemporaryDirectory(prefix="krig-smoke-") as directory:
@@ -59,17 +66,21 @@ def main():
                 archive.extractall(temp)
             folder = temp / "krigbilateralvk"
             manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
-            path = folder / "krigbilateralvk.dll"
+            filename = "krigbilateralvk.dll" if sys.platform == "win32" else "krigbilateralvk.so"
+            path = folder / filename
             if hashlib.sha256(path.read_bytes()).hexdigest() != manifest["file_sha256"][path.name]:
                 raise ValueError("Plugin hash does not match the manifest")
             # Windows keeps a loaded DLL open until process exit. Test in a
             # child process so the temporary package can be removed afterward.
+            command = [sys.executable, str(Path(__file__).resolve()), "--plugin", str(path)]
+            if args.registration_only:
+                command.append("--registration-only")
             result = json.loads(subprocess.check_output(
-                [sys.executable, str(Path(__file__).resolve()), "--plugin", str(path)],
+                command,
                 text=True, encoding="utf-8"
             ))
     else:
-        result = check(args.plugin)
+        result = check(args.plugin, args.registration_only)
     print(json.dumps(result, indent=2))
 
 
