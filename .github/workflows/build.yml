@@ -18,6 +18,7 @@ jobs:
         with:
           python-version: '3.14'
       - uses: msys2/setup-msys2@v2
+        id: msys2
         with:
           msystem: UCRT64
           update: true
@@ -31,9 +32,13 @@ jobs:
           python -X utf8 tools/fetch_dependencies.py --with-vapoursynth
       - name: Build
         shell: pwsh
+        env:
+          KRIG_MSYS_ROOT: ${{ steps.msys2.outputs.msys2-location }}
         run: |
-          $env:PATH = "C:\msys64\ucrt64\bin;" + $env:PATH
-          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=C:/msys64/ucrt64/bin/g++.exe -DVAPOURSYNTH_INCLUDE_DIR=dependencies/vapoursynth/include
+          $compilerDir = Join-Path $env:KRIG_MSYS_ROOT 'ucrt64/bin'
+          $compiler = (Join-Path $compilerDir 'g++.exe').Replace('\', '/')
+          $env:PATH = $compilerDir + ';' + $env:PATH
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release "-DCMAKE_CXX_COMPILER=$compiler" -DVAPOURSYNTH_INCLUDE_DIR=dependencies/vapoursynth/include
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           cmake --build build
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
