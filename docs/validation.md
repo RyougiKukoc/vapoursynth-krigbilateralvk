@@ -2,6 +2,12 @@
 
 The implementation follows the original KrigBilateral GLSL algorithm directly. The Python implementation and the `reference` argument were removed in v0.2.0. Version 0.2.1 added explicit input/output contracts and standard VapourSynth signed-float chroma transport; v0.3.0 replaces integer storage-range normalization and shader-side quantization with the core's range-aware resize conversions.
 
+## v0.3.1 conversion parity
+
+The Mesa software Vulkan check exposed a last-bit difference between CPU and GPU resize conversions when the public entries selected different conversion backends. Version 0.3.1 uses the same GPU resize path around reconstruction for both entries, with transfers at the CPU interface. Integer error diffusion remains an explicit CPU resize. This keeps range/depth handling in the core and makes entry selection affect residency rather than conversion arithmetic.
+
+The [420 range/depth/dither cases](validation/v0.3.1/range-depth-dither.json) and [42 input/output contracts](validation/v0.3.1/input-output-contract.json) pass on RTX 3090 Ti. The same [420 cases](validation/v0.3.1/mesa/range-depth-dither.json) and [42 contracts](validation/v0.3.1/mesa/input-output-contract.json) also pass in the Linux Mesa software Vulkan environment that exposed the mismatch. The [32-configuration / 256-frame original-GLSL matrix](validation/v0.3.1/format-matrix.json) and [stage comparison](validation/v0.3.1/stages.json) remain exact on Windows. Output conversion expectations use independent core GPU resize for none/ordered/random and CPU resize for error diffusion, matching the explicitly selected backend.
+
 ## v0.3.0 range, depth and dithering
 
 The range/depth/dither suite passes 420 cases on both Windows RTX 3090 Ti ([report](validation/v0.3.0/range-depth-dither.json)) and Linux NVIDIA A100 ([report](validation/v0.3.0/linux/range-depth-dither.json)), using VapourSynth R81. Linux was compiled natively in an isolated mamba environment and tested directly over SSH. The suite checks limited/full code-value endpoints independently of the plugin (limited 8-bit Y=16/235 maps to 0/1 and neutral U/V=128 maps to zero), per-frame range changes and random requests, untagged YUV's limited default, the legacy property alias, every integer output depth 8..16, FP16/FP32 output, type inference and defaults, float headroom, and invalid options/range metadata.

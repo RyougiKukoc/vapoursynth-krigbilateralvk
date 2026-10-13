@@ -92,9 +92,9 @@ def main():
                     modes=('none','ordered','random','error_diffusion') if fmt.sample_type==vs.INTEGER and fmt.bits_per_sample in (8,16) else ('none',)
                     for dither in modes:
                         result=cpu(invoke(tagged,gpu,bits=fmt.bits_per_sample,sample_type=fmt.sample_type,dither_type=dither))
-                        ref_source=cpu(floating) if dither=='error_diffusion' else floating
+                        ref_source=cpu(floating) if dither=='error_diffusion' else core.std.GPUUpload(cpu(floating))
                         expected=cpu(core.resize.Point(ref_source,format=fmt.id,dither_type=dither))
-                        y_source=cpu(original) if dither=='error_diffusion' else original
+                        y_source=cpu(original) if dither=='error_diffusion' else core.std.GPUUpload(cpu(original))
                         y_format=core.query_video_format(vs.YUV,fmt.sample_type,fmt.bits_per_sample,1,1)
                         y_expected=cpu(core.resize.Point(y_source,format=y_format.id,dither_type=dither))
                         with result.get_frame(1) as frame,expected.get_frame(1) as ref,y_expected.get_frame(1) as y_ref:

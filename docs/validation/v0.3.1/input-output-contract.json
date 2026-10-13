@@ -1,0 +1,214 @@
+{
+  "dll_sha256": "9fea64453f57d2bcae3037ae8da287932ae6715bfbdf8dac538b3019032ab2b6",
+  "checks": [
+    {
+      "case": "wrong-format-268959744",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: expected constant-format, three-plane YUV420 input"
+    },
+    {
+      "case": "wrong-format-537395200",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: expected constant-format, three-plane YUV420 input"
+    },
+    {
+      "case": "wrong-format-806354944",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: expected constant-format, three-plane YUV420 input"
+    },
+    {
+      "case": "wrong-format-805961984",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: expected constant-format, three-plane YUV420 input"
+    },
+    {
+      "case": "variable-format",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: expected constant-format, three-plane YUV420 input"
+    },
+    {
+      "case": "variable-size",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: expected fixed, positive, even width and height"
+    },
+    {
+      "case": "debug--1",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: debug must be one integer in 0..7"
+    },
+    {
+      "case": "debug-8",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: debug must be one integer in 0..7"
+    },
+    {
+      "case": "debug-4294967296",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: debug must be one integer in 0..7"
+    },
+    {
+      "case": "debug-9223372036854775807",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: debug must be one integer in 0..7"
+    },
+    {
+      "case": "debug--9223372036854775808",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: debug must be one integer in 0..7"
+    },
+    {
+      "case": "core-residency-adapters",
+      "passed": true
+    },
+    {
+      "case": "unsupported-chroma-placement-1",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: only left chroma placement (_ChromaLocation=0) is supported; resite chroma before filtering"
+    },
+    {
+      "case": "unsupported-chroma-placement-2",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: only left chroma placement (_ChromaLocation=0) is supported; resite chroma before filtering"
+    },
+    {
+      "case": "unsupported-chroma-placement-3",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: only left chroma placement (_ChromaLocation=0) is supported; resite chroma before filtering"
+    },
+    {
+      "case": "unsupported-chroma-placement-4",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: only left chroma placement (_ChromaLocation=0) is supported; resite chroma before filtering"
+    },
+    {
+      "case": "unsupported-chroma-placement-5",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: only left chroma placement (_ChromaLocation=0) is supported; resite chroma before filtering"
+    },
+    {
+      "case": "interlaced-1",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: only progressive frames (_FieldBased=0) are supported; deinterlace or separate fields before filtering"
+    },
+    {
+      "case": "interlaced-2",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: only progressive frames (_FieldBased=0) are supported; deinterlace or separate fields before filtering"
+    },
+    {
+      "case": "malformed-_ChromaLocation",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: _ChromaLocation must be one integer"
+    },
+    {
+      "case": "malformed-_FieldBased",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: _FieldBased must be one integer"
+    },
+    {
+      "case": "integer-properties-range-0",
+      "passed": true
+    },
+    {
+      "case": "integer-properties-range-1",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-8",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-9",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-10",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-11",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-12",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-13",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-14",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-15",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-16",
+      "passed": true
+    },
+    {
+      "case": "YUV420PH-signed-chroma--0.5",
+      "passed": true
+    },
+    {
+      "case": "YUV420PH-signed-chroma--0.25",
+      "passed": true
+    },
+    {
+      "case": "YUV420PH-signed-chroma-0.0",
+      "passed": true
+    },
+    {
+      "case": "YUV420PH-signed-chroma-0.25",
+      "passed": true
+    },
+    {
+      "case": "YUV420PH-signed-chroma-0.5",
+      "passed": true
+    },
+    {
+      "case": "YUV420PS-signed-chroma--0.5",
+      "passed": true
+    },
+    {
+      "case": "YUV420PS-signed-chroma--0.25",
+      "passed": true
+    },
+    {
+      "case": "YUV420PS-signed-chroma-0.0",
+      "passed": true
+    },
+    {
+      "case": "YUV420PS-signed-chroma-0.25",
+      "passed": true
+    },
+    {
+      "case": "YUV420PS-signed-chroma-0.5",
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}

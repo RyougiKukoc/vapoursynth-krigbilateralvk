@@ -1,0 +1,3219 @@
+{
+  "plugin_sha256": "e97e0a135e02e667b09008ba2cd08cefc2fdc01172ea86074b921257280d4ce0",
+  "cases": [
+    {
+      "case": "range-endpoints",
+      "bits": 8,
+      "full": 0,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 8,
+      "full": 0,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 8,
+      "full": 0,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 8,
+      "full": 0,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 8,
+      "full": 1,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 8,
+      "full": 1,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 8,
+      "full": 1,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 8,
+      "full": 1,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 10,
+      "full": 0,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 10,
+      "full": 0,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 10,
+      "full": 0,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 10,
+      "full": 0,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 10,
+      "full": 1,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 10,
+      "full": 1,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 10,
+      "full": 1,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 10,
+      "full": 1,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 16,
+      "full": 0,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 16,
+      "full": 0,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 16,
+      "full": 0,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 16,
+      "full": 0,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 16,
+      "full": 1,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 16,
+      "full": 1,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 16,
+      "full": 1,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "range-endpoints",
+      "bits": 16,
+      "full": 1,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "per-frame-range-random-access",
+      "gpu": false
+    },
+    {
+      "case": "per-frame-range-random-access",
+      "gpu": true
+    },
+    {
+      "case": "untagged"
+    },
+    {
+      "case": "legacy-limited"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P8",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420P16",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PH",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": false,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 0,
+      "gpu": true,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": false,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "default-output-format-and-exact-luma",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P8",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P9",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P10",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P11",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P12",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P13",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P14",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P15",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "ordered"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "random"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444P16",
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444PH",
+      "dither": "none"
+    },
+    {
+      "case": "resize-output-equivalence",
+      "source": "YUV420PS",
+      "full": 1,
+      "gpu": true,
+      "output": "YUV444PS",
+      "dither": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P8",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P8",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "ordered"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P8",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "random"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P8",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "error_diffusion"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P8",
+      "full": 0,
+      "bits": 16,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P8",
+      "full": 0,
+      "bits": 32,
+      "sample_type": 1,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P8",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P8",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "ordered"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P8",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "random"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P8",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "error_diffusion"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P8",
+      "full": 1,
+      "bits": 16,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P8",
+      "full": 1,
+      "bits": 32,
+      "sample_type": 1,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P10",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P10",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "ordered"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P10",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "random"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P10",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "error_diffusion"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P10",
+      "full": 0,
+      "bits": 16,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P10",
+      "full": 0,
+      "bits": 32,
+      "sample_type": 1,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P10",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P10",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "ordered"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P10",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "random"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P10",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "error_diffusion"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P10",
+      "full": 1,
+      "bits": 16,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P10",
+      "full": 1,
+      "bits": 32,
+      "sample_type": 1,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P16",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P16",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "ordered"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P16",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "random"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P16",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "error_diffusion"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P16",
+      "full": 0,
+      "bits": 16,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P16",
+      "full": 0,
+      "bits": 32,
+      "sample_type": 1,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P16",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P16",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "ordered"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P16",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "random"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P16",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "error_diffusion"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P16",
+      "full": 1,
+      "bits": 16,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420P16",
+      "full": 1,
+      "bits": 32,
+      "sample_type": 1,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PH",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PH",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "ordered"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PH",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "random"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PH",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "error_diffusion"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PH",
+      "full": 0,
+      "bits": 16,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PH",
+      "full": 0,
+      "bits": 32,
+      "sample_type": 1,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PH",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PH",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "ordered"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PH",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "random"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PH",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "error_diffusion"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PH",
+      "full": 1,
+      "bits": 16,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PH",
+      "full": 1,
+      "bits": 32,
+      "sample_type": 1,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PS",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PS",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "ordered"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PS",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "random"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PS",
+      "full": 0,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "error_diffusion"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PS",
+      "full": 0,
+      "bits": 16,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PS",
+      "full": 0,
+      "bits": 32,
+      "sample_type": 1,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PS",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PS",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "ordered"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PS",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "random"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PS",
+      "full": 1,
+      "bits": 8,
+      "sample_type": 0,
+      "dither_type": "error_diffusion"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PS",
+      "full": 1,
+      "bits": 16,
+      "sample_type": 0,
+      "dither_type": "none"
+    },
+    {
+      "case": "cpu-gpu-entry-parity",
+      "source": "YUV420PS",
+      "full": 1,
+      "bits": 32,
+      "sample_type": 1,
+      "dither_type": "none"
+    },
+    {
+      "case": "output-type-inference",
+      "options": {
+        "bits": 32
+      },
+      "format": "824180736"
+    },
+    {
+      "case": "output-type-inference",
+      "options": {
+        "bits": 16
+      },
+      "format": "806354944"
+    },
+    {
+      "case": "output-type-inference",
+      "options": {
+        "bits": 16,
+        "sample_type": 1
+      },
+      "format": "823132160"
+    },
+    {
+      "case": "float-input-output-type-inference",
+      "bits": 8,
+      "format": "805830656"
+    },
+    {
+      "case": "float-input-output-type-inference",
+      "bits": 16,
+      "format": "823132160"
+    },
+    {
+      "case": "float-input-output-type-inference",
+      "bits": 32,
+      "format": "824180736"
+    },
+    {
+      "case": "float-output-ignores-dithering",
+      "gpu": false,
+      "dither": "ordered"
+    },
+    {
+      "case": "float-output-ignores-dithering",
+      "gpu": false,
+      "dither": "random"
+    },
+    {
+      "case": "float-output-ignores-dithering",
+      "gpu": false,
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "float-output-ignores-dithering",
+      "gpu": true,
+      "dither": "ordered"
+    },
+    {
+      "case": "float-output-ignores-dithering",
+      "gpu": true,
+      "dither": "random"
+    },
+    {
+      "case": "float-output-ignores-dithering",
+      "gpu": true,
+      "dither": "error_diffusion"
+    },
+    {
+      "case": "float-headroom-retained",
+      "gpu": false
+    },
+    {
+      "case": "float-headroom-retained",
+      "gpu": true
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "bits": 7
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "bits": 17
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "bits": 9223372036854775807
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "bits": -9223372036854775808
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "bits": 32,
+        "sample_type": 0
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "bits": 8,
+        "sample_type": 1
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "sample_type": 99
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "dither_type": "unknown"
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "dither_type": "none\u0000ordered"
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "debug": 1,
+        "bits": 32
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "debug": 1,
+        "dither_type": "ordered"
+      }
+    },
+    {
+      "case": "None-means-defaults",
+      "entry": "KrigBilateral"
+    },
+    {
+      "case": "invalid-range-rejected",
+      "entry": "KrigBilateral",
+      "value": -1
+    },
+    {
+      "case": "invalid-range-rejected",
+      "entry": "KrigBilateral",
+      "value": 2
+    },
+    {
+      "case": "invalid-range-rejected",
+      "entry": "KrigBilateral",
+      "value": "invalid"
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "bits": 7
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "bits": 17
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "bits": 9223372036854775807
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "bits": -9223372036854775808
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "bits": 32,
+        "sample_type": 0
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "bits": 8,
+        "sample_type": 1
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "sample_type": 99
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "dither_type": "unknown"
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "dither_type": "none\u0000ordered"
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "debug": 1,
+        "bits": 32
+      }
+    },
+    {
+      "case": "invalid-output-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "debug": 1,
+        "dither_type": "ordered"
+      }
+    },
+    {
+      "case": "None-means-defaults",
+      "entry": "KrigBilateralGPU"
+    },
+    {
+      "case": "invalid-range-rejected",
+      "entry": "KrigBilateralGPU",
+      "value": -1
+    },
+    {
+      "case": "invalid-range-rejected",
+      "entry": "KrigBilateralGPU",
+      "value": 2
+    },
+    {
+      "case": "invalid-range-rejected",
+      "entry": "KrigBilateralGPU",
+      "value": "invalid"
+    }
+  ],
+  "all_passed": true,
+  "dither_changes_fractional_output": true,
+  "hardware": {
+    "name": "llvmpipe (LLVM 19.1.7, 256 bits)"
+  }
+}
