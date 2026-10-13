@@ -74,7 +74,6 @@ int64_t optionalInt(const VSMap* in,const char* key,int64_t fallback,const VSAPI
 
 struct OutputOptions {
     VSVideoFormat format{};
-    std::string dither="none";
 };
 OutputOptions outputOptions(const VSMap* in,const VSVideoFormat& input,VSCore* core,const VSAPI* api) {
     OutputOptions options;
@@ -83,11 +82,10 @@ OutputOptions outputOptions(const VSMap* in,const VSVideoFormat& input,VSCore* c
         int error{};
         const char* value=api->mapGetData(in,"dither_type",0,&error);
         if(count!=1 || error) fail("dither_type must be one string");
-        options.dither.assign(value,api->mapGetDataSize(in,"dither_type",0,nullptr));
+        std::string dither(value,api->mapGetDataSize(in,"dither_type",0,nullptr));
+        if(dither!="none") fail("fused output does not implement dithering; dither_type must be none; use core.resize after 16-bit or FP32 output for dithering");
     }
-    if(options.dither!="none" && options.dither!="ordered" && options.dither!="random" && options.dither!="error_diffusion")
-        fail("dither_type must be none, ordered, random or error_diffusion");
-    int64_t bits=optionalInt(in,"bits",input.bitsPerSample,api);
+    int64_t bits=optionalInt(in,"bits",input.sampleType==stInteger ? 16 : input.bitsPerSample,api);
     int64_t defaultType=bits==32 ? stFloat : (bits<16 ? stInteger : input.sampleType);
     int64_t type=optionalInt(in,"sample_type",defaultType,api);
     if((type!=stInteger && type!=stFloat) ||
@@ -96,6 +94,8 @@ OutputOptions outputOptions(const VSMap* in,const VSVideoFormat& input,VSCore* c
         fail("output requires integer 8..16-bit or float 16/32-bit; set bits and sample_type accordingly");
     if(!api->queryVideoFormat(&options.format,cfYUV,static_cast<int>(type),static_cast<int>(bits),0,0,core))
         fail("could not construct the requested YUV444 output format");
+    if(type==stInteger && bits<16)
+        api->logMessage(mtWarning,"KrigBilateral: integer output below 16 bits uses no dithering and may cause banding; use 16-bit or FP32 output followed by core.resize with dithering.",core);
     return options;
 }
 
@@ -120,17 +120,35 @@ struct Filter {
         if(node) api->freeNode(node);
     }
     void kernel(Kernel& k,const char* name,const char* source,VSCore* core) {
-        std::array<VkDescriptorSetLayoutBinding,7> bindings{};
-        uint32_t bindingCount=7;
+        std::array<VkDescriptorSetLayoutBinding,8> bindings{};
+        uint32_t bindingCount=8;
         for(uint32_t i=0;i<bindingCount;++i) bindings[i]={i,VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,1,VK_SHADER_STAGE_COMPUTE_BIT,nullptr};
         VkDescriptorSetLayoutCreateInfo set{VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO};
         set.flags=VK_DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT; set.bindingCount=bindingCount; set.pBindings=bindings.data();
         check(vk->vkCreateDescriptorSetLayout(handles.device,&set,nullptr,&k.set),"descriptor layout");
-        VkPushConstantRange range{VK_SHADER_STAGE_COMPUTE_BIT,0,20};
+        VkPushConstantRange range{VK_SHADER_STAGE_COMPUTE_BIT,0,28};
         VkPipelineLayoutCreateInfo layout{VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO};
         layout.setLayoutCount=1; layout.pSetLayouts=&k.set; layout.pushConstantRangeCount=1; layout.pPushConstantRanges=&range;
         check(vk->vkCreatePipelineLayout(handles.device,&layout,nullptr,&k.layout),"pipeline layout");
-        std::string text="#version 460\n#define WIDTH "+std::to_string(vi.width)+"\n#define HEIGHT "+std::to_string(vi.height)+"\n"+source;
+        auto type=[](const VSVideoFormat& fmt) {
+            return fmt.sampleType==stFloat ? (fmt.bitsPerSample==16 ? "float16_t" : "float") :
+                (fmt.bitsPerSample==8 ? "uint8_t" : "uint16_t");
+        };
+        std::string text="#version 460\n"
+            "#extension GL_EXT_shader_8bit_storage : require\n"
+            "#extension GL_EXT_shader_16bit_storage : require\n"
+            "#extension GL_EXT_shader_explicit_arithmetic_types_int8 : require\n"
+            "#extension GL_EXT_shader_explicit_arithmetic_types_int16 : require\n";
+        if((inputFormat.sampleType==stFloat && inputFormat.bitsPerSample==16) ||
+           (vi.format.sampleType==stFloat && vi.format.bitsPerSample==16))
+            text+="#extension GL_EXT_shader_explicit_arithmetic_types_float16 : require\n";
+        text+="#define WIDTH "+std::to_string(vi.width)+"\n#define HEIGHT "+std::to_string(vi.height)+
+            "\n#define SRC_T "+type(inputFormat)+"\n#define DST_T "+type(vi.format)+
+            "\n#define SRC_INT "+std::to_string(inputFormat.sampleType==stInteger)+
+            "\n#define DST_INT "+std::to_string(vi.format.sampleType==stInteger)+
+            "\n#define SRC_BITS "+std::to_string(inputFormat.bitsPerSample)+
+            "\n#define DST_BITS "+std::to_string(vi.format.bitsPerSample)+
+            "\n#define WRITE_Y "+std::to_string(inputFormat.sampleType!=vi.format.sampleType || inputFormat.bitsPerSample!=vi.format.bitsPerSample)+"\n"+source;
         char err[errSize]{};
         VSGPUShader* shader=gpu->compileGPUShader(core,slGLSL,text.c_str(),err,errSize);
         if(!shader) fail(err);
@@ -190,29 +208,39 @@ const VSFrame* VS_CC getFrame(int n,int reason,void* instance,void**,VSFrameCont
            actual.numPlanes!=declared.numPlanes || actual.subSamplingW!=declared.subSamplingW || actual.subSamplingH!=declared.subSamplingH)
             fail("frame format does not match the declared fixed input format");
         validateFrameProperties(src.get(),api);
-        const VSFrame* planes[3]={src.get(),nullptr,nullptr}; int indices[3]={0,1,2};
-        VSFrame* raw=api->newVideoFrame2(&f->vi.format,f->vi.width,f->vi.height,planes,indices,src.get(),core);
+        const VSMap* inputProperties=api->getFramePropertiesRO(src.get());
+        int rangeError{};
+        int64_t full=api->mapGetInt(inputProperties,"_Range",0,&rangeError);
+        if(rangeError) full=0; // untagged YUV uses resize's limited-range default
+        bool writeY=f->inputFormat.sampleType!=f->vi.format.sampleType || f->inputFormat.bitsPerSample!=f->vi.format.bitsPerSample;
+        const VSFrame* planes[3]={writeY ? nullptr : src.get(),nullptr,nullptr}; int indices[3]={0,1,2};
+        VSFrame* raw=writeY ? f->gpu->newGPUVideoFrame(&f->vi.format,f->vi.width,f->vi.height,src.get(),core) :
+            api->newVideoFrame2(&f->vi.format,f->vi.width,f->vi.height,planes,indices,src.get(),core);
         if(!raw) fail("output allocation failed");
         Frame dst{raw,{api}};
         VSMap* properties=api->getFramePropertiesRW(raw);
         api->mapDeleteKey(properties,"_ChromaLocation"); // full-resolution chroma has no subsampling siting
+        api->mapSetInt(properties,"_Range",full,maReplace);
         char err[errSize]{};
         Recording record{f->gpu,f->gpu->gpuExecAcquire(f->pool,err,errSize)};
         if(!record.context) fail(err);
         f->gpu->gpuExecReadsFrame(record.context,src.get());
         f->gpu->gpuExecWritesPlane(record.context,raw,1);
         f->gpu->gpuExecWritesPlane(record.context,raw,2);
-        std::array<VkDescriptorBufferInfo,7> buffers{};
-        std::array<int32_t,5> push{};
+        if(writeY) f->gpu->gpuExecWritesPlane(record.context,raw,0);
+        std::array<VkDescriptorBufferInfo,8> buffers{};
+        std::array<int32_t,7> push{};
+        push[6]=static_cast<int32_t>(full);
         for(int plane=0;plane<3;++plane) {
             auto info=checkedPlane(*f,src.get(),plane,f->vi.width/(plane ? 2 : 1),f->vi.height/(plane ? 2 : 1),
                 f->inputFormat.bytesPerSample,push[plane]);
             buffers[plane]={info.buffer,0,info.bufferSize};
         }
-        for(int plane=1;plane<3;++plane) {
-            auto info=checkedPlane(*f,dst.get(),plane,f->vi.width,f->vi.height,f->vi.format.bytesPerSample,push[2+plane]);
-            buffers[4+plane]={info.buffer,0,info.bufferSize};
+        for(int plane=writeY ? 0 : 1;plane<3;++plane) {
+            auto info=checkedPlane(*f,dst.get(),plane,f->vi.width,f->vi.height,f->vi.format.bytesPerSample,push[3+plane]);
+            buffers[plane==0 ? 7 : 4+plane]={info.buffer,0,info.bufferSize};
         }
+        if(!writeY) buffers[7]=buffers[5]; // unused binding has a valid writable buffer
         for(int i=0;i<2;++i) {
             VSVulkanBufferInfo info{};
             VkDeviceSize size=VkDeviceSize(f->vi.width)*f->vi.height*(i==0?4:2);
@@ -222,8 +250,8 @@ const VSFrame* VS_CC getFrame(int n,int reason,void* instance,void**,VSFrameCont
             buffers[3+i]={info.buffer,0,size};
             f->gpu->gpuExecUsesBuffer(record.context,owner);
         }
-        uint32_t bindingCount=7;
-        std::array<VkWriteDescriptorSet,7> writes{};
+        uint32_t bindingCount=8;
+        std::array<VkWriteDescriptorSet,8> writes{};
         for(uint32_t i=0;i<bindingCount;++i) { auto& w=writes[i]; w.sType=VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
             w.dstBinding=i; w.descriptorCount=1; w.descriptorType=VK_DESCRIPTOR_TYPE_STORAGE_BUFFER; w.pBufferInfo=&buffers[i]; }
         VkCommandBuffer cmd=f->gpu->gpuExecCommandBuffer(record.context);
@@ -232,7 +260,7 @@ const VSFrame* VS_CC getFrame(int n,int reason,void* instance,void**,VSFrameCont
             f->vk->vkCmdBindPipeline(cmd,VK_PIPELINE_BIND_POINT_COMPUTE,k.pipeline);
             f->vk->vkCmdPushDescriptorSet(cmd,VK_PIPELINE_BIND_POINT_COMPUTE,k.layout,0,bindingCount,writes.data());
             VkPushConstantsInfo info{VK_STRUCTURE_TYPE_PUSH_CONSTANTS_INFO}; info.layout=k.layout;
-            info.stageFlags=VK_SHADER_STAGE_COMPUTE_BIT; info.size=20; info.pValues=push.data();
+            info.stageFlags=VK_SHADER_STAGE_COMPUTE_BIT; info.size=sizeof(push); info.pValues=push.data();
             f->vk->vkCmdPushConstants2(cmd,&info);
             int w=f->vi.width/(i==1?2:1), h=f->vi.height/(i==2?1:2);
             f->vk->vkCmdDispatch(cmd,(w+7)/8,(h+7)/8,1);
@@ -250,14 +278,13 @@ const VSFrame* VS_CC getFrame(int n,int reason,void* instance,void**,VSFrameCont
     } catch(const std::exception& e) {api->setFilterError(e.what(),ctx);return nullptr;}
 }
 void VS_CC freeFilter(void* data,VSCore*,const VSAPI*) {delete static_cast<Filter*>(data);}
-Node createNative(VSNode* input,VSCore* core,const VSAPI* api) {
+Node createNative(VSNode* input,const VSVideoFormat& outputFormat,VSCore* core,const VSAPI* api) {
         auto f=std::make_unique<Filter>();f->api=api;f->gpu=api->getVulkanAPI();
         f->node=api->addNodeRef(input); f->vi=*api->getVideoInfo(f->node);
         validateInput(f->vi);
         if(api->getNodeResidency(f->node)!=nrGPU) fail("GPU entry requires GPU-resident input");
         f->inputFormat=f->vi.format;
-        const auto& fmt=f->vi.format;
-        if(fmt.sampleType!=stFloat || fmt.bitsPerSample!=32) fail("internal input must be YUV420PS");
+        f->vi.format=outputFormat;
         char err[errSize]{};
         if(f->gpu->getVulkanHandles(core,&f->handles,err,errSize)) fail(err);
         f->vk=f->gpu->getVulkanFunctions(core,err,errSize);if(!f->vk) fail(err);
@@ -266,7 +293,7 @@ Node createNative(VSNode* input,VSCore* core,const VSAPI* api) {
         const auto& limits=properties.properties.limits;
         f->maxStorageRange=limits.maxStorageBufferRange;
         if(limits.maxComputeWorkGroupInvocations<64 || limits.maxComputeWorkGroupSize[0]<8 || limits.maxComputeWorkGroupSize[1]<8 ||
-           limits.maxPerStageDescriptorStorageBuffers<7 || limits.maxDescriptorSetStorageBuffers<7 || limits.maxPushConstantsSize<20 ||
+           limits.maxPerStageDescriptorStorageBuffers<8 || limits.maxDescriptorSetStorageBuffers<8 || limits.maxPushConstantsSize<28 ||
            (uint64_t(f->vi.width)+7)/8>limits.maxComputeWorkGroupCount[0] ||
            (uint64_t(f->vi.height)+7)/8>limits.maxComputeWorkGroupCount[1] ||
            uint64_t(f->vi.width)*f->vi.height*4>limits.maxStorageBufferRange)
@@ -274,37 +301,11 @@ Node createNative(VSNode* input,VSCore* core,const VSAPI* api) {
         f->pool=f->gpu->createGPUExecPool(core,vqCompute,err,errSize);if(!f->pool) fail(err);
         f->kernel(f->kernels[0],"vertical",shader::vertical,core);f->kernel(f->kernels[1],"horizontal",shader::horizontal,core);
         f->kernel(f->kernels[2],"reconstruct",shader::reconstruct,core);
-        if(!api->queryVideoFormat(&f->vi.format,cfYUV,stFloat,32,0,0,core))
-            fail("could not construct the requested YUV444 output format");
         VSFilterDependency dependency{f->node,rpStrictSpatial};
-        VSNode* result=api->createVideoFilterEx2("KrigBilateralFP32",&f->vi,getFrame,freeFilter,fmParallel,
+        VSNode* result=api->createVideoFilterEx2("KrigBilateralGPU",&f->vi,getFrame,freeFilter,fmParallel,
             ffGPUOutput,&dependency,1,f.get(),core);
         if(!result) fail("filter creation failed");
         f.release();return Node{result,{api}};
-}
-
-// Validate original metadata before resize can resite chroma or rewrite properties.
-const VSFrame* VS_CC guardFrame(int n,int reason,void* instance,void**,VSFrameContext* ctx,VSCore*,const VSAPI* api) {
-    auto* f=static_cast<Filter*>(instance);
-    if(reason==arInitial) {api->requestFrameFilter(n,f->node,ctx);return nullptr;}
-    if(reason!=arAllFramesReady) return nullptr;
-    try {
-        Frame src{api->getFrameFilter(n,f->node,ctx),{api}};
-        if(!src) fail("failed to obtain input frame");
-        const auto& actual=*api->getVideoFrameFormat(src.get());
-        const auto& declared=f->vi.format;
-        if(actual.colorFamily!=declared.colorFamily || actual.sampleType!=declared.sampleType ||
-           actual.bitsPerSample!=declared.bitsPerSample || actual.subSamplingW!=1 || actual.subSamplingH!=1)
-            fail("frame format does not match the declared fixed input format");
-        for(int p=0;p<3;++p) {
-            int width=f->vi.width/(p ? 2 : 1),height=f->vi.height/(p ? 2 : 1);
-            if(api->getFrameWidth(src.get(),p)!=width || api->getFrameHeight(src.get(),p)!=height ||
-               api->getStride(src.get(),p)<int64_t(width)*declared.bytesPerSample)
-                fail("input frame dimensions or stride do not match its declared format");
-        }
-        validateFrameProperties(src.get(),api);
-        return src.release();
-    } catch(const std::exception& e){api->setFilterError(e.what(),ctx);return nullptr;}
 }
 
 struct Graph {
@@ -328,39 +329,7 @@ struct Graph {
             api->mapSetNode(args,"clip",clip,maReplace);
         });
     }
-    Node resize(VSNode* clip,const VSVideoFormat& format,const std::string& dither,bool gpuOutput)const {
-        // R81's GPU resize supports none/ordered/random. Error diffusion is a
-        // CPU recurrence; explicitly download/reupload for that requested mode.
-        bool gpu=api->getNodeResidency(clip)==nrGPU;
-        bool diffusion=format.sampleType==stInteger && dither=="error_diffusion";
-        Node input=transfer(clip,gpu && !diffusion);
-        Node result=call("com.vapoursynth.resize","Point",[&](VSMap* args){
-            api->mapSetNode(args,"clip",input.get(),maReplace);
-            int id=api->queryVideoFormatID(format.colorFamily,format.sampleType,format.bitsPerSample,
-                format.subSamplingW,format.subSamplingH,core);
-            api->mapSetInt(args,"format",id,maReplace);
-            const std::string& mode=format.sampleType==stInteger ? dither : std::string("none");
-            api->mapSetData(args,"dither_type",mode.c_str(),static_cast<int>(mode.size()),dtUtf8,maReplace);
-        });
-        return transfer(result.get(),gpuOutput);
-    }
-    Node guard(VSNode* clip)const {
-        auto f=std::make_unique<Filter>();f->api=api;f->node=api->addNodeRef(clip);f->vi=*api->getVideoInfo(clip);
-        VSFilterDependency dependency{clip,rpStrictSpatial};
-        VSNode* node=api->createVideoFilterEx2("KrigBilateralInput",&f->vi,guardFrame,freeFilter,fmParallel,
-            api->getNodeResidency(clip)==nrGPU ? ffGPUOutput : 0,&dependency,1,f.get(),core);
-        if(!node) fail("input validation filter creation failed");
-        f.release();return Node{node,{api}};
-    }
-    Node luma(VSNode* source,VSNode* chroma)const {
-        return call("com.vapoursynth.std","ShufflePlanes",[&](VSMap* args){
-            api->mapSetNode(args,"clips",source,maAppend);
-            api->mapSetNode(args,"clips",chroma,maAppend);
-            for(int p=0;p<3;++p) api->mapSetInt(args,"planes",p,maAppend);
-            api->mapSetInt(args,"colorfamily",cfYUV,maReplace);
-            api->mapSetNode(args,"prop_src",chroma,maReplace);
-        });
-    }
+
 };
 
 void VS_CC create(const VSMap* in,VSMap* out,void* userData,VSCore* core,const VSAPI* api) {
@@ -371,23 +340,9 @@ void VS_CC create(const VSMap* in,VSMap* out,void* userData,VSCore* core,const V
         validateInput(vi);
         OutputOptions options=outputOptions(in,vi.format,core,api);
         Graph graph{core,api};
-        Node input=graph.guard(original.get());
-        VSVideoFormat working{};
-        api->queryVideoFormat(&working,cfYUV,stFloat,32,1,1,core);
-        // Use the same core conversion backend for both public entries. CPU
-        // and GPU resize can differ at a rounding boundary on some drivers.
-        Node uploaded=graph.transfer(input.get(),true);
-        Node converted=graph.resize(uploaded.get(),working,"none",true);
-        Node filtered=createNative(converted.get(),core,api);
-        Node result=graph.resize(filtered.get(),options.format,options.dither,gpu);
-        Node y=graph.transfer(input.get(),gpu);
-        if(options.format.sampleType!=vi.format.sampleType || options.format.bitsPerSample!=vi.format.bitsPerSample) {
-            VSVideoFormat yFormat{};
-            api->queryVideoFormat(&yFormat,cfYUV,options.format.sampleType,options.format.bitsPerSample,1,1,core);
-            VSNode* yInput=options.dither=="error_diffusion" && !gpu ? input.get() : uploaded.get();
-            y=graph.resize(yInput,yFormat,options.dither,gpu);
-        }
-        result=graph.luma(y.get(),result.get());
+        Node uploaded=graph.transfer(original.get(),true);
+        Node filtered=createNative(uploaded.get(),options.format,core,api);
+        Node result=graph.transfer(filtered.get(),gpu);
         api->mapConsumeNode(out,"clip",result.release(),maReplace);
     } catch(const std::exception& e){api->mapSetError(out,e.what());}
 }

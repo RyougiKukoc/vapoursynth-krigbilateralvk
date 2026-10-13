@@ -24,7 +24,7 @@ def environment(core):
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument('--backend',choices=('vk','vk_gpu','placebo','baseline','baseline_gpu'),required=True)
+    ap.add_argument('--backend',choices=('vk','vk_gpu','placebo','baseline','baseline_gpu','resize_in_gpu','resize_out_gpu'),required=True)
     ap.add_argument('--width',type=int,default=1920);ap.add_argument('--height',type=int,default=1080)
     ap.add_argument('--frames',type=int,default=256);ap.add_argument('--warmup',type=int,default=8)
     ap.add_argument('--prefetch',type=int,default=4);ap.add_argument('--threads',type=int,default=4)
@@ -34,6 +34,9 @@ def main():
     ap.add_argument('--sample-type',choices=('integer','float'))
     ap.add_argument('--dither-type',choices=('none','ordered','random','error_diffusion'),default='none')
     ap.add_argument('--label',default='')
+    ap.add_argument('--background-workload',default='',help='Known concurrent GPU activity, recorded with results')
+    ap.add_argument('--input-format',choices=('YUV420P16','YUV420PS','YUV444PS'),default='YUV420P16',
+                    help='Preconvert held inputs outside timing for conversion ablations')
     args=ap.parse_args()
     if args.output.exists():raise FileExistsError(args.output)
     core=vs.core;core.num_threads=args.threads
@@ -60,9 +63,14 @@ def main():
         held_indices=list(range(8));src=make_source(args.width,args.height,vs.YUV420P16)
     if gpu_entry:
         src=core.std.GPUUpload(src)
+        if args.input_format!='YUV420P16':
+            src=core.resize.Point(src,format=getattr(vs,args.input_format))
         for n in range(8):
             with core.krigvk_bench.Wait(src).get_frame(n) as completed:
                 assert completed[0].tobytes()==bytes([n])
+    elif args.input_format!='YUV420P16':
+        src=core.resize.Point(src,format=getattr(vs,args.input_format))
+    input_format=src.format.name
     held=[src.get_frame(n) for n in range(8)]
     template=core.std.BlankClip(src,length=args.warmup+args.frames+32,gpu=gpu_entry,keep=True)
     src=core.std.ModifyFrame(template,template,lambda n,f:held[n%8])
@@ -74,6 +82,8 @@ def main():
     if args.backend=='vk':out=core.krigvk.KrigBilateral(src,**options)
     elif args.backend=='vk_gpu':out=core.krigvk.KrigBilateralGPU(src,**options)
     elif args.backend=='placebo':out=core.placebo.Shader(src,shader=str(ROOT/'reference/KrigBilateral.glsl'))
+    elif args.backend=='resize_in_gpu':out=core.resize.Point(src,format=vs.YUV420PS)
+    elif args.backend=='resize_out_gpu':out=core.resize.Point(src,format=vs.YUV444P16)
     else:out=src
     output_format=out.format.name
     output_gpu=out.gpu_resident
@@ -91,8 +101,10 @@ def main():
         f.close();count+=1
     seconds=time.perf_counter()-before
     assert count==args.frames
-    result={'backend':args.backend,'label':args.label,'width':args.width,'height':args.height,
+    result={'backend':args.backend,'label':args.label,'background_workload':args.background_workload,
+            'width':args.width,'height':args.height,
             'plugin_sha256':hashlib.sha256(plugin.read_bytes()).hexdigest(),
+            'input_format':input_format,
             'output_format':output_format,'output_sample_sha256':output_sha256,'source_gpu_resident':gpu_entry,
             'output_gpu_resident_before_completion_sink':output_gpu,
             'completion':'waitGPUFrame and 1x1 CPU acknowledgement' if gpu_entry else 'completed full CPU output frame',

@@ -1,26 +1,74 @@
 // Adapted from KrigBilateral by Shiandow. LGPL-3.0-or-later.
 
 layout(local_size_x=8,local_size_y=8) in;
-layout(push_constant) uniform Params { int sy; int su; int sv; int du; int dv; } p;
-layout(binding=0,std430) readonly buffer SrcY { float yy[]; };
-layout(binding=1,std430) readonly buffer SrcU { float uu[]; };
-layout(binding=2,std430) readonly buffer SrcV { float vv[]; };
+layout(push_constant) uniform Params { int sy; int su; int sv; int dy; int du; int dv; int full; } p;
+layout(binding=0,std430) readonly buffer SrcY { SRC_T yy[]; };
+layout(binding=1,std430) readonly buffer SrcU { SRC_T uu[]; };
+layout(binding=2,std430) readonly buffer SrcV { SRC_T vv[]; };
 layout(binding=3,std430) buffer Vertical { vec2 vert[]; };
 layout(binding=4,std430) buffer Guide { vec2 guide[]; };
-layout(binding=5,std430) writeonly buffer DstU { float outU[]; };
-layout(binding=6,std430) writeonly buffer DstV { float outV[]; };
+layout(binding=5,std430) writeonly buffer DstU { DST_T outU[]; };
+layout(binding=6,std430) writeonly buffer DstV { DST_T outV[]; };
+layout(binding=7,std430) writeonly buffer DstY { DST_T outY[]; };
 ivec2 q;
-float luma(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT-1)); return yy[c.y*p.sy+c.x]; }
+// Same sample numbering as resize/zimg. The flag is a per-frame value;
+// depth and storage types are compile-time constants for each filter instance.
+#define SRC_PEAK float((1 << SRC_BITS) - 1)
+#define DST_PEAK float((1 << DST_BITS) - 1)
+#define SRC_SHIFT (1 << (SRC_BITS - 8))
+#define DST_SHIFT (1 << (DST_BITS - 8))
+float normalizeY(float value) {
+#if SRC_INT
+    float scale=p.full!=0 ? 1.0/SRC_PEAK : 1.0/(219.0*SRC_SHIFT);
+    float offset=p.full!=0 ? 0.0 : -16.0/219.0;
+    return value*scale+offset;
+#else
+    return value;
+#endif
+}
+float normalizeUV(float value) {
+#if SRC_INT
+    float scale=p.full!=0 ? 1.0/SRC_PEAK : 1.0/(224.0*SRC_SHIFT);
+    float offset=p.full!=0 ? -float(1 << (SRC_BITS-1))/SRC_PEAK : -128.0/224.0;
+    return value*scale+offset;
+#else
+    return value;
+#endif
+}
+float luma(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT-1)); return normalizeY(float(yy[c.y*p.sy+c.x])); }
 vec2 verticalAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT/2-1));return vert[c.y*WIDTH+c.x]; }
 vec2 guideAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH/2-1,HEIGHT/2-1));return guide[c.y*(WIDTH/2)+c.x]; }
 vec2 chromaAt(ivec2 c) {
     c=clamp(c,ivec2(0),ivec2(WIDTH/2-1,HEIGHT/2-1));
-    // resize.Point supplies canonical float YUV; only adapt signed chroma
-    // to the original shader's coordinates. Range/depth conversion stays in resize.
-    return vec2(uu[c.y*p.su+c.x],vv[c.y*p.sv+c.x])+vec2(0.5);
+    return vec2(normalizeUV(float(uu[c.y*p.su+c.x])),normalizeUV(float(vv[c.y*p.sv+c.x])))+vec2(0.5);
 }
-float storeValue(float value) {
-    return value-0.5; // keep headroom until the core's final resize/quantization
+DST_T storeValue(float value) {
+    value-=0.5; // signed canonical chroma, with headroom intact
+#if DST_INT
+    float scale=p.full!=0 ? DST_PEAK : 224.0*DST_SHIFT;
+    value=value*scale+float(1 << (DST_BITS-1));
+    value=clamp(roundEven(value),0.0,DST_PEAK); // no dither
+#endif
+    return DST_T(value);
+}
+DST_T storeY(float value) {
+#if SRC_INT && DST_INT
+    // Direct depth affine avoids unnecessary FP32 normalization/quantization
+    // and makes limited-range integer widening an exact left shift.
+    float scale=p.full!=0 ? DST_PEAK/SRC_PEAK : float(DST_SHIFT)/float(SRC_SHIFT);
+    value*=scale;
+#else
+    value=normalizeY(value);
+#if DST_INT
+    float scale=p.full!=0 ? DST_PEAK : 219.0*DST_SHIFT;
+    float offset=p.full!=0 ? 0.0 : 16.0*DST_SHIFT;
+    value=value*scale+offset;
+#endif
+#endif
+#if DST_INT
+    value=clamp(roundEven(value),0.0,DST_PEAK);
+#endif
+    return DST_T(value);
 }
 
 #define LOWRES_Y_pt vec2(1.0/float(WIDTH/2),1.0/float(HEIGHT/2))
@@ -147,4 +195,7 @@ void main() {
     vec2 value=hook().xy;
     outU[q.y*p.du+q.x]=storeValue(value.x);
     outV[q.y*p.dv+q.x]=storeValue(value.y);
+#if WRITE_Y
+    outY[q.y*p.dy+q.x]=storeY(float(yy[q.y*p.sy+q.x]));
+#endif
 }

@@ -3,7 +3,8 @@
   "scope": "Hashes of published historical and current validation records. The top-level measured plugin hash describes v0.1.0; versioned reports record their own binaries. Removed source is recorded by hash only.",
   "measured_plugin_sha256": "c567599daf0086d3f7591a9ba13d81c53fa8f6daaf451ce3a84443450819630e",
   "reference_files_sha256": {
-    "reference/KrigBilateral.glsl": "a84951b430905176f381a009552b3153dc01142c86b3d17740a25514fe2128e2"
+    "reference/KrigBilateral.glsl": "a84951b430905176f381a009552b3153dc01142c86b3d17740a25514fe2128e2",
+    "tests/shader_oracle_host.cpp": "a067236b47e16ec42df8d98da10e8ad8f42944a53c00d33dffcdd47a5f6e2ed5"
   },
   "published_files_sha256": {
     "docs/validation/final-128x72.json": "1bcee6dc6e5327cdec53600460d327c9a3b2ef4dfbd83af2453fb2bdbdcc8d48",
@@ -123,7 +124,35 @@
     "docs/validation/v0.4.0/performance/supply-gpu-r0.json": "0db24c9d8277433dc4bc9e6865ee78b4bcf9e7e0a39d7993ac0e282052dc48ae",
     "docs/validation/v0.4.0/performance/supply-gpu-r1.json": "f1b15d836e6e72c8e547cb6157faa13720b51ff452b3dc046755b48b5a574377",
     "docs/validation/v0.4.0/performance/supply-gpu-r2.json": "fec43d792a974836a218fdf913eb177206edd205977606ee69dbccb11c37b00f",
-    "docs/validation/v0.4.0/performance/summary.json": "0f3ebe084b0f74c03a1279e396ab5c54a268116ed36af8428fdc1798447a5c18"
+    "docs/validation/v0.4.0/performance/summary.json": "6c5cc67afd4016409118b45f8a65405099686db194e76c8a646059bd36627c05",
+    "docs/validation/v0.4.0-fused/candidate-source.json": "ae11eb236e5fe309ebb48bf4ff6673abee3f0874545a3f2421dbcf4a06bfaec7",
+    "docs/validation/v0.4.0-fused/linux/contracts.json": "443161427e731c4d747d6793b9760d6338ee7029c69a085dfc9f59c98f6ab9a9",
+    "docs/validation/v0.4.0-fused/linux/fp32.json": "4e45582eecf882008de27cc28247c591e7c29b48695e049536cc9221620bc23a",
+    "docs/validation/v0.4.0-fused/linux/matrix.json": "fbaabd2a02ca6c4b4ea602a587a420726a6f1440d898bccb98af82c7f368067b",
+    "docs/validation/v0.4.0-fused/linux/range-depth.json": "8d6602e1e1aa0c85c7630f2229d1d0746ec7f7519aa949eb63365c50dbe71bc3",
+    "docs/validation/v0.4.0-fused/performance/fused-cpu16-r0.json": "ca784bb97c1d8d0ca46c25263257f8555b626fc8e73a558e749f39fc81fdfd7a",
+    "docs/validation/v0.4.0-fused/performance/fused-cpu16-r1.json": "6eabd0c95bafd2875c5d880777a6e8f9cb0131cc40ad9e5aa7b411b58079f6be",
+    "docs/validation/v0.4.0-fused/performance/fused-cpu16-r2.json": "da325b077ec724d519134fa503a9b89895628f7a458daaa28d6f48ea66c6face",
+    "docs/validation/v0.4.0-fused/performance/fused-gpu16-r0.json": "4fe3bbb1232b05ccb9611cf9df7ecf3c9f7fadaf0e90002999aa6ca0373833fd",
+    "docs/validation/v0.4.0-fused/performance/fused-gpu16-r1.json": "7c16fdbe279d5b8f8a24cee58cec911c6e7f2153f8d84d994dde61f75cd0ba2a",
+    "docs/validation/v0.4.0-fused/performance/fused-gpu16-r2.json": "7410c52f5d49e0fad6ba25fbdeb9a99ea7beac4978591eadb60ef9ec9347e12e",
+    "docs/validation/v0.4.0-fused/performance/fused-gpu32-r0.json": "3aeff2ca6913d115e479137a7395773beceef38b906f0e6271bd7e9d7ffde537",
+    "docs/validation/v0.4.0-fused/performance/fused-gpu32-r1.json": "0cfad5243c4c46a15640f30989dc7da3603e00cad8401e6c1ece8435bf77b4b0",
+    "docs/validation/v0.4.0-fused/performance/fused-gpu32-r2.json": "9524e455663a2ee184cc5b31c5c8ba7a254e14471ed665cd86f7239b9b2b833a",
+    "docs/validation/v0.4.0-fused/performance/placebo-cpu16-r0.json": "53750d7b49dfe3757ef66c613323beb29c6f728341633e2c58c77bb2ea2e7765",
+    "docs/validation/v0.4.0-fused/performance/placebo-cpu16-r1.json": "c24740fcfeb6b7fa6cd82ce9980551998daa352c4c00bfac2ea783a9928d1188",
+    "docs/validation/v0.4.0-fused/performance/placebo-cpu16-r2.json": "1e0d94588a7b32757984466de7ea7703e26ccb77bda8f502a77219d13d1229a0",
+    "docs/validation/v0.4.0-fused/performance/resize-cpu16-r0.json": "e1b9b17f06af59e88cecf5ae97cb19e737eb6ba2f528f6a0ba57212c6b366679",
+    "docs/validation/v0.4.0-fused/performance/resize-cpu16-r1.json": "a6de846e12b6ebdc21522dada6412ad9c3697e146122f8ad77b50772627d2eb6",
+    "docs/validation/v0.4.0-fused/performance/resize-cpu16-r2.json": "8505a6a680a5c82d98d35b6e420d4ec95c6ab61840f720ec5f937c3808f4dc8d",
+    "docs/validation/v0.4.0-fused/performance/resize-gpu16-r0.json": "7f6da537d3003c67ef7a0111dbe2ee02c9b71b662cca50616def5b144f0d0c49",
+    "docs/validation/v0.4.0-fused/performance/resize-gpu16-r1.json": "ece87271da0ed4e73119ad3da145f10a1f1b5e4ac9144ec68774abe7ed9ce023",
+    "docs/validation/v0.4.0-fused/performance/resize-gpu16-r2.json": "f0dcb7747bd2f3951ea031b9b308daa7c2488db13b690650f1a69543feea1889",
+    "docs/validation/v0.4.0-fused/performance/summary.json": "be6bc578cfc4fd02cbec0b96729ef4a2564900d41873da60e195978b30d03dad",
+    "docs/validation/v0.4.0-fused/windows/contracts.json": "6e806ceb3f71519cd49f74ba7187a9bf6c7777deb4d2709bd8c3f062f013a581",
+    "docs/validation/v0.4.0-fused/windows/matrix.json": "b882aba7bae0beb957c5a336c57eea8515a08d8a2d5958997643afa52bc44f4d",
+    "docs/validation/v0.4.0-fused/windows/range-depth.json": "22f47f0eb1d9c317f87a3ee8ce96b13ff052fccf19f8d102bda54b047dc613f8",
+    "docs/validation/v0.4.0-fused/windows/real-1080p.json": "2faea734be1bfcb3deabdafbf93a50009026a7a80906714c9ee0213bee748c2f"
   },
   "gpu_spirv_validation": {
     "tool": "SPIRV-Tools v2024.4",

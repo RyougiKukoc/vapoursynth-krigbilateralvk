@@ -134,5 +134,11 @@
     "output_source_template": "one kept blank template plus eight preloaded frames under new frame numbers"
   },
   "removed_debug_normal_output_sample_matches_v031": true,
-  "source_delivery_much_faster_than_filter": true
+  "source_delivery_much_faster_than_filter": true,
+  "measurement_context": {
+    "background_workload": "User subsequently confirmed a game was running on the same GPU during measurement",
+    "idle_gpu_release_baseline": false,
+    "conclusion": "Shared-GPU observations only; cannot attribute changes to filter regression or conversion cost",
+    "publication_status": "Held at user request; no further uploads, merges, tags or release publication"
+  }
 }

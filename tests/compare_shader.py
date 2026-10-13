@@ -47,10 +47,10 @@ def main():
     rows = []
     for mode,options in (('input-depth',{}),('fp32',{'bits':32,'sample_type':vs.FLOAT})):
         candidate = core.krigvk.KrigBilateral(source, **options)
-        reference = core.krigvk_oracle.KrigBilateral(source, **options)
+        reference = core.krigvk_oracle.KrigBilateral(source,bits=candidate.format.bits_per_sample,sample_type=candidate.format.sample_type)
         for n in range(args.frames):
             with candidate.get_frame(n) as actual, reference.get_frame(n) as expected:
-                for plane in (1, 2):
+                for plane in range(3):
                     row = metric(np.asarray(expected[plane]), np.asarray(actual[plane]))
                     if not row['finite']:
                         raise RuntimeError('Nonfinite candidate output')

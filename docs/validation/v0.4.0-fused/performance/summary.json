@@ -1,0 +1,90 @@
+{
+  "resize-cpu16": {
+    "fps": [
+      106.16599447208985,
+      99.76722960801558,
+      101.49114979827115
+    ],
+    "median_fps": 101.49114979827115,
+    "min_fps": 99.76722960801558,
+    "max_fps": 106.16599447208985,
+    "output_sample_sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+  },
+  "fused-cpu16": {
+    "fps": [
+      180.94850289594942,
+      182.80077982746312,
+      174.1463798108415
+    ],
+    "median_fps": 180.94850289594942,
+    "min_fps": 174.1463798108415,
+    "max_fps": 182.80077982746312,
+    "output_sample_sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44",
+    "speed_ratio_to_matched_resize": 1.7828993292086222
+  },
+  "resize-gpu16": {
+    "fps": [
+      118.65267088090543,
+      121.4177444907369,
+      112.07310660056801
+    ],
+    "median_fps": 118.65267088090543,
+    "min_fps": 112.07310660056801,
+    "max_fps": 121.4177444907369,
+    "output_sample_sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+  },
+  "fused-gpu16": {
+    "fps": [
+      211.46516198170116,
+      205.13157262326564,
+      204.09835882579657
+    ],
+    "median_fps": 205.13157262326564,
+    "min_fps": 204.09835882579657,
+    "max_fps": 211.46516198170116,
+    "output_sample_sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44",
+    "speed_ratio_to_matched_resize": 1.728840750910371
+  },
+  "fused-gpu32": {
+    "fps": [
+      187.909000845205,
+      172.3797290092701,
+      173.65801423761633
+    ],
+    "median_fps": 173.65801423761633,
+    "min_fps": 172.3797290092701,
+    "max_fps": 187.909000845205,
+    "output_sample_sha256": "1d8e72732307660db0ca90aa2974f7c0e5c6685f9bd83cf6d4ca07c6d020447c"
+  },
+  "placebo-cpu16": {
+    "fps": [
+      114.49626601853888,
+      113.49209861999985,
+      110.29005336237103
+    ],
+    "median_fps": 113.49209861999985,
+    "min_fps": 110.29005336237103,
+    "max_fps": 114.49626601853888,
+    "output_sample_sha256": "55fb8daf089e9a2282410eef2d1dc770eb3321e8e0f2a0a597afe4773b112a74"
+  },
+  "measurement_context": {
+    "game": "User reported exiting the game before the idle investigations; ordinary desktop remained active.",
+    "protocol": "Three serial fresh-process repeats, rotated order, 2048 frames, 16 warmup, four threads/prefetch.",
+    "baseline_plugin_sha256": "125d9604671f738b6a47b774b625f00f40704d43ff399f2758eaa8cc196aacde",
+    "candidate_plugin_sha256": "5c949020e326107b4636de26cd13d867130c58f6f9cdcdda76a7a73c75ad2560",
+    "source_sha256": "9bd42cbecbd611156f6633757d83a2c83e53c18adc7b0a3a452588bd947e798c",
+    "source_indices": [
+      0,
+      18,
+      36,
+      54,
+      72,
+      90,
+      108,
+      126
+    ],
+    "scope": "CPU rows include completed full output and transfers. Resident rows waitGPUFrame without pixel readback. Not kernel-only or whole-renderer pixel equivalence.",
+    "excluded_batch": "An exploratory performance batch was excluded because a short local GPU contract test may have overlapped its final CPU runs. The final batch had no concurrent local validation.",
+    "publication": "Measurements preceded publication; final release artifacts are validated separately."
+  }
+}

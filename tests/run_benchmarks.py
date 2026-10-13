@@ -16,6 +16,7 @@ def main():
     parser.add_argument('--results',type=Path,required=True)
     parser.add_argument('--frames',type=int,default=2048)
     parser.add_argument('--cases',type=Path,help='JSON list of named backend/plugin/output configurations')
+    parser.add_argument('--background-workload',default='',help='Known concurrent GPU activity, recorded for every run')
     args = parser.parse_args()
     if args.results.exists():
         raise FileExistsError(args.results)
@@ -41,7 +42,9 @@ def main():
                     command=[sys.executable,str(ROOT/'tests/benchmark.py'),'--backend',case['backend'],
                              '--label',name,'--frames',str(case.get('frames',args.frames)),'--warmup','16',
                              '--prefetch','4','--threads','4','--raw',str(args.raw.resolve()),'--output',str(path.with_suffix('.json'))]
-                    for key in ('bits','sample_type','dither_type'):
+                    if args.background_workload:
+                        command.extend(['--background-workload',args.background_workload])
+                    for key in ('bits','sample_type','dither_type','input_format'):
                         if key in case: command.extend(['--'+key.replace('_','-'),str(case[key])])
                     completed = subprocess.run(command,stdout=log,stderr=subprocess.STDOUT,env=env)
                     if completed.returncode:
@@ -61,6 +64,9 @@ def main():
     summary = {name:{'fps':rates,'median_fps':statistics.median(rates),'min_fps':min(rates),'max_fps':max(rates),
                      'output_sample_sha256':next(iter(outputs[name]))}
                for name,rates in values.items()}
+    if args.background_workload:
+        summary['measurement_context']={'background_workload':args.background_workload,
+                                        'scope':'Shared GPU throughput; not an idle GPU release-performance baseline'}
     (args.results/'summary.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
 
 

@@ -103,7 +103,9 @@ def build_oracle(cxx):
     for name, source in shaders().items():
         header += f'inline constexpr const char* {name}=R"KRIG({source})KRIG";\n'
     (folder / 'oracle_shaders.h').write_text(header + '}\n', encoding='utf-8')
-    host = (ROOT / 'src/krigbilateralvk.cpp').read_text(encoding='utf-8')
+    # Frozen, separate resize-based transport: never validate the fused range
+    # conversion by copying the candidate host or its conversion shader.
+    host = (ROOT / 'tests/shader_oracle_host.cpp').read_text(encoding='utf-8')
     host = host.replace('"shaders.h"', '"oracle_shaders.h"')
     host = host.replace('com.ryougikukoc.krigbilateralvk', 'com.ryougikukoc.krigbilateralvk.oracle')
     host = host.replace('"krigvk"', '"krigvk_oracle"')

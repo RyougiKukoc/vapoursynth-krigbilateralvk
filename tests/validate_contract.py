@@ -77,9 +77,9 @@ def main():
         fmt=core.query_video_format(vs.YUV,vs.INTEGER,bits,1,1)
         clip=core.std.BlankClip(width=16,height=12,format=fmt.id,color=[(1<<bits)//4,(1<<bits)//2,(1<<bits)//2])
         with core.krigvk.KrigBilateral(clip).get_frame(0) as output:
-            assert output.format.bits_per_sample==bits
+            assert output.format.bits_per_sample==16
             for plane in (1,2):
-                assert np.all(np.asarray(output[plane])==(1<<bits)//2)
+                assert np.all(np.asarray(output[plane])==32768)
         checks.append({'case':'integer-bit-depth-'+str(bits),'passed':True})
 
     for name in ('YUV420PH','YUV420PS'):

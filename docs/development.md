@@ -11,7 +11,7 @@ python tools/check_sources.py
 
 The generated files are committed so a normal CMake build needs neither NumPy nor a shader compiler. `check_sources.py` verifies syntax, documentation links, reference hashes and byte-for-byte regeneration in a temporary copy. The host creates pipelines from GLSL compiled by VapourSynth's core.
 
-The host shares the core Vulkan device and uses its execution pool to retain input frames and scratch buffers until submissions complete. Three compute passes produce the guide and reconstruct U/V; barriers order writes before subsequent reads. The output shares the input Y plane. Each filter has its own pool. All three algorithm passes execute on the GPU.
+The host shares the core Vulkan device and uses its execution pool to retain input frames and scratch buffers until submissions complete. Three compute passes produce the guide and reconstruct U/V; barriers order writes before subsequent reads. The output shares Y at unchanged sample type/depth; otherwise the last pass converts Y as well. Integer normalization and output quantization are fused into these passes; no resize nodes are inserted. Each filter has its own pool. All three algorithm passes execute on the GPU.
 
 ## Running comparisons
 
@@ -21,18 +21,18 @@ Install NumPy in the same Python environment as VapourSynth. Tests discover a na
 python tests/shader_reference.py --cxx /path/to/g++
 python tests/validate_matrix.py --output results/format-matrix.json
 python tests/validate_contract.py --output results/input-output-contract.json
-python tests/validate_depth.py --output results/range-depth-dither.json
+python tests/validate_depth.py --output results/fused-range-depth.json
 python tests/compare.py --exact --width 128 --height 72 --output results/comparison.json
 python tests/compare_shader.py --exact --width 34 --height 26 --output results/fp32-comparison.json
 ```
 
 The format matrix compares every output sample to the original GLSL algorithm, including byte-level equality for FP16/FP32. It also checks luma preservation, frame properties, dimensions/frame rate, small sizes, workgroup tails, finite output, CPU/GPU entry consistency, removed/invalid arguments and concurrent requests across two instances.
 
-`validate_contract.py` separately tests node/frame rejection, removed arguments, variable format/resolution, all integer depths 8..16, signed float chroma boundaries/neutral values, normal output metadata, and the core's automatic residency adapters. `validate_depth.py` checks full/limited endpoints against independent code-value expectations, per-frame range changes, every output depth, actual dither effects on fractional gradients, equality with a separate core resize of FP32 reconstruction, CPU/GPU entry parity, float headroom and invalid options. The GLSL reference harness uses the same range-aware resize boundary before executing the original algorithm; the equations and solver are unchanged.
+`validate_contract.py` separately tests node/frame rejection, removed arguments, variable format/resolution, all integer depths 8..16 with integer16 default output, signed float chroma boundaries/neutral values, metadata and core residency adapters. `validate_depth.py` invokes `validate_fused_depth.py`: every supported input and output depth, both ranges and entries, independent resize-based numerical comparison, legal endpoints, per-frame concurrent range changes, legacy and untagged input, float headroom, invalid options, and low-depth warning count/content. See [the conversion contract](range-depth.md).
 
-`tests/shader_reference.py` builds a test-only library from the original hook bodies. The reference keeps the original covariance expressions, packed matrix indexing and loops; it does not import generated production shaders. Host frame transport is shared to keep input/output handling identical. The harness adapts mpv texture macros to common clamped texel access, fixes the common sample coordinates and stores guides as FP32. No libplacebo rendering pipeline or Python algorithm is used in this comparison.
+`tests/shader_reference.py` builds a test-only library from the literal original hooks and `tests/shader_oracle_host.cpp`, a frozen pre-fusion host using real core GPU resize at both boundaries. It never copies the candidate's fused conversion helpers. The original covariance, packed matrix and solver are unchanged. This oracle is not packaged. The harness adapts mpv texture macros to common clamped texel access and FP32 guide storage; it does not reproduce the libplacebo rendering pipeline.
 
-`compare_shader.py` compares normal input-depth output and FP32 reconstruction against the original GLSL oracle. `--exact` fails on any differing sample bits; per-plane hashes are recorded for both implementations. Production diagnostic outputs were removed in v0.4.0. Historical stage reports remain evidence for their measured versions. This is a device-specific numerical check, not a cross-driver proof.
+`compare_shader.py` compares normal default-depth output and FP32 reconstruction against the original GLSL oracle. `--exact` fails on any differing sample bits; per-plane hashes are recorded for both implementations. Production diagnostic outputs were removed in v0.4.0. Historical stage reports remain evidence for their measured versions. This is a device-specific numerical check, not a cross-driver proof.
 
 Real-video tests accept external **1920×1080 YUV420P16 little-endian** raw input. They do not decode or distribute the video:
 

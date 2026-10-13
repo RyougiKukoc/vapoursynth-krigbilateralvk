@@ -26,7 +26,7 @@ def main():
         for width, height in ((2,2), (10,6), (34,26), (128,72)):
             source = make_source(width, height, getattr(vs,name))
             native = core.krigvk.KrigBilateral(source)
-            reference = core.krigvk_oracle.KrigBilateral(source)
+            reference = core.krigvk_oracle.KrigBilateral(source,bits=native.format.bits_per_sample,sample_type=native.format.sample_type)
             assert native.num_frames == source.num_frames
             assert (native.fps_num,native.fps_den) == (source.fps_num,source.fps_den)
             rows = []
@@ -34,8 +34,8 @@ def main():
                 with source.get_frame(n) as original, native.get_frame(n) as frame, reference.get_frame(n) as expected:
                     assert (frame.width,frame.height) == (width,height)
                     assert frame.format.subsampling_w == frame.format.subsampling_h == 0
-                    assert frame.format.bits_per_sample == original.format.bits_per_sample
-                    assert np.array_equal(np.asarray(original[0]),np.asarray(frame[0]))
+                    assert frame.format.bits_per_sample == (16 if source.format.sample_type==vs.INTEGER else source.format.bits_per_sample)
+                    assert frame[0].tobytes()==expected[0].tobytes()
                     for prop in ('_Range','_Matrix','_Transfer','_Primaries','_FieldBased'):
                         assert frame.props[prop] == original.props[prop]
                     assert '_ChromaLocation' not in frame.props
@@ -70,7 +70,7 @@ def main():
     result = {'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
               'oracle_sha256':hashlib.sha256(oracle.read_bytes()).hexdigest(),
               'shader_sha256':hashlib.sha256((ROOT/'reference/KrigBilateral.glsl').read_bytes()).hexdigest(),
-              'reference':'original GLSL hooks with range-aware core resize transport; FP32 guide storage',
+              'reference':'original GLSL hooks with independent frozen resize-based host; FP32 guide storage',
               'cases':cases,'all_exact':True,'luma_exact':True,'color_properties_preserved':True,
               'output_chroma_location_removed':True,'float_chroma_convention':'signed -0.5..0.5',
               'cpu_gpu_entries_identical':True,'multiple_instances_concurrent_random_requests_exact':True,
