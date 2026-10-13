@@ -41,6 +41,9 @@ def main():
     rejected('variable-size',variable_size,{},'fixed, positive, even')
     for entry in ('KrigBilateral','KrigBilateralGPU'):
         assert 'debug:' not in str(getattr(core.krigvk,entry))
+        assert 'dither_type:' not in str(getattr(core.krigvk,entry))
+        for value in ('none','ordered'):
+            rejected('removed-dither-'+entry+'-'+value,source,{'dither_type':value},'dither_type',entry=entry)
         for value in (0,1):
             rejected('removed-debug-'+entry+'-'+str(value),source,{'debug':value},'debug',entry=entry)
     gpu_source=core.std.GPUUpload(source)

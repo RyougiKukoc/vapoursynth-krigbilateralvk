@@ -44,7 +44,7 @@ def main():
                              '--prefetch','4','--threads','4','--raw',str(args.raw.resolve()),'--output',str(path.with_suffix('.json'))]
                     if args.background_workload:
                         command.extend(['--background-workload',args.background_workload])
-                    for key in ('bits','sample_type','dither_type','input_format'):
+                    for key in ('bits','sample_type','input_format'):
                         if key in case: command.extend(['--'+key.replace('_','-'),str(case[key])])
                     completed = subprocess.run(command,stdout=log,stderr=subprocess.STDOUT,env=env)
                     if completed.returncode:

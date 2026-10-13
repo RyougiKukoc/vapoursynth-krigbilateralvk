@@ -77,14 +77,6 @@ struct OutputOptions {
 };
 OutputOptions outputOptions(const VSMap* in,const VSVideoFormat& input,VSCore* core,const VSAPI* api) {
     OutputOptions options;
-    int count=api->mapNumElements(in,"dither_type");
-    if(count>=0) {
-        int error{};
-        const char* value=api->mapGetData(in,"dither_type",0,&error);
-        if(count!=1 || error) fail("dither_type must be one string");
-        std::string dither(value,api->mapGetDataSize(in,"dither_type",0,nullptr));
-        if(dither!="none") fail("fused output does not implement dithering; dither_type must be none; use core.resize after 16-bit or FP32 output for dithering");
-    }
     int64_t bits=optionalInt(in,"bits",input.sampleType==stInteger ? 16 : input.bitsPerSample,api);
     int64_t defaultType=bits==32 ? stFloat : (bits<16 ? stInteger : input.sampleType);
     int64_t type=optionalInt(in,"sample_type",defaultType,api);
@@ -349,6 +341,6 @@ void VS_CC create(const VSMap* in,VSMap* out,void* userData,VSCore* core,const V
 }
 VS_EXTERNAL_API(void) VapourSynthPluginInit2(VSPlugin* plugin,const VSPLUGINAPI* api) {
     api->configPlugin("com.ryougikukoc.krigbilateralvk","krigvk","KrigBilateral Vulkan",VS_MAKE_VERSION(0,4),VAPOURSYNTH_API_VERSION,0,plugin);
-    api->registerFunction("KrigBilateralGPU","clip:vnode:gpu;bits:int:opt;sample_type:int:opt;dither_type:data:opt;","clip:vnode:gpu;",create,reinterpret_cast<void*>(1),plugin);
-    api->registerFunction("KrigBilateral","clip:vnode;bits:int:opt;sample_type:int:opt;dither_type:data:opt;","clip:vnode;",create,nullptr,plugin);
+    api->registerFunction("KrigBilateralGPU","clip:vnode:gpu;bits:int:opt;sample_type:int:opt;","clip:vnode:gpu;",create,reinterpret_cast<void*>(1),plugin);
+    api->registerFunction("KrigBilateral","clip:vnode;bits:int:opt;sample_type:int:opt;","clip:vnode;",create,nullptr,plugin);
 }

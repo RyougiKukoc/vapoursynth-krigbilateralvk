@@ -84,9 +84,8 @@ VapourSynth core log at node creation, explaining the banding risk. It continues
 processing. The warning applies to both entries and to float-to-integer output
 as well. Default integer16 and all float outputs do not emit this warning.
 
-`dither_type` remains a compatibility argument accepting only `None`/`"none"`;
-other modes fail at construction. To dither, request 16-bit or FP32 output and
-then use `core.resize.Point(..., format=..., dither_type=...)`. GPU resize in
+Version 0.4.1 removes `dither_type` from both public entries. To dither, request
+16-bit or FP32 output and then use `core.resize.Point(..., format=..., dither_type=...)`. GPU resize in
 R81 supports none/ordered/random; use CPU resize for error diffusion.
 
 Direct limited integer Y widening is an exact left shift. Full integer Y uses

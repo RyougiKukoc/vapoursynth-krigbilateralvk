@@ -42,7 +42,7 @@ python tests/build_bench_wait.py --cxx /path/to/g++
 python tests/run_benchmarks.py --raw sample.yuv --results results/benchmark
 ```
 
-`compare_real.py` samples distinct positions across the input and compares all pixels of every output plane. It reports maximum error, RMS, differing-sample counts and output hashes. `run_benchmarks.py` preloads eight positions across the video and repeats them under new output frame numbers. It serializes three fresh-process repetitions with rotated backend order. `--cases` accepts a JSON list of `name`, `backend`, optional `plugin`, `bits`, `sample_type`, `dither_type` and `frames`. Decoding/preloading/JIT are outside timing; each timed output uses a new frame number. The source template uses `keep=True` to avoid generating an unused full-size blank frame on every request. Optional NVIDIA telemetry is written beside each run.
+`compare_real.py` samples distinct positions across the input and compares all pixels of every output plane. It reports maximum error, RMS, differing-sample counts and output hashes. `run_benchmarks.py` preloads eight positions across the video and repeats them under new output frame numbers. It serializes three fresh-process repetitions with rotated backend order. `--cases` accepts a JSON list of `name`, `backend`, optional `plugin`, `bits`, `sample_type` and `frames`. Decoding/preloading/JIT are outside timing; each timed output uses a new frame number. The source template uses `keep=True` to avoid generating an unused full-size blank frame on every request. Optional NVIDIA telemetry is written beside each run.
 
 CPU-entry timings include upload, filtering, conversion and completed full CPU output. For resident timings, eight input frames are uploaded and completed before timing. The separate test-only `bench_wait.cpp` library calls the core's `waitGPUFrame` on every output and returns a 1x1 CPU acknowledgement. This includes completion-wait overhead but transfers no output pixels; it is not a kernel-only timestamp. The sink is never packaged with the production plugin. `baseline` and `baseline_gpu` cases measure source delivery/control overhead without KrigBilateral processing.
 
@@ -67,11 +67,11 @@ GitHub Actions compiles Windows x86-64 and Linux x86-64 libraries against pinned
 Package an explicitly selected Windows DLL or Linux SO with licenses, an autoload manifest and build information, after committing the source:
 
 ```sh
-python tools/package_release.py --plugin build/krigbilateralvk.dll --output dist/krigbilateralvk-0.4.0-windows-x86_64.zip
-python tools/smoke.py --archive dist/krigbilateralvk-0.4.0-windows-x86_64.zip
+python tools/package_release.py --plugin build/krigbilateralvk.dll --output dist/krigbilateralvk-0.4.1-windows-x86_64.zip
+python tools/smoke.py --archive dist/krigbilateralvk-0.4.1-windows-x86_64.zip
 # Linux:
-python tools/package_release.py --plugin build/krigbilateralvk.so --output dist/krigbilateralvk-0.4.0-linux-x86_64.zip
-python tools/smoke.py --archive dist/krigbilateralvk-0.4.0-linux-x86_64.zip
+python tools/package_release.py --plugin build/krigbilateralvk.so --output dist/krigbilateralvk-0.4.1-linux-x86_64.zip
+python tools/smoke.py --archive dist/krigbilateralvk-0.4.1-linux-x86_64.zip
 ```
 
 The smoke command runs on a machine with VapourSynth R81 and a usable Vulkan device. It checks the packaged library's hash, constant-color reconstruction, signed floating-point chroma, luma preservation, format, and CPU/GPU entry equality. Use `--registration-only` when checking package loading on a host without a usable Vulkan device. Run archive smoke tests in a clean environment without another autoloaded copy of this plugin. Release source is provided by the repository's matching tag; the ZIP contains the native library, licenses, installation notes and manifests. No graphics-driver or VapourSynth libraries are bundled. Pip users should use the [central api4-wheels package](https://github.com/AliceTeaParty/vapoursynth-api4-wheels/tree/main/plugins/vapoursynth-krigbilateralvk).

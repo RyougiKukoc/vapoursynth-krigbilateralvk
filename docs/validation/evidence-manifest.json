@@ -183,7 +183,9 @@
     "docs/validation/v0.4.0-final/windows/contracts.json": "42e1ce2773065749655292b6f57ab6e7cc3de76b6e0657196a91658390d454e7",
     "docs/validation/v0.4.0-final/windows/matrix.json": "387bedd9496f5ba3e040169e6b775671e98762afa39a762eab34808667dd78ac",
     "docs/validation/v0.4.0-final/windows/range-depth.json": "fb614277cda1b18e3149e55774e5a2838975c7e51f60fe53d401677b6f68273a",
-    "docs/validation/v0.4.0-final/windows/real-1080p.json": "e7cef6055c85adf88d9d641fe72c578e806d60edae7d5c30795274c4728fa71b"
+    "docs/validation/v0.4.0-final/windows/real-1080p.json": "e7cef6055c85adf88d9d641fe72c578e806d60edae7d5c30795274c4728fa71b",
+    "docs/validation/v0.4.1/windows/contracts.json": "180a3cc8c3977fdd513b3852acc5f0eda5ab9e21f2542d237c5a0bcc11616a8f",
+    "docs/validation/v0.4.1/windows/depth.json": "e37b184812a27bee953414d4e8f0c3985c654ce89568f7afd0e7a925b3b83c39"
   },
   "gpu_spirv_validation": {
     "tool": "SPIRV-Tools v2024.4",
