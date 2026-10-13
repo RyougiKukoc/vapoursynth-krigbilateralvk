@@ -1,5 +1,26 @@
 # Original-shader algorithm and platform validation
 
+## Final v0.4.0 source
+
+The release source adds a precision boundary only to integer canonical-to-shader chroma adaptation. Mesa could otherwise contract the +0.5 shift into the normalization affine, changing some FP32 samples by one last bit. Float transport and the Krig equations are unchanged; the conversion remains fused into three dispatches. Windows RTX 3090 Ti, Linux A100 and Mesa software Vulkan each pass **730 depth/range cases, 41 contracts and the 32-configuration / 256-frame original-GLSL matrix**. The Windows real-video comparison again checks **99,532,800 integer16/FP32 output samples with zero differences**.
+
+Final source evidence: [source and binary hashes](validation/v0.4.0-final/source.json), [Windows depth/range](validation/v0.4.0-final/windows/range-depth.json), [Windows real video](validation/v0.4.0-final/windows/real-1080p.json), [Linux depth/range](validation/v0.4.0-final/linux/range-depth.json), [Linux matrix](validation/v0.4.0-final/linux/matrix.json), [Mesa depth/range](validation/v0.4.0-final/mesa/range-depth.json) and [Mesa matrix](validation/v0.4.0-final/mesa/matrix.json). These identify pre-tag measured binaries; hosted packages have their own manifests and are separately checked.
+
+## Final source performance
+
+Three serial fresh-process repetitions, rotated order, the same eight 1080p YUV420P16 frames with limited metadata, 2,048 timed frames, 16 warmup and four threads/prefetch. The user reported exiting the game; ordinary desktop remained active. No concurrent local validation ran during this batch. CPU rows include completed full output/transfers; resident rows use completed uploaded input and `waitGPUFrame` without output pixel readback. Decoding, preloading, construction/JIT and warmup are excluded.
+
+| Configuration | Median fps | Minimum | Maximum |
+|---|---:|---:|---:|
+| Final fused CPU16 | 189.29 | 183.57 | 189.52 |
+| Resize CPU16 | 112.67 | 106.56 | 114.19 |
+| Final fused GPU16 | 220.73 | 219.78 | 228.94 |
+| Resize GPU16 | 122.29 | 121.58 | 128.34 |
+| Final fused GPU FP32 | 190.10 | 187.19 | 191.66 |
+| Original placebo.Shader CPU16 | 116.21 | 114.66 | 122.53 |
+
+The matched CPU16/GPU16 ratios are **1.6800× / 1.8049×**, with matching output hashes across both entries and resize baselines. The [summary and raw repetitions](validation/v0.4.0-final/performance/summary.json) identify every measured binary and timing boundary. These are not kernel-only timestamps or a claim of whole-renderer pixel parity. Earlier candidate records below remain tied to their own source and binary identities.
+
 ## v0.4.0 fused conversion candidate
 
 The current candidate fuses input normalization and output quantization into the original three Krig kernels, with no boundary resize nodes or full-frame FP32 conversion buffers. It reads `_Range` per frame (0=limited, 1=full), preserves finite headroom through FP32 reconstruction, and defaults every integer input depth to integer16 output. Low-depth integer output emits one banding warning and does no dither. `dither_type` accepts only `None`/`"none"`; callers can apply external resize when dithering is required. `debug` remains removed from both entries. The exact conversion policy and documentation sources are in [the range/depth contract](range-depth.md).

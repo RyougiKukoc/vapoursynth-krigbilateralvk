@@ -44,7 +44,15 @@ vec2 verticalAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT/2-1));return 
 vec2 guideAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH/2-1,HEIGHT/2-1));return guide[c.y*(WIDTH/2)+c.x]; }
 vec2 chromaAt(ivec2 c) {
     c=clamp(c,ivec2(0),ivec2(WIDTH/2-1,HEIGHT/2-1));
-    return vec2(normalizeUV(float(uu[c.y*p.su+c.x])),normalizeUV(float(vv[c.y*p.sv+c.x])))+vec2(0.5);
+    // Preserve the separate canonical-to-shader addition. Without this bound,
+    // a driver may contract it into the range affine and change the last bit.
+    // The affine itself retains the same contraction policy as core resize.
+#if SRC_INT
+    precise vec2 adapted=vec2(normalizeUV(float(uu[c.y*p.su+c.x])),normalizeUV(float(vv[c.y*p.sv+c.x])))+vec2(0.5);
+#else
+    vec2 adapted=vec2(float(uu[c.y*p.su+c.x]),float(vv[c.y*p.sv+c.x]))+vec2(0.5);
+#endif
+    return adapted;
 }
 DST_T storeValue(float value) {
     value-=0.5; // signed canonical chroma, with headroom intact

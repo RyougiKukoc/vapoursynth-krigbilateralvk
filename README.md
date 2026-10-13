@@ -122,18 +122,18 @@ The former Python implementation, arithmetic-emulation path and `reference` argu
 
 ## Performance
 
-The fused v0.4.0 candidate and the saved pre-fusion resize build were measured together on RTX 3090 Ti / VapourSynth R81 after the user reported exiting the game; the ordinary desktop remained active. Each configuration uses the same eight preloaded 1080p YUV420P16 frames with `_Range=0`, three serial fresh-process runs of 2,048 timed frames after 16 warmup frames, and four threads/prefetch. CPU timings include full output transfers. Resident timings wait for each GPU output to complete without downloading its pixels. Decoding, preloading and shader compilation are excluded.
+The final v0.4.0 source and the saved pre-fusion resize build were measured together on RTX 3090 Ti / VapourSynth R81 after the user reported exiting the game; the ordinary desktop remained active. Each configuration uses the same eight preloaded 1080p YUV420P16 frames with `_Range=0`, three serial fresh-process runs of 2,048 timed frames after 16 warmup frames, and four threads/prefetch. CPU timings include full output transfers. Resident timings wait for each GPU output to complete without downloading its pixels. Decoding, preloading and shader compilation are excluded.
 
 | Backend | Median fps | Three-run range |
 |---|---:|---:|
-| Fused candidate CPU-frame entry, 16-bit output | **180.95** | 174.15–182.80 |
-| Pre-fusion resize CPU-frame entry, 16-bit output | 101.49 | 99.77–106.17 |
-| Fused candidate GPU-resident entry, 16-bit output | **205.13** | 204.10–211.47 |
-| Pre-fusion resize GPU-resident entry, 16-bit output | 118.65 | 112.07–121.42 |
-| Fused candidate GPU-resident entry, FP32 output | 173.66 | 172.38–187.91 |
-| Original placebo.Shader pipeline | 113.49 | 110.29–114.50 |
+| Fused v0.4.0 CPU-frame entry, 16-bit output | 189.29 | 183.57-189.52 |
+| Pre-fusion resize CPU-frame entry, 16-bit output | 112.67 | 106.56-114.19 |
+| Fused v0.4.0 GPU-resident entry, 16-bit output | 220.73 | 219.78-228.94 |
+| Pre-fusion resize GPU-resident entry, 16-bit output | 122.29 | 121.58-128.34 |
+| Fused v0.4.0 GPU-resident entry, FP32 output | 190.10 | 187.19-191.66 |
+| Original placebo.Shader pipeline | 116.21 | 114.66-122.53 |
 
-The matched 16-bit comparisons improve throughput by **1.78× for CPU output** and **1.73× for resident GPU output**, with equal sampled output hashes. Windows and Linux numerical suites independently confirm the fused conversion against original GLSL plus core resize. The extra resize passes, allocations and intermediate traffic explain the measured conversion cost; no driver instruction analysis is claimed. FP32 output writes converted Y as well and has a different output bandwidth cost. The placebo row measures the complete rendering pipeline and does not establish whole-renderer pixel equality. CPU and resident rows also have different transfer boundaries. See [the measured-source validation and raw repetitions](docs/validation.md#fused-candidate-performance). Earlier game-contaminated observations remain historical only; reports identify the measured binaries separately from hosted release artifacts.
+The matched 16-bit comparisons improve throughput by **1.68× for CPU output** and **1.80× for resident GPU output**, with equal sampled output hashes. Windows and Linux numerical suites independently confirm the fused conversion against original GLSL plus core resize. The extra resize passes, allocations and intermediate traffic explain the measured conversion cost; no driver instruction analysis is claimed. FP32 output writes converted Y as well and has a different output bandwidth cost. The placebo row measures the complete rendering pipeline and does not establish whole-renderer pixel equality. CPU and resident rows also have different transfer boundaries. See [the measured-source validation and raw repetitions](docs/validation.md#final-source-performance). Earlier game-contaminated observations remain historical only; reports identify the measured binaries separately from hosted release artifacts.
 
 ## Building from source
 

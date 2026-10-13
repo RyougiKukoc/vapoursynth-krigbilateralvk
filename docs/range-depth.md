@@ -64,6 +64,12 @@ like GPU resize. It does not clip input to nominal legal range. Signed chroma
 is then shifted by +0.5 for the original GLSL algorithm and shifted back before
 output. The original covariance and solver expressions remain unchanged.
 
+For integer loads, the +0.5 canonical-to-shader adaptation has a GLSL `precise`
+boundary so it cannot contract into the normalization affine. The affine keeps
+the core resize contraction policy. Float transport stays as in the original
+GLSL harness. This prevents a Mesa last-bit difference while retaining the
+observed NVIDIA parity, without another pass or intermediate frame.
+
 ## Output and warnings
 
 Integer input defaults to **integer 16-bit output** for every accepted input
