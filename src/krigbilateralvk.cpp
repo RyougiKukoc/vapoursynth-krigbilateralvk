@@ -362,7 +362,7 @@ struct Graph {
             api->mapSetNode(args,"clip",clip,maReplace);
         });
     }
-    Node resize(VSNode* clip,const VSVideoFormat& format,const std::string& dither="none")const {
+    Node resize(VSNode* clip,const VSVideoFormat& format,const std::string& dither,bool gpuOutput)const {
         // R81's GPU resize supports none/ordered/random. Error diffusion is a
         // CPU recurrence; explicitly download/reupload for that requested mode.
         bool gpu=api->getNodeResidency(clip)==nrGPU;
@@ -376,7 +376,7 @@ struct Graph {
             const std::string& mode=format.sampleType==stInteger ? dither : std::string("none");
             api->mapSetData(args,"dither_type",mode.c_str(),static_cast<int>(mode.size()),dtUtf8,maReplace);
         });
-        return transfer(result.get(),gpu);
+        return transfer(result.get(),gpuOutput);
     }
     Node guard(VSNode* clip)const {
         auto f=std::make_unique<Filter>();f->api=api;f->node=api->addNodeRef(clip);f->vi=*api->getVideoInfo(clip);
@@ -408,17 +408,20 @@ void VS_CC create(const VSMap* in,VSMap* out,void* userData,VSCore* core,const V
         Node input=graph.guard(original.get());
         VSVideoFormat working{};
         api->queryVideoFormat(&working,cfYUV,stFloat,32,1,1,core);
-        Node converted=graph.resize(input.get(),working);
-        Node uploaded=graph.transfer(converted.get(),true);
-        Node filtered=createNative(uploaded.get(),options.debug,core,api);
-        Node result=graph.transfer(filtered.get(),gpu);
+        // Use the same core conversion backend for both public entries. CPU
+        // and GPU resize can differ at a rounding boundary on some drivers.
+        Node uploaded=graph.transfer(input.get(),true);
+        Node converted=graph.resize(uploaded.get(),working,"none",true);
+        Node filtered=createNative(converted.get(),options.debug,core,api);
+        Node result=graph.transfer(filtered.get(),options.debug ? gpu : true);
         if(!options.debug) {
-            result=graph.resize(result.get(),options.format,options.dither);
-            Node y{api->addNodeRef(input.get()),{api}};
+            result=graph.resize(result.get(),options.format,options.dither,gpu);
+            Node y=graph.transfer(input.get(),gpu);
             if(options.format.sampleType!=vi.format.sampleType || options.format.bitsPerSample!=vi.format.bitsPerSample) {
                 VSVideoFormat yFormat{};
                 api->queryVideoFormat(&yFormat,cfYUV,options.format.sampleType,options.format.bitsPerSample,1,1,core);
-                y=graph.resize(input.get(),yFormat,options.dither);
+                VSNode* yInput=options.dither=="error_diffusion" && !gpu ? input.get() : uploaded.get();
+                y=graph.resize(yInput,yFormat,options.dither,gpu);
             }
             result=graph.luma(y.get(),result.get());
         }

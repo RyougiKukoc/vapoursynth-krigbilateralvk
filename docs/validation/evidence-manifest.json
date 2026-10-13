@@ -78,7 +78,13 @@
     "docs/validation/v0.3.0/linux/range-depth-dither.json": "8174df5fb0b244f7912f6af274e020be2a1cc6774d126235e91bbcd08d66da6f",
     "docs/validation/v0.3.0/linux/input-output-contract.json": "4f93415554975c20863969664ce196403dcd0775817e41f5a8516085cf250fa0",
     "docs/validation/v0.3.0/linux/format-matrix.json": "d817c822d0e05ca9927dca65932a45a0a9e02fc4309361ef49f177bcf6b9135c",
-    "docs/validation/v0.3.0/linux/stages.json": "f31272eb410a2f5818101ada00900dc440be9ad1057394e6a14108c48b54a50d"
+    "docs/validation/v0.3.0/linux/stages.json": "f31272eb410a2f5818101ada00900dc440be9ad1057394e6a14108c48b54a50d",
+    "docs/validation/v0.3.1/range-depth-dither.json": "e1b1d109a3e9c52d9ea0559ea54eb27d607cb856ce752a15f7ba1e093e65612c",
+    "docs/validation/v0.3.1/format-matrix.json": "172743793c840319389cc8a52e748b2c56b447b20e83c4b0a21e9d25ff26a0ec",
+    "docs/validation/v0.3.1/input-output-contract.json": "4ffb3ceda3a8f9ac83ce54f1189fde0f4e6e0ee5c5b3652ceea119d7023627af",
+    "docs/validation/v0.3.1/stages.json": "401ab68eca3d4661074de952007dff5d3282c9c84889fc70455893653074630f",
+    "docs/validation/v0.3.1/mesa/range-depth-dither.json": "339465ea61b52bc2d79a37f88feeabbb2e1ebfcea5bcdeec44d3c4ee646969e0",
+    "docs/validation/v0.3.1/mesa/input-output-contract.json": "4cbd8efabf397f656ea0c4fe0330a2e285ddad55fdb0279258f815ff9399ce7e"
   },
   "gpu_spirv_validation": {
     "tool": "SPIRV-Tools v2024.4",

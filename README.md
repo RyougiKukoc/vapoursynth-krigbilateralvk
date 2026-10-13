@@ -27,7 +27,7 @@ The initial binary targets the **R81 release headers**. The GPU interface evolve
 
 ## Manual installation
 
-For manual installation, download `krigbilateralvk-0.3.0-windows-x86_64.zip` or `krigbilateralvk-0.3.0-linux-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the native library explicitly:
+For manual installation, download `krigbilateralvk-0.3.1-windows-x86_64.zip` or `krigbilateralvk-0.3.1-linux-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the native library explicitly:
 
 ```python
 import vapoursynth as vs
@@ -91,7 +91,7 @@ integer = core.krigvk.KrigBilateral(floating_source, bits=16, sample_type=vs.INT
 eight_bit = core.krigvk.KrigBilateral(source, bits=8, dither_type="error_diffusion")
 ```
 
-The CPU-frame entry performs its boundary conversions with CPU resize. The GPU-resident entry uses GPU resize for `none`, `ordered` and `random`; its output remains GPU-resident. R81 does not implement GPU error diffusion, so requesting that mode for integer output explicitly adds a CPU resize and transfers back to the GPU. Other core resize errors are propagated.
+Both entries use the same GPU resize conversions for `none`, `ordered` and `random`, avoiding CPU/GPU conversion rounding differences. The CPU-frame entry adds upload/download nodes; the GPU entry keeps ordinary conversion and reconstruction resident. R81 does not implement GPU error diffusion, so requesting that mode for integer output explicitly adds CPU resize. Transfers restore the requested output residency. Other core resize errors are propagated.
 
 ### Sample formats and chroma placement
 
