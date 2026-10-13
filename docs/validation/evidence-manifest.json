@@ -74,7 +74,11 @@
     "docs/validation/v0.3.0/range-depth-dither.json": "15276afe8bcebce5498bca7cac3dc8ae801730057e939652afc276aec97fe0d7",
     "docs/validation/v0.3.0/format-matrix.json": "daa267e6f6e040d23b2c9ed855eb110ab2262ebe896c3582a2017d4b2880f8a9",
     "docs/validation/v0.3.0/input-output-contract.json": "5158eb9dc873d8a5c966797ccd933fb17f45e6b32d54a17dc8f818ef35aad561",
-    "docs/validation/v0.3.0/stages.json": "81f164e305e71dd08ed647c9acb69df21bbdf1f2ca8074c36d0900a60631bf66"
+    "docs/validation/v0.3.0/stages.json": "81f164e305e71dd08ed647c9acb69df21bbdf1f2ca8074c36d0900a60631bf66",
+    "docs/validation/v0.3.0/linux/range-depth-dither.json": "8174df5fb0b244f7912f6af274e020be2a1cc6774d126235e91bbcd08d66da6f",
+    "docs/validation/v0.3.0/linux/input-output-contract.json": "4f93415554975c20863969664ce196403dcd0775817e41f5a8516085cf250fa0",
+    "docs/validation/v0.3.0/linux/format-matrix.json": "d817c822d0e05ca9927dca65932a45a0a9e02fc4309361ef49f177bcf6b9135c",
+    "docs/validation/v0.3.0/linux/stages.json": "f31272eb410a2f5818101ada00900dc440be9ad1057394e6a14108c48b54a50d"
   },
   "gpu_spirv_validation": {
     "tool": "SPIRV-Tools v2024.4",
