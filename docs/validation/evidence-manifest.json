@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope": "Historical v0.1.0 measurements, superseded by the original-shader algorithm path in v0.2.0. Removed source is recorded by hash only.",
+  "scope": "Hashes of published historical and current validation records. The top-level measured plugin hash describes v0.1.0; versioned reports record their own binaries. Removed source is recorded by hash only.",
   "measured_plugin_sha256": "c567599daf0086d3f7591a9ba13d81c53fa8f6daaf451ce3a84443450819630e",
   "reference_files_sha256": {
     "reference/KrigBilateral.glsl": "a84951b430905176f381a009552b3153dc01142c86b3d17740a25514fe2128e2"
@@ -70,7 +70,11 @@
     "docs/validation/v0.2.0/sustained/vk-r2.telemetry.csv": "f309784d691e84763bd5aa997aa30b73b25baf584c2cba4b8f7b327fe61aca98",
     "docs/validation/v0.2.1/format-matrix.json": "6f1001a75a51bc7fdbbcce3b27b9954e0571508070a9371cb17602cb00ee568a",
     "docs/validation/v0.2.1/input-output-contract.json": "8c22af423522f5352a9d24129a50c9af7b55749277de01e15e733b86a4c0020e",
-    "docs/validation/v0.2.1/real-stages-1080p.json": "58b65bec19ecb625cb4533b2e98e05cf1112644a192ed8d1bdb2312ec5921c53"
+    "docs/validation/v0.2.1/real-stages-1080p.json": "58b65bec19ecb625cb4533b2e98e05cf1112644a192ed8d1bdb2312ec5921c53",
+    "docs/validation/v0.3.0/range-depth-dither.json": "15276afe8bcebce5498bca7cac3dc8ae801730057e939652afc276aec97fe0d7",
+    "docs/validation/v0.3.0/format-matrix.json": "daa267e6f6e040d23b2c9ed855eb110ab2262ebe896c3582a2017d4b2880f8a9",
+    "docs/validation/v0.3.0/input-output-contract.json": "5158eb9dc873d8a5c966797ccd933fb17f45e6b32d54a17dc8f818ef35aad561",
+    "docs/validation/v0.3.0/stages.json": "81f164e305e71dd08ed647c9acb69df21bbdf1f2ca8074c36d0900a60631bf66"
   },
   "gpu_spirv_validation": {
     "tool": "SPIRV-Tools v2024.4",

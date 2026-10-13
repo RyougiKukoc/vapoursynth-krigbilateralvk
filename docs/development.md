@@ -21,13 +21,14 @@ Install NumPy in the same Python environment as VapourSynth. Tests discover a na
 python tests/shader_reference.py --cxx /path/to/g++
 python tests/validate_matrix.py --output results/format-matrix.json
 python tests/validate_contract.py --output results/input-output-contract.json
+python tests/validate_depth.py --output results/range-depth-dither.json
 python tests/compare.py --exact --width 128 --height 72 --output results/comparison.json
 python tests/inspect_stages.py --width 34 --height 26
 ```
 
 The format matrix compares every output sample to the original GLSL algorithm, including byte-level equality for FP16/FP32. It also checks luma preservation, frame properties, dimensions/frame rate, small sizes, workgroup tails, finite output, CPU/GPU entry consistency, removed/invalid arguments and concurrent requests across two instances.
 
-`validate_contract.py` separately tests node/frame rejection, large integer options, variable format/resolution, all integer depths 8..16, signed float chroma boundaries/neutral values, metadata for normal and diagnostic output, and the core's automatic residency adapters. Float samples use the standard signed-chroma convention. The GLSL reference harness applies the same sample transport before executing the original algorithm; the equations and solver are unchanged.
+`validate_contract.py` separately tests node/frame rejection, large integer options, variable format/resolution, all integer depths 8..16, signed float chroma boundaries/neutral values, metadata for normal and diagnostic output, and the core's automatic residency adapters. `validate_depth.py` checks full/limited endpoints against independent code-value expectations, per-frame range changes, every output depth, actual dither effects on fractional gradients, equality with a separate core resize of FP32 reconstruction, CPU/GPU entry parity, float headroom and invalid options. The GLSL reference harness uses the same range-aware resize boundary before executing the original algorithm; the equations and solver are unchanged.
 
 `tests/shader_reference.py` builds a test-only library from the original hook bodies. The reference keeps the original covariance expressions, packed matrix indexing and loops; it does not import generated production shaders. Host frame transport is shared to keep input/output handling identical. The harness adapts mpv texture macros to common clamped texel access, fixes the common sample coordinates and stores guides as FP32. No libplacebo rendering pipeline or Python algorithm is used in this comparison.
 
@@ -46,7 +47,7 @@ The throughput comparison with the complete original pipeline requires the optio
 
 ## Diagnostics
 
-Both plugin entry points accept `debug`; diagnostic output is YUV444PS with normalized Y in plane 0:
+Both plugin entry points accept `debug`; diagnostic output is YUV444PS with range-normalized Y in plane 0. Output-format options and dithering are rejected with diagnostics:
 
 | `debug` | Plane U | Plane V |
 |---|---|---|
@@ -76,11 +77,11 @@ GitHub Actions compiles Windows x86-64 and Linux x86-64 libraries against pinned
 Package an explicitly selected Windows DLL or Linux SO with licenses, an autoload manifest and build information, after committing the source:
 
 ```sh
-python tools/package_release.py --plugin build/krigbilateralvk.dll --output dist/krigbilateralvk-0.2.2-windows-x86_64.zip
-python tools/smoke.py --archive dist/krigbilateralvk-0.2.2-windows-x86_64.zip
+python tools/package_release.py --plugin build/krigbilateralvk.dll --output dist/krigbilateralvk-0.3.0-windows-x86_64.zip
+python tools/smoke.py --archive dist/krigbilateralvk-0.3.0-windows-x86_64.zip
 # Linux:
-python tools/package_release.py --plugin build/krigbilateralvk.so --output dist/krigbilateralvk-0.2.2-linux-x86_64.zip
-python tools/smoke.py --archive dist/krigbilateralvk-0.2.2-linux-x86_64.zip
+python tools/package_release.py --plugin build/krigbilateralvk.so --output dist/krigbilateralvk-0.3.0-linux-x86_64.zip
+python tools/smoke.py --archive dist/krigbilateralvk-0.3.0-linux-x86_64.zip
 ```
 
 The smoke command runs on a machine with VapourSynth R81 and a usable Vulkan device. It checks the packaged library's hash, constant-color reconstruction, signed floating-point chroma, luma preservation, format, and CPU/GPU entry equality. Use `--registration-only` when checking package loading on a host without a usable Vulkan device. Run archive smoke tests in a clean environment without another autoloaded copy of this plugin. Release source is provided by the repository's matching tag; the ZIP contains the native library, licenses, installation notes and manifests. No graphics-driver or VapourSynth libraries are bundled. Pip users should use the [central api4-wheels package](https://github.com/AliceTeaParty/vapoursynth-api4-wheels/tree/main/plugins/vapoursynth-krigbilateralvk).

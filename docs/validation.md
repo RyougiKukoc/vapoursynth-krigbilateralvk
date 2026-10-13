@@ -1,6 +1,16 @@
 # Original-shader algorithm and platform validation
 
-The implementation follows the original KrigBilateral GLSL algorithm directly. The Python implementation and the `reference` argument were removed in v0.2.0. Version 0.2.1 adds explicit input/output contracts and standard VapourSynth signed-float chroma transport.
+The implementation follows the original KrigBilateral GLSL algorithm directly. The Python implementation and the `reference` argument were removed in v0.2.0. Version 0.2.1 added explicit input/output contracts and standard VapourSynth signed-float chroma transport; v0.3.0 replaces integer storage-range normalization and shader-side quantization with the core's range-aware resize conversions.
+
+## v0.3.0 range, depth and dithering
+
+The [range/depth/dither suite](validation/v0.3.0/range-depth-dither.json) passes 420 cases on Windows RTX 3090 Ti / VapourSynth R81. It checks limited/full code-value endpoints independently of the plugin (limited 8-bit Y=16/235 maps to 0/1 and neutral U/V=128 maps to zero), per-frame range changes and random requests, untagged YUV's limited default, the legacy property alias, every integer output depth 8..16, FP16/FP32 output, type inference and defaults, float headroom, and invalid options/range metadata.
+
+For fractional gradients, every output dither mode matches a separate core resize of the FP32 reconstruction, and ordered/random/error-diffusion modes actually change samples relative to none. A further 60 CPU/GPU entry configurations compare all planes byte-for-byte across three nonuniform frames, with both ranges, five input formats, selected output depths and all four dither modes. At unchanged type/depth the original luma bytes are retained; changed-depth luma matches a direct resize of the original input. Floating output ignores dithering, as core resize specifies. Integer GPU error diffusion uses an explicit CPU conversion and transfers back to GPU residency.
+
+The updated [original GLSL matrix](validation/v0.3.0/format-matrix.json) remains exact in 32 configurations / 256 frames using common range-aware transport. The [stage comparison](validation/v0.3.0/stages.json) matches all stages and final output; the separate [input/output contract suite](validation/v0.3.0/input-output-contract.json) passes 42 cases. The original algorithm bodies are unchanged. These results do not assert pixel identity with v0.2.x's different range normalization or with the complete libplacebo rendering pipeline. Historical performance below does not measure the added resize work.
+
+Untagged data cannot reveal its intended range: callers must tag full-range source correctly. Float samples use canonical signed-chroma coordinates independently of the retained range tag, which controls integer output conversion. The kernel does not clip finite headroom before the core's final format conversion.
 
 Version 0.2.2 adds Windows/Linux release packaging and installation documentation. It does not change the native algorithm or shaders; the numerical reports below remain evidence for v0.2.1.
 
@@ -12,7 +22,7 @@ The published Linux wheel, its release-payload source-install loopback and a nat
 
 These platform checks validate installation, transport and rendering. They do not extend the Windows original-GLSL bit-exact matrix below to Linux, and they are not cross-platform performance measurements. Machine addresses, account paths and device identifiers are excluded from public documentation.
 
-## Input/output validation
+## Historical v0.2.1 input/output validation
 
 The additional [contract tests](validation/v0.2.1/input-output-contract.json) passed 42 cases: incompatible and variable formats/resolutions, overflowing option values, non-left chroma/interlaced/malformed metadata, every integer depth from 8 to 16, float chroma extremes/neutral values, CPU/GPU residency adapters, normal output properties and diagnostic tags. Output `_ChromaLocation` is removed; colorimetry/range/timestamps are preserved for normal output. Diagnostic buffers clear color/range tags and identify their stage.
 
@@ -28,7 +38,7 @@ Both programs use common clamped texel inputs and sample coordinates, FP32 guide
 
 The original 0.1.0 shader path still included half-precision guide/output truncation introduced for NumPy matching. In an eight-frame 32?24 algorithm comparison it differed in 9,910 output chroma samples, with a maximum 16-bit difference of 316. Removing that quantization aligned the guides and covariances. Scalarizing the solver still changed a few final float rounding results; retaining the original packed matrix and back-substitution loop eliminated those differences.
 
-## Bit-level results
+## Historical v0.2.1 bit-level results
 
 Comparison uses raw sample bytes, including FP16/FP32 sign bits, and records hashes of both outputs. It does not substitute approximate `allclose` checks for exact equality.
 

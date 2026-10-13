@@ -14,43 +14,31 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 
 TRANSPORT = r'''
-#extension GL_EXT_shader_8bit_storage : require
-#extension GL_EXT_shader_16bit_storage : require
-#extension GL_EXT_shader_explicit_arithmetic_types_int8 : require
-#extension GL_EXT_shader_explicit_arithmetic_types_int16 : require
-#extension GL_EXT_shader_explicit_arithmetic_types_float16 : require
 layout(local_size_x=8,local_size_y=8) in;
 layout(push_constant) uniform Params { int sy; int su; int sv; int du; int dv; } p;
-layout(binding=0,std430) readonly buffer SrcY { SAMPLE yy[]; };
-layout(binding=1,std430) readonly buffer SrcU { SAMPLE uu[]; };
-layout(binding=2,std430) readonly buffer SrcV { SAMPLE vv[]; };
+layout(binding=0,std430) readonly buffer SrcY { float yy[]; };
+layout(binding=1,std430) readonly buffer SrcU { float uu[]; };
+layout(binding=2,std430) readonly buffer SrcV { float vv[]; };
 layout(binding=3,std430) buffer Vertical { vec2 vert[]; };
 layout(binding=4,std430) buffer Guide { vec2 guide[]; };
-layout(binding=5,std430) writeonly buffer DstU { OUTPUT outU[]; };
-layout(binding=6,std430) writeonly buffer DstV { OUTPUT outV[]; };
+layout(binding=5,std430) writeonly buffer DstU { float outU[]; };
+layout(binding=6,std430) writeonly buffer DstV { float outV[]; };
 #if DEBUG_STAGE
 layout(binding=7,std430) writeonly buffer DstY { float outY[]; };
 #endif
 ivec2 q;
-float norm(SAMPLE value) { return float(value)/MAXVAL; }
-float luma(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT-1)); return norm(yy[c.y*p.sy+c.x]); }
+float luma(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT-1)); return yy[c.y*p.sy+c.x]; }
 vec2 verticalAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT/2-1));return vert[c.y*WIDTH+c.x]; }
 vec2 guideAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH/2-1,HEIGHT/2-1));return guide[c.y*(WIDTH/2)+c.x]; }
 vec2 chromaAt(ivec2 c) {
     c=clamp(c,ivec2(0),ivec2(WIDTH/2-1,HEIGHT/2-1));
-    vec2 value=vec2(norm(uu[c.y*p.su+c.x]),norm(vv[c.y*p.sv+c.x]));
-#if !INTEGER
-    value+=vec2(0.5); // VS frame convention -> GLSL texture convention
-#endif
-    return value;
+    return vec2(uu[c.y*p.su+c.x],vv[c.y*p.sv+c.x])+vec2(0.5);
 }
-OUTPUT storeValue(float value) {
+float storeValue(float value) {
 #if DEBUG_STAGE
     return value;
-#elif INTEGER
-    return OUTPUT(roundEven(clamp(value,0.0,1.0)*MAXVAL));
 #else
-    return OUTPUT(clamp(value-0.5,-0.5,0.5));
+    return value-0.5;
 #endif
 }
 '''
@@ -153,7 +141,7 @@ def build_oracle(cxx):
     suffix = '.dll' if os.name == 'nt' else '.so'
     native_flags = ['-static'] if os.name == 'nt' else ['-fPIC']
     command = [cxx, '-std=c++20', '-O3', '-ffp-contract=off', *native_flags, '-shared', '-DVS_USE_API_43',
-               '-I' + vs.get_include(), '-I' + str(ROOT / 'dependencies/vulkan-headers/include'),
+               '-I' + vs.get_include(), '-I' + os.environ.get('KRIGVK_VULKAN_HEADERS', str(ROOT / 'dependencies/vulkan-headers/include')),
                str(folder / 'oracle.cpp'), '-o', str(folder / ('krig_shader_oracle' + suffix))]
     subprocess.run(command, check=True)
     return folder / ('krig_shader_oracle' + suffix)
