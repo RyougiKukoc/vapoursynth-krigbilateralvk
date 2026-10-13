@@ -17,6 +17,7 @@ def check(path, registration_only=False):
     functions = {f.name: f.signature for f in core.krigvk.functions()}
     assert set(functions) == {"KrigBilateral", "KrigBilateralGPU"}
     assert all("reference:" not in signature for signature in functions.values())
+    assert all("debug:" not in signature for signature in functions.values())
     if registration_only:
         return {"plugin_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
                 "functions": functions, "rendered": False}
@@ -41,9 +42,9 @@ def check(path, registration_only=False):
         with core.krigvk.KrigBilateral(floating).get_frame(0) as frame:
             assert all(value==-0.25 for row in frame[1].tolist() for value in row)
             assert all(value==0.25 for row in frame[2].tolist() for value in row)
-    with core.krigvk.KrigBilateral(source, debug=2).get_frame(0) as frame:
+    with core.krigvk.KrigBilateral(source, bits=32).get_frame(0) as frame:
         assert frame.format.id == int(vs.YUV444PS)
-        assert frame.props["KrigBilateralDebug"]==2
+        assert "KrigBilateralDebug" not in frame.props
     return {"plugin_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "cpu_gpu_equal": True,
             "luma_exact": True, "constant_chroma_exact": True, "signed_float_chroma":True, "core": str(core)}
 

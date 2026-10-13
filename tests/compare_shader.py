@@ -1,4 +1,4 @@
-"""Compare full outputs and internal stages to the literal original GLSL hooks."""
+"""Compare native-depth and FP32 outputs to the literal original GLSL hooks."""
 import argparse
 import hashlib
 import json
@@ -45,18 +45,18 @@ def main():
         indexes = list(range(args.frames))
         source = make_source(args.width, args.height, getattr(vs, args.format), args.frames)
     rows = []
-    for stage in (1, 2, 3, 4, 5, 6, 7, 0):
-        candidate = core.krigvk.KrigBilateral(source, debug=stage)
-        reference = core.krigvk_oracle.KrigBilateral(source, debug=stage)
+    for mode,options in (('input-depth',{}),('fp32',{'bits':32,'sample_type':vs.FLOAT})):
+        candidate = core.krigvk.KrigBilateral(source, **options)
+        reference = core.krigvk_oracle.KrigBilateral(source,bits=candidate.format.bits_per_sample,sample_type=candidate.format.sample_type)
         for n in range(args.frames):
             with candidate.get_frame(n) as actual, reference.get_frame(n) as expected:
-                for plane in (1, 2):
+                for plane in range(3):
                     row = metric(np.asarray(expected[plane]), np.asarray(actual[plane]))
                     if not row['finite']:
                         raise RuntimeError('Nonfinite candidate output')
-                    rows.append({'stage': stage, 'frame': n, 'plane': plane, **row})
-        subset = [r for r in rows if r['stage'] == stage]
-        print('stage', stage, 'different', sum(r['different'] for r in subset),
+                    rows.append({'mode': mode, 'frame': n, 'plane': plane, **row})
+        subset = [r for r in rows if r['mode'] == mode]
+        print('output', mode, 'different', sum(r['different'] for r in subset),
               'max', max(r['max'] for r in subset), flush=True)
     result = {'width': args.width, 'height': args.height, 'format': args.format, 'frames': args.frames,
               'source_frame_indices': indexes, 'reference': 'original GLSL hooks, FP32 intermediate buffers, common texel access',

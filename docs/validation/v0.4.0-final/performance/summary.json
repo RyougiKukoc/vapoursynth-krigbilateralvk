@@ -1,0 +1,87 @@
+{
+  "resize-cpu16": {
+    "fps": [
+      106.55582141846598,
+      112.66947444735933,
+      114.19438872509215
+    ],
+    "median_fps": 112.66947444735933,
+    "min_fps": 106.55582141846598,
+    "max_fps": 114.19438872509215,
+    "output_sample_sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+  },
+  "fused-cpu16": {
+    "fps": [
+      189.52123752055755,
+      183.57131887795452,
+      189.2862870898474
+    ],
+    "median_fps": 189.2862870898474,
+    "min_fps": 183.57131887795452,
+    "max_fps": 189.52123752055755,
+    "output_sample_sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44",
+    "speed_ratio_to_matched_resize": 1.680013934726255
+  },
+  "resize-gpu16": {
+    "fps": [
+      122.29492712687055,
+      121.57986432250041,
+      128.34494388165828
+    ],
+    "median_fps": 122.29492712687055,
+    "min_fps": 121.57986432250041,
+    "max_fps": 128.34494388165828,
+    "output_sample_sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+  },
+  "fused-gpu16": {
+    "fps": [
+      219.77838247595528,
+      220.72886308697014,
+      228.94244820611678
+    ],
+    "median_fps": 220.72886308697014,
+    "min_fps": 219.77838247595528,
+    "max_fps": 228.94244820611678,
+    "output_sample_sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44",
+    "speed_ratio_to_matched_resize": 1.8048897715764023
+  },
+  "fused-gpu32": {
+    "fps": [
+      187.187140755551,
+      191.6575510792957,
+      190.10256256125612
+    ],
+    "median_fps": 190.10256256125612,
+    "min_fps": 187.187140755551,
+    "max_fps": 191.6575510792957,
+    "output_sample_sha256": "1d8e72732307660db0ca90aa2974f7c0e5c6685f9bd83cf6d4ca07c6d020447c"
+  },
+  "placebo-cpu16": {
+    "fps": [
+      114.66236993317443,
+      116.21423372207668,
+      122.5302320611085
+    ],
+    "median_fps": 116.21423372207668,
+    "min_fps": 114.66236993317443,
+    "max_fps": 122.5302320611085,
+    "output_sample_sha256": "55fb8daf089e9a2282410eef2d1dc770eb3321e8e0f2a0a597afe4773b112a74"
+  },
+  "measurement_context": {
+    "protocol": "Three fresh processes per configuration, serial rotated order, 2048 frames, 16 warmup, four threads/prefetch.",
+    "background": "User reported exiting the game; ordinary desktop remained. No concurrent local validation in this batch.",
+    "scope": "CPU rows include complete output/transfers. Resident rows waitGPUFrame without pixel readback. Not kernel-only or full renderer pixel equivalence.",
+    "source_sha256": "9bd42cbecbd611156f6633757d83a2c83e53c18adc7b0a3a452588bd947e798c",
+    "source_indices": [
+      0,
+      18,
+      36,
+      54,
+      72,
+      90,
+      108,
+      126
+    ],
+    "precision_change": "The integer canonical-to-shader +0.5 adaptation is precise; the range affine retains core resize contraction policy. Float transport is unchanged."
+  }
+}

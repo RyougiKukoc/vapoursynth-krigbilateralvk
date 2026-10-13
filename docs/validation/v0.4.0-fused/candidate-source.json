@@ -1,0 +1,25 @@
+{
+  "scope": "File hashes of the pre-commit measured fused source; hosted release artifacts have separate binary identities.",
+  "files_sha256": {
+    "src/krigbilateralvk.cpp": "c25906b43c4ed5ac0cbf3277ee24d89aa550f055930c40204957cb9463a87405",
+    "src/shaders.h": "ad88d79154c34775195da0f0d01f123335990fa04d8a78e62bb3ae5ed9179b89",
+    "tools/generate_shaders.py": "b859c3317b05fa8dc09019ce2f5d9d01e40ec60960ddca561e5acbf982a76b5f",
+    "tests/shader_oracle_host.cpp": "a067236b47e16ec42df8d98da10e8ad8f42944a53c00d33dffcdd47a5f6e2ed5",
+    "tests/shader_reference.py": "324769a07070f0f446e50fbf711c770b6a292d4bd8b455de9789c9e3761effc8",
+    "tests/validate_fused_depth.py": "0c357ba5909a39ef70195c8be992ec11536ec6385addfd8e2b9758020ada67f8",
+    "reference/KrigBilateral.glsl": "a84951b430905176f381a009552b3153dc01142c86b3d17740a25514fe2128e2"
+  },
+  "windows_binary_sha256": "5c949020e326107b4636de26cd13d867130c58f6f9cdcdda76a7a73c75ad2560",
+  "linux_binary_sha256": "a7dc1edf1810f46de95fc3622fdcc56533be5e6ebbdfe18a298b8460a25b01f6",
+  "documentation": [
+    {
+      "url": "https://www.vapoursynth.com/doc/apireference.html#reserved-frame-properties"
+    },
+    {
+      "url": "https://www.vapoursynth.com/doc/functions/video/resize.html"
+    },
+    {
+      "url": "https://github.com/vapoursynth/vapoursynth/blob/744afbd68570697c9c39e126fd8c41b78c37b025/src/core/gpuresize.cpp#L457"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # KrigBilateral Vulkan for VapourSynth
 
-A native Vulkan implementation of **KrigBilateral**, the luma-guided chroma upscaler by Shiandow. It reconstructs YUV 4:2:0 chroma at full luma resolution and returns YUV 4:4:4 at the original size. Output sample type and bit depth default to the input; both can be selected explicitly. At unchanged type/depth, the original luma plane is preserved exactly.
+A native Vulkan implementation of **KrigBilateral**, the luma-guided chroma upscaler by Shiandow. It reconstructs YUV 4:2:0 chroma at full luma resolution and returns YUV 4:4:4 at the original size. Integer input defaults to 16-bit integer output; float input retains its float depth. Both can be selected explicitly. At unchanged type/depth, the original luma plane is preserved exactly.
 
 The plugin runs three compute passes on VapourSynth's Vulkan device. It provides both a convenient CPU-frame interface and a GPU-resident interface for processing chains. NumPy is used only by optional comparison tests; neither NumPy nor libplacebo is a runtime dependency.
 
@@ -14,7 +14,7 @@ python -m pip install --extra-index-url https://aliceteaparty.github.io/vapoursy
 
 This is the recommended installation method. It installs the native plugin, autoload manifest and licenses, and selects the matching VapourSynth R81 dependency. No compiler or manual DLL/SO copying is needed. Use Python 3.12 or newer; Linux wheels require glibc 2.28 or newer. A Vulkan 1.4 GPU and driver are still required for rendering.
 
-The native source is maintained here and included in api4-wheels as a git submodule. The central repository owns pip packaging, Windows/Linux wheel publication and the package index. After installation, `vs.core.krigvk` is available automatically; see [usage](#usage).
+The native source is maintained here and included in api4-wheels as a git submodule. The central repository owns pip packaging, Windows/Linux wheel publication and the package index. After installation, `vs.core.krigvk` is available automatically; see [usage](#usage). Version 0.4.0 introduces fused conversion and defaults integer input to integer16 output; earlier packages retain their documented conversion behavior.
 
 ## Requirements
 
@@ -27,7 +27,7 @@ The initial binary targets the **R81 release headers**. The GPU interface evolve
 
 ## Manual installation
 
-For manual installation, download `krigbilateralvk-0.3.1-windows-x86_64.zip` or `krigbilateralvk-0.3.1-linux-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the native library explicitly:
+For manual installation, download `krigbilateralvk-0.4.0-windows-x86_64.zip` or `krigbilateralvk-0.4.0-linux-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the native library explicitly:
 
 ```python
 import vapoursynth as vs
@@ -64,19 +64,18 @@ output = core.std.GPUDownload(gpu_output)
 ### API
 
 ```python
-core.krigvk.KrigBilateral(clip, debug=0, bits=None, sample_type=None, dither_type=None)
-core.krigvk.KrigBilateralGPU(clip, debug=0, bits=None, sample_type=None, dither_type=None)
+core.krigvk.KrigBilateral(clip, bits=None, sample_type=None, dither_type=None)
+core.krigvk.KrigBilateralGPU(clip, bits=None, sample_type=None, dither_type=None)
 ```
 
 | Argument | Default | Meaning |
 |---|---|---|
 | `clip` | required | YUV420 input. `KrigBilateral` accepts CPU frames; `KrigBilateralGPU` accepts GPU-resident frames. |
-| `debug` | `0` | Normal output at `0`. Values `1..7` expose intermediate results as YUV444PS; see [diagnostics](docs/development.md#diagnostics). |
-| `bits` | input depth | Output integer depth `8..16`, or float depth `16/32`. `32` selects float; depths below `16` select integer. At `16`, the input sample type is retained unless `sample_type` is supplied. |
+| `bits` | 16 for integer input; input depth for float | Output integer depth `8..16`, or float depth `16/32`. `32` selects float; depths below `16` select integer. At `16`, the input sample type is retained unless `sample_type` is supplied. |
 | `sample_type` | inferred as above | `vs.INTEGER` or `vs.FLOAT`. Use this to distinguish integer 16-bit from FP16. |
-| `dither_type` | `"none"` | Core resize mode: `"none"`, `"ordered"`, `"random"`, or `"error_diffusion"`. Python `None` selects the default. Dithering applies only to integer output. |
+| `dither_type` | `"none"` | Compatibility option; only `"none"` or Python `None` is accepted. The fused quantizer has no dither. Other modes fail; use core resize after 16-bit or FP32 output to apply dither. |
 
-With `debug=0`, output is YUV444 with the input's dimensions, frame count and frame rate. At unchanged type/depth, luma is shared unchanged even when chroma dithering is requested. When type/depth changes, luma is converted directly from the original input by core resize with the selected dither mode. Range, colorimetry, timestamps and custom properties are retained; `_ChromaLocation` is removed because chroma is no longer subsampled. Diagnostic output removes colorimetry/range tags and sets `KrigBilateralDebug`; it cannot be combined with output-format options or dithering.
+Output is YUV444 with the input's dimensions, frame count and frame rate. At unchanged type/depth, luma is shared unchanged. When type/depth changes, the last Krig kernel converts luma directly from the original samples. Range, colorimetry, timestamps and custom properties are retained; `_ChromaLocation` is removed because chroma is no longer subsampled.
 
 For example:
 
@@ -87,46 +86,54 @@ floating = core.krigvk.KrigBilateral(source, bits=32)
 # Select integer output explicitly when the input is floating point.
 integer = core.krigvk.KrigBilateral(floating_source, bits=16, sample_type=vs.INTEGER)
 
-# Quantize to 8-bit with error diffusion in the same call.
-eight_bit = core.krigvk.KrigBilateral(source, bits=8, dither_type="error_diffusion")
+# Apply error diffusion explicitly after 16-bit reconstruction.
+sixteen_bit = core.krigvk.KrigBilateral(source)
+eight_bit = core.resize.Point(sixteen_bit, format=vs.YUV444P8, dither_type="error_diffusion")
+
+# Explicit low-depth output without dither emits a banding warning.
+eight_bit_no_dither = core.krigvk.KrigBilateral(source, bits=8)
 ```
 
-Both entries use the same GPU resize conversions for `none`, `ordered` and `random`, avoiding CPU/GPU conversion rounding differences. The CPU-frame entry adds upload/download nodes; the GPU entry keeps ordinary conversion and reconstruction resident. R81 does not implement GPU error diffusion, so requesting that mode for integer output explicitly adds CPU resize. Transfers restore the requested output residency. Other core resize errors are propagated.
+Both entries use the same fused range/depth arithmetic and quantizer. Only the CPU-frame entry adds upload/download nodes. Selecting integer output below 16 bits emits one VapourSynth warning at node creation: no dithering is performed and low depth may cause banding. Processing continues. Default integer16 and float outputs do not emit that warning.
 
 ### Sample formats and chroma placement
 
-Input supports every integer depth from 8 to 16, FP16 and FP32. `resize.Point` converts input to canonical YUV420PS before reconstruction and converts the FP32 YUV444 result to the requested output format afterward. Dimensions and subsampling stay unchanged during these boundary conversions; KrigBilateral performs the chroma reconstruction. The plugin no longer divides integer samples by `2^bits-1` or implements its own integer rounding.
+Input supports every integer depth from 8 to 16, FP16 and FP32. Integer loads are normalized to canonical FP32 inside the existing Krig kernels, and output is quantized in the last kernel. There are no boundary resize nodes or full-frame FP32 conversion intermediates. The covariance and solver remain FP32.
 
-Resize reads each frame's `_Range` (`0=limited`, `1=full`; the deprecated `_ColorRange` alias uses inverse numbering). Untagged YUV follows resize's **limited-range default**; format and bit depth alone cannot identify whether an untagged clip is full-range. Tag such input correctly, for example `core.std.SetFrameProps(source, _Range=1)`. The output retains the input range. For limited 8-bit input, luma codes 16 and 235 map to 0 and 1, and chroma code 128 maps to zero; full-range input uses its own scaling and the same neutral chroma center.
+Each frame's `_Range` is read and retained: **0=limited, 1=full**. The deprecated `_ColorRange` has inverse numbering and is linked by the core's C API. Untagged YUV defaults to limited; tag full-range input with `core.std.SetFrameProps(source, _Range=1)`. For b-bit limited input, s=2^(b-8): Y uses `(Y-16s)/(219s)`, U/V use `(C-128s)/(224s)`. Full range uses the storage peak 2^b-1 and chroma center 2^(b-1). See the [complete conversion contract and 8-16-bit range table](docs/range-depth.md).
 
 The filter uses fixed **left chroma placement** and progressive sampling geometry. An absent `_ChromaLocation` or `_FieldBased` is assumed to mean left or progressive respectively; if present, each must be a single integer equal to `0`. Other placement/field tags fail when the affected frame is requested. Resite chroma or deinterlace/separate fields before filtering if required. The filter performs only 4:2:0 → 4:4:4 reconstruction, not arbitrary resizing.
 
-FP16 and FP32 use the **standard VapourSynth float YUV convention**: nominal Y in `[0, 1]`, U/V in `[-0.5, 0.5]`. Computation and intermediate buffers are FP32 for every input type. The transport only adds/subtracts 0.5 to adapt signed chroma to the original GLSL coordinates. Finite headroom/footroom is retained through reconstruction; final integer clipping, rounding and dithering are handled by resize. FP16 conversions in a GPU-resident chain depend on the core's device support.
+FP16 and FP32 use the **standard VapourSynth float YUV convention**: nominal Y in `[0, 1]`, U/V in `[-0.5, 0.5]`. Computation and intermediate buffers are FP32 for every input type. The transport only adds/subtracts 0.5 to adapt signed chroma to the original GLSL coordinates. Finite headroom/footroom is retained through reconstruction. Final integer conversion rounds to nearest, ties to even, and clips to the storage range without dithering. FP16 storage requires the core's device support.
 
-Node creation rejects variable format/resolution, non-YUV420 input, nonpositive/odd dimensions, unsupported storage/output types and invalid options, including overflowing integers. Original frame metadata is checked before resize can rewrite it. Frame evaluation checks the actual format, plane dimensions, strides and Vulkan buffer sizes before dispatching. Finite samples are required; the filter does not scan every input pixel to reject NaN/Inf.
+Node creation rejects variable format/resolution, non-YUV420 input, nonpositive/odd dimensions, unsupported storage/output types and invalid options, including overflowing integers. Original frame metadata is checked before any shader dispatch. Frame evaluation checks the actual format, plane dimensions, strides and Vulkan buffer sizes before dispatching. Finite samples are required; the filter does not scan every input pixel to reject NaN/Inf.
 
 ## Algorithm fidelity
 
 Version 0.2.0 uses a single implementation derived directly from Shiandow's original GLSL. It retains the weighted moments, covariance equations, packed matrix, fixed elimination and back-substitution order. Guide buffers store FP32 values; the plugin does not introduce half-precision truncation or emulate NumPy arithmetic.
 
-The comparison harness executes the original shader's hook bodies without rewriting the covariance or solver. Both programs receive the same texel inputs, coordinates, FP32 intermediate storage and core resize conversions. This isolates the **KrigBilateral algorithm** from renderer-specific texture interpolation and color conversions. Version 0.3.0 changes the format/range boundary, not the covariance or solver: its integer results need not match v0.2.x, which used storage-range normalization.
+The comparison harness executes the original shader's hook bodies without rewriting the covariance or solver. The candidate uses fused conversion; the test oracle uses independently frozen core resize transport. Both use common texel coordinates and FP32 intermediate storage. This isolates the **KrigBilateral algorithm** from renderer-specific texture interpolation and color conversions. The fused conversion retains the range semantics introduced in version 0.3.0 and leaves the covariance and solver unchanged: its integer results need not match v0.2.x, which used storage-range normalization.
 
-On the tested RTX 3090 Ti, all 32 format/size configurations (256 synthetic frames) were bit-exact, including integer, FP16 and FP32 output. Tests of intermediate stages and three distinct 1080p frames also matched byte-for-byte, including unquantized FP32 reconstruction. See [the validation report](docs/validation.md) for scope and evidence.
+On the tested RTX 3090 Ti, all 32 format/size configurations (256 synthetic frames) were bit-exact, including integer, FP16 and FP32 output. The comparison also checks FP32 reconstruction without integer quantization. Historical intermediate-stage and 1080p comparisons remain recorded for their measured versions. See [the validation report](docs/validation.md) for scope and evidence.
 
 This is measured parity with the original GLSL algorithm under common inputs, not a claim that every GPU/driver produces identical results or that the complete `placebo.Shader` rendering pipeline has identical output.
 
-The former Python implementation, arithmetic-emulation path and `reference` argument have been removed. Calls using `reference=` must drop that argument.
+The former Python implementation, arithmetic-emulation path and `reference` argument have been removed. Version 0.4.0 also removes `debug` and all diagnostic output branches; calls passing either removed argument fail.
 
 ## Performance
 
-The following measurements are historical **v0.2.0** results; v0.3.0's resize conversions have not been rebenchmarked. The native algorithm and original `placebo.Shader` pipeline were measured in three serial, fresh-process runs on the same 1080p YUV420P16 workload. Timings include completed CPU frames and required transfers; decoding, preloading and shader compilation are excluded.
+The final v0.4.0 source and the saved pre-fusion resize build were measured together on RTX 3090 Ti / VapourSynth R81 after the user reported exiting the game; the ordinary desktop remained active. Each configuration uses the same eight preloaded 1080p YUV420P16 frames with `_Range=0`, three serial fresh-process runs of 2,048 timed frames after 16 warmup frames, and four threads/prefetch. CPU timings include full output transfers. Resident timings wait for each GPU output to complete without downloading its pixels. Decoding, preloading and shader compilation are excluded.
 
 | Backend | Median fps | Three-run range |
 |---|---:|---:|
-| Vulkan, original shader algorithm | **196.48** | 196.44–196.64 |
-| Original placebo.Shader pipeline | 103.63 | 102.42–105.22 |
+| Fused v0.4.0 CPU-frame entry, 16-bit output | 189.29 | 183.57-189.52 |
+| Pre-fusion resize CPU-frame entry, 16-bit output | 112.67 | 106.56-114.19 |
+| Fused v0.4.0 GPU-resident entry, 16-bit output | 220.73 | 219.78-228.94 |
+| Pre-fusion resize GPU-resident entry, 16-bit output | 122.29 | 121.58-128.34 |
+| Fused v0.4.0 GPU-resident entry, FP32 output | 190.10 | 187.19-191.66 |
+| Original placebo.Shader pipeline | 116.21 | 114.66-122.53 |
 
-Current results, repeat ranges, environment and workload details are in [the performance report](docs/validation.md#performance). The source-algorithm parity test and the whole-renderer throughput test serve different purposes: the latter includes placebo's rendering work.
+The matched 16-bit comparisons improve throughput by **1.68× for CPU output** and **1.80× for resident GPU output**, with equal sampled output hashes. Windows and Linux numerical suites independently confirm the fused conversion against original GLSL plus core resize. The extra resize passes, allocations and intermediate traffic explain the measured conversion cost; no driver instruction analysis is claimed. FP32 output writes converted Y as well and has a different output bandwidth cost. The placebo row measures the complete rendering pipeline and does not establish whole-renderer pixel equality. CPU and resident rows also have different transfer boundaries. See [the measured-source validation and raw repetitions](docs/validation.md#final-source-performance). Earlier game-contaminated observations remain historical only; reports identify the measured binaries separately from hosted release artifacts.
 
 ## Building from source
 

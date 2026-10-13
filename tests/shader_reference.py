@@ -23,9 +23,6 @@ layout(binding=3,std430) buffer Vertical { vec2 vert[]; };
 layout(binding=4,std430) buffer Guide { vec2 guide[]; };
 layout(binding=5,std430) writeonly buffer DstU { float outU[]; };
 layout(binding=6,std430) writeonly buffer DstV { float outV[]; };
-#if DEBUG_STAGE
-layout(binding=7,std430) writeonly buffer DstY { float outY[]; };
-#endif
 ivec2 q;
 float luma(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT-1)); return yy[c.y*p.sy+c.x]; }
 vec2 verticalAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT/2-1));return vert[c.y*WIDTH+c.x]; }
@@ -35,11 +32,7 @@ vec2 chromaAt(ivec2 c) {
     return vec2(uu[c.y*p.su+c.x],vv[c.y*p.sv+c.x])+vec2(0.5);
 }
 float storeValue(float value) {
-#if DEBUG_STAGE
-    return value;
-#else
     return value-0.5;
-#endif
 }
 '''
 
@@ -83,35 +76,13 @@ def shaders():
     reconstruction = reconstruction.replace(
         'CHROMA_pos * HOOKED_size - chromaOffset - vec2(0.5)',
         'vec2(float(q.x)*0.5,(float(q.y)+0.5)*0.5-0.5)')
-    reconstruction = reconstruction.replace('float radius = 1.0;', '''float radius = 1.0;
-#if DEBUG_STAGE == 3
-    return vec4(localVar,y,0.0,0.0);
-#elif DEBUG_STAGE == 4
-    return vec4(C(0,1),c(0),0.0,0.0);
-#elif DEBUG_STAGE == 6
-    return vec4(X[0].xy,0.0,0.0);
-#elif DEBUG_STAGE == 7
-    return vec4(exp(-4.0*y),inversesqrt(1.0+y),0.0,0.0);
-#endif''')
     footer = r'''
 void main() {
     q=ivec2(gl_GlobalInvocationID.xy);
     if(q.x>=WIDTH || q.y>=HEIGHT) return;
-    vec2 value;
-#if DEBUG_STAGE == 1
-    value=verticalAt(ivec2(q.x,q.y/2));
-#elif DEBUG_STAGE == 2
-    value=guideAt(q/2);
-#elif DEBUG_STAGE == 3 || DEBUG_STAGE == 4 || DEBUG_STAGE == 6 || DEBUG_STAGE == 7
-    value=hook().xy;
-#else
-    value=hook().xy;
-#endif
+    vec2 value=hook().xy;
     outU[q.y*p.du+q.x]=storeValue(value.x);
     outV[q.y*p.dv+q.x]=storeValue(value.y);
-#if DEBUG_STAGE
-    outY[q.y*p.du+q.x]=luma(q);
-#endif
 }
 '''
     return {
@@ -132,7 +103,9 @@ def build_oracle(cxx):
     for name, source in shaders().items():
         header += f'inline constexpr const char* {name}=R"KRIG({source})KRIG";\n'
     (folder / 'oracle_shaders.h').write_text(header + '}\n', encoding='utf-8')
-    host = (ROOT / 'src/krigbilateralvk.cpp').read_text(encoding='utf-8')
+    # Frozen, separate resize-based transport: never validate the fused range
+    # conversion by copying the candidate host or its conversion shader.
+    host = (ROOT / 'tests/shader_oracle_host.cpp').read_text(encoding='utf-8')
     host = host.replace('"shaders.h"', '"oracle_shaders.h"')
     host = host.replace('com.ryougikukoc.krigbilateralvk', 'com.ryougikukoc.krigbilateralvk.oracle')
     host = host.replace('"krigvk"', '"krigvk_oracle"')

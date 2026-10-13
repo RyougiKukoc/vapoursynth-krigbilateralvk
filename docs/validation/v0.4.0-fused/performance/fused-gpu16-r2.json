@@ -1,0 +1,42 @@
+{
+  "backend": "vk_gpu",
+  "label": "fused-gpu16",
+  "width": 1920,
+  "height": 1080,
+  "plugin_sha256": "5c949020e326107b4636de26cd13d867130c58f6f9cdcdda76a7a73c75ad2560",
+  "input_format": "YUV420P16",
+  "output_format": "YUV444P16",
+  "output_sample_sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44",
+  "source_gpu_resident": true,
+  "output_gpu_resident_before_completion_sink": true,
+  "completion": "waitGPUFrame and 1x1 CPU acknowledgement",
+  "source_template_keep": true,
+  "wait_sink_sha256": "f0a422162b7af9ee1afc3902989c73b5a2b7b43ea638c36a5ef05a05ac8bec21",
+  "options": {},
+  "frames": 2048,
+  "warmup": 16,
+  "prefetch": 4,
+  "threads": 4,
+  "seconds": 10.034377600008156,
+  "fps": 204.09835882579657,
+  "construction_seconds": 0.8819544999860227,
+  "warmup_seconds": 0.1303308000206016,
+  "source_frame_indices": [
+    0,
+    18,
+    36,
+    54,
+    72,
+    90,
+    108,
+    126
+  ],
+  "source_sha256": "9bd42cbecbd611156f6633757d83a2c83e53c18adc7b0a3a452588bd947e798c",
+  "environment": {
+    "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+    "os": "Windows-10-10.0.19045-SP0",
+    "core": "VapourSynth Video Processing Library\nCopyright (c) 2012-2026 Fredrik Mellbin\n\tCore R81\n\tAPI R4.3\n\tOptions: -\n\tNumber of Threads: 4\n\tMax Cache Size: 32723\n",
+    "numpy": "2.5.3",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti, 617.42"
+  }
+}

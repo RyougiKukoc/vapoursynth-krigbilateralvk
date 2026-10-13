@@ -1,0 +1,5944 @@
+{
+  "plugin_sha256": "5c949020e326107b4636de26cd13d867130c58f6f9cdcdda76a7a73c75ad2560",
+  "oracle_sha256": "1f6983ffd1cbe3741417c1df05628a7a646ae658cb722c4c75820cf11a7132e1",
+  "cases": [
+    {
+      "case": "legal-endpoints",
+      "input_bits": 8,
+      "range": 0,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 8,
+      "range": 0,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 8,
+      "range": 0,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 8,
+      "range": 0,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 8,
+      "range": 0,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 8,
+      "range": 0,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 8,
+      "range": 1,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 8,
+      "range": 1,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 8,
+      "range": 1,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 8,
+      "range": 1,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 8,
+      "range": 1,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 8,
+      "range": 1,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 9,
+      "range": 0,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 9,
+      "range": 0,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 9,
+      "range": 0,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 9,
+      "range": 0,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 9,
+      "range": 0,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 9,
+      "range": 0,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 9,
+      "range": 1,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 9,
+      "range": 1,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 9,
+      "range": 1,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 9,
+      "range": 1,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 9,
+      "range": 1,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 9,
+      "range": 1,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 10,
+      "range": 0,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 10,
+      "range": 0,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 10,
+      "range": 0,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 10,
+      "range": 0,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 10,
+      "range": 0,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 10,
+      "range": 0,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 10,
+      "range": 1,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 10,
+      "range": 1,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 10,
+      "range": 1,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 10,
+      "range": 1,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 10,
+      "range": 1,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 10,
+      "range": 1,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 11,
+      "range": 0,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 11,
+      "range": 0,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 11,
+      "range": 0,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 11,
+      "range": 0,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 11,
+      "range": 0,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 11,
+      "range": 0,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 11,
+      "range": 1,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 11,
+      "range": 1,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 11,
+      "range": 1,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 11,
+      "range": 1,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 11,
+      "range": 1,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 11,
+      "range": 1,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 12,
+      "range": 0,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 12,
+      "range": 0,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 12,
+      "range": 0,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 12,
+      "range": 0,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 12,
+      "range": 0,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 12,
+      "range": 0,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 12,
+      "range": 1,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 12,
+      "range": 1,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 12,
+      "range": 1,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 12,
+      "range": 1,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 12,
+      "range": 1,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 12,
+      "range": 1,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 13,
+      "range": 0,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 13,
+      "range": 0,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 13,
+      "range": 0,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 13,
+      "range": 0,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 13,
+      "range": 0,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 13,
+      "range": 0,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 13,
+      "range": 1,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 13,
+      "range": 1,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 13,
+      "range": 1,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 13,
+      "range": 1,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 13,
+      "range": 1,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 13,
+      "range": 1,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 14,
+      "range": 0,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 14,
+      "range": 0,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 14,
+      "range": 0,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 14,
+      "range": 0,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 14,
+      "range": 0,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 14,
+      "range": 0,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 14,
+      "range": 1,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 14,
+      "range": 1,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 14,
+      "range": 1,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 14,
+      "range": 1,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 14,
+      "range": 1,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 14,
+      "range": 1,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 15,
+      "range": 0,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 15,
+      "range": 0,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 15,
+      "range": 0,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 15,
+      "range": 0,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 15,
+      "range": 0,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 15,
+      "range": 0,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 15,
+      "range": 1,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 15,
+      "range": 1,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 15,
+      "range": 1,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 15,
+      "range": 1,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 15,
+      "range": 1,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 15,
+      "range": 1,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 16,
+      "range": 0,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 16,
+      "range": 0,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 16,
+      "range": 0,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 16,
+      "range": 0,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 16,
+      "range": 0,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 16,
+      "range": 0,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 16,
+      "range": 1,
+      "white": false,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 16,
+      "range": 1,
+      "white": false,
+      "gpu": true
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 16,
+      "range": 1,
+      "white": true,
+      "gpu": false
+    },
+    {
+      "case": "legal-endpoints",
+      "input_bits": 16,
+      "range": 1,
+      "white": true,
+      "gpu": true
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 16,
+      "range": 1,
+      "gpu": false
+    },
+    {
+      "case": "integer-default-16-and-neutral",
+      "input_bits": 16,
+      "range": 1,
+      "gpu": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range0-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P8",
+      "range": 0
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P8-range1-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P8",
+      "range": 1
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range0-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P9",
+      "range": 0
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P9-range1-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P9",
+      "range": 1
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range0-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P10",
+      "range": 0
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P10-range1-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P10",
+      "range": 1
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range0-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P11",
+      "range": 0
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P11-range1-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P11",
+      "range": 1
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range0-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P12",
+      "range": 0
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P12-range1-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P12",
+      "range": 1
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range0-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P13",
+      "range": 0
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P13-range1-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P13",
+      "range": 1
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range0-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P14",
+      "range": 0
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P14-range1-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P14",
+      "range": 1
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range0-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P15",
+      "range": 0
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P15-range1-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P15",
+      "range": 1
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range0-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P16",
+      "range": 0
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420P16-range1-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420P16",
+      "range": 1
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range0-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420PH",
+      "range": 0
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PH-range1-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420PH",
+      "range": 1
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range0-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420PS",
+      "range": 0
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P8-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P8-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P9-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P9-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P10-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P10-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P11-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P11-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P12-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P12-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P13-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P13-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P14-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P14-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P15-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P15-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P16-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444P16-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444PH-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444PH-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444PS-gpuFalse",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "YUV420PS-range1-to-YUV444PS-gpuTrue",
+      "frames": [
+        1,
+        3,
+        7
+      ],
+      "all_planes_bit_exact": true
+    },
+    {
+      "case": "default-format-and-shared-luma",
+      "input": "YUV420PS",
+      "range": 1
+    },
+    {
+      "case": "per-frame-range-concurrent-seeks",
+      "gpu": false
+    },
+    {
+      "case": "per-frame-range-concurrent-seeks",
+      "gpu": true
+    },
+    {
+      "case": "untagged",
+      "gpu": false
+    },
+    {
+      "case": "untagged",
+      "gpu": true
+    },
+    {
+      "case": "legacy-limited",
+      "gpu": false
+    },
+    {
+      "case": "legacy-limited",
+      "gpu": true
+    },
+    {
+      "case": "legacy-full",
+      "gpu": false
+    },
+    {
+      "case": "legacy-full",
+      "gpu": true
+    },
+    {
+      "case": "float-headroom-retained",
+      "gpu": false
+    },
+    {
+      "case": "float-headroom-retained",
+      "gpu": true
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "bits": 7
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "bits": 17
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "bits": 9223372036854775807
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "bits": -9223372036854775808
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "bits": 32,
+        "sample_type": 0
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "bits": 8,
+        "sample_type": 1
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "sample_type": 99
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "dither_type": "ordered"
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "dither_type": "random"
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "dither_type": "error_diffusion"
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "dither_type": "none\u0000ordered"
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateral",
+      "options": {
+        "debug": 0
+      }
+    },
+    {
+      "case": "None-defaults-to-16",
+      "entry": "KrigBilateral"
+    },
+    {
+      "case": "invalid-range",
+      "entry": "KrigBilateral",
+      "value": -1
+    },
+    {
+      "case": "invalid-range",
+      "entry": "KrigBilateral",
+      "value": 2
+    },
+    {
+      "case": "invalid-range",
+      "entry": "KrigBilateral",
+      "value": "invalid"
+    },
+    {
+      "case": "invalid-range",
+      "entry": "KrigBilateral",
+      "value": [
+        0,
+        1
+      ]
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "bits": 7
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "bits": 17
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "bits": 9223372036854775807
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "bits": -9223372036854775808
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "bits": 32,
+        "sample_type": 0
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "bits": 8,
+        "sample_type": 1
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "sample_type": 99
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "dither_type": "ordered"
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "dither_type": "random"
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "dither_type": "error_diffusion"
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "dither_type": "none\u0000ordered"
+      }
+    },
+    {
+      "case": "invalid-options",
+      "entry": "KrigBilateralGPU",
+      "options": {
+        "debug": 0
+      }
+    },
+    {
+      "case": "None-defaults-to-16",
+      "entry": "KrigBilateralGPU"
+    },
+    {
+      "case": "invalid-range",
+      "entry": "KrigBilateralGPU",
+      "value": -1
+    },
+    {
+      "case": "invalid-range",
+      "entry": "KrigBilateralGPU",
+      "value": 2
+    },
+    {
+      "case": "invalid-range",
+      "entry": "KrigBilateralGPU",
+      "value": "invalid"
+    },
+    {
+      "case": "invalid-range",
+      "entry": "KrigBilateralGPU",
+      "value": [
+        0,
+        1
+      ]
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 8,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 9,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 10,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 11,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 12,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 13,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 14,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 15,
+      "gpu": false
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P8",
+      "gpu": false,
+      "options": {}
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P8",
+      "gpu": false,
+      "options": {
+        "bits": 16,
+        "sample_type": 0
+      }
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P8",
+      "gpu": false,
+      "options": {
+        "bits": 32
+      }
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P8",
+      "gpu": false,
+      "options": {
+        "bits": 16,
+        "sample_type": 1
+      }
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 8,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 9,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 10,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 11,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 12,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 13,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 14,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P8",
+      "bits": 15,
+      "gpu": true
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P8",
+      "gpu": true,
+      "options": {}
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P8",
+      "gpu": true,
+      "options": {
+        "bits": 16,
+        "sample_type": 0
+      }
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P8",
+      "gpu": true,
+      "options": {
+        "bits": 32
+      }
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P8",
+      "gpu": true,
+      "options": {
+        "bits": 16,
+        "sample_type": 1
+      }
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 8,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 9,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 10,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 11,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 12,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 13,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 14,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 15,
+      "gpu": false
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P16",
+      "gpu": false,
+      "options": {}
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P16",
+      "gpu": false,
+      "options": {
+        "bits": 16,
+        "sample_type": 0
+      }
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P16",
+      "gpu": false,
+      "options": {
+        "bits": 32
+      }
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P16",
+      "gpu": false,
+      "options": {
+        "bits": 16,
+        "sample_type": 1
+      }
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 8,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 9,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 10,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 11,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 12,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 13,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 14,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420P16",
+      "bits": 15,
+      "gpu": true
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P16",
+      "gpu": true,
+      "options": {}
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P16",
+      "gpu": true,
+      "options": {
+        "bits": 16,
+        "sample_type": 0
+      }
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P16",
+      "gpu": true,
+      "options": {
+        "bits": 32
+      }
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420P16",
+      "gpu": true,
+      "options": {
+        "bits": 16,
+        "sample_type": 1
+      }
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 8,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 9,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 10,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 11,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 12,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 13,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 14,
+      "gpu": false
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 15,
+      "gpu": false
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420PS",
+      "gpu": false,
+      "options": {}
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420PS",
+      "gpu": false,
+      "options": {
+        "bits": 16,
+        "sample_type": 0
+      }
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420PS",
+      "gpu": false,
+      "options": {
+        "bits": 32
+      }
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420PS",
+      "gpu": false,
+      "options": {
+        "bits": 16,
+        "sample_type": 1
+      }
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 8,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 9,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 10,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 11,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 12,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 13,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 14,
+      "gpu": true
+    },
+    {
+      "case": "low-depth-warning-once",
+      "input": "YUV420PS",
+      "bits": 15,
+      "gpu": true
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420PS",
+      "gpu": true,
+      "options": {}
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420PS",
+      "gpu": true,
+      "options": {
+        "bits": 16,
+        "sample_type": 0
+      }
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420PS",
+      "gpu": true,
+      "options": {
+        "bits": 32
+      }
+    },
+    {
+      "case": "safe-depth-no-warning",
+      "input": "YUV420PS",
+      "gpu": true,
+      "options": {
+        "bits": 16,
+        "sample_type": 1
+      }
+    }
+  ],
+  "all_passed": true,
+  "integer_default_bits": 16,
+  "dither": "none",
+  "hardware": {
+    "name": "NVIDIA GeForce RTX 3090 Ti"
+  }
+}

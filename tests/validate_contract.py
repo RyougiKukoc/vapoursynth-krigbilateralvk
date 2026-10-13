@@ -39,8 +39,10 @@ def main():
     variable_size=core.std.Splice([source,core.std.BlankClip(source,width=32,height=24)],mismatch=True)
     assert variable_size.width==0 or variable_size.height==0
     rejected('variable-size',variable_size,{},'fixed, positive, even')
-    for value in (-1,8,2**32,2**63-1,-2**63):
-        rejected('debug-'+str(value),source,{'debug':value},'debug must be one integer')
+    for entry in ('KrigBilateral','KrigBilateralGPU'):
+        assert 'debug:' not in str(getattr(core.krigvk,entry))
+        for value in (0,1):
+            rejected('removed-debug-'+entry+'-'+str(value),source,{'debug':value},'debug',entry=entry)
     gpu_source=core.std.GPUUpload(source)
     # R81 adapts residency from the registered vnode signature before invoking
     # a plugin. Cross-residency calls therefore have valid automatic transport.
@@ -69,19 +71,15 @@ def main():
             for key in ('_Range','_Matrix','_Primaries','_Transfer','_FieldBased','_DurationNum','_DurationDen','Label'):
                 assert output.props[key]==original.props[key]
         checks.append({'case':'integer-properties-range-'+str(range_value),'passed':True})
-        with core.krigvk.KrigBilateral(tagged,debug=2).get_frame(0) as diagnostic:
-            assert diagnostic.format.id==int(vs.YUV444PS)
-            assert diagnostic.props['KrigBilateralDebug']==2
-            assert all(key not in diagnostic.props for key in ('_Matrix','_Range','_ColorRange','_Transfer','_Primaries','_ChromaLocation'))
 
     # All claimed integer bit depths, including non-preset 11/13/15, really load.
     for bits in range(8,17):
         fmt=core.query_video_format(vs.YUV,vs.INTEGER,bits,1,1)
         clip=core.std.BlankClip(width=16,height=12,format=fmt.id,color=[(1<<bits)//4,(1<<bits)//2,(1<<bits)//2])
         with core.krigvk.KrigBilateral(clip).get_frame(0) as output:
-            assert output.format.bits_per_sample==bits
+            assert output.format.bits_per_sample==16
             for plane in (1,2):
-                assert np.all(np.asarray(output[plane])==(1<<bits)//2)
+                assert np.all(np.asarray(output[plane])==32768)
         checks.append({'case':'integer-bit-depth-'+str(bits),'passed':True})
 
     for name in ('YUV420PH','YUV420PS'):
