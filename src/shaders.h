@@ -12,9 +12,6 @@ layout(binding=3,std430) buffer Vertical { vec2 vert[]; };
 layout(binding=4,std430) buffer Guide { vec2 guide[]; };
 layout(binding=5,std430) writeonly buffer DstU { float outU[]; };
 layout(binding=6,std430) writeonly buffer DstV { float outV[]; };
-#if DEBUG_STAGE
-layout(binding=7,std430) writeonly buffer DstY { float outY[]; };
-#endif
 ivec2 q;
 float luma(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT-1)); return yy[c.y*p.sy+c.x]; }
 vec2 verticalAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT/2-1));return vert[c.y*WIDTH+c.x]; }
@@ -26,11 +23,7 @@ vec2 chromaAt(ivec2 c) {
     return vec2(uu[c.y*p.su+c.x],vv[c.y*p.sv+c.x])+vec2(0.5);
 }
 float storeValue(float value) {
-#if DEBUG_STAGE
-    return value;
-#else
     return value-0.5; // keep headroom until the core's final resize/quantization
-#endif
 }
 
 #define LUMA_size vec2(WIDTH,HEIGHT)
@@ -85,9 +78,6 @@ layout(binding=3,std430) buffer Vertical { vec2 vert[]; };
 layout(binding=4,std430) buffer Guide { vec2 guide[]; };
 layout(binding=5,std430) writeonly buffer DstU { float outU[]; };
 layout(binding=6,std430) writeonly buffer DstV { float outV[]; };
-#if DEBUG_STAGE
-layout(binding=7,std430) writeonly buffer DstY { float outY[]; };
-#endif
 ivec2 q;
 float luma(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT-1)); return yy[c.y*p.sy+c.x]; }
 vec2 verticalAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT/2-1));return vert[c.y*WIDTH+c.x]; }
@@ -99,11 +89,7 @@ vec2 chromaAt(ivec2 c) {
     return vec2(uu[c.y*p.su+c.x],vv[c.y*p.sv+c.x])+vec2(0.5);
 }
 float storeValue(float value) {
-#if DEBUG_STAGE
-    return value;
-#else
     return value-0.5; // keep headroom until the core's final resize/quantization
-#endif
 }
 
 #define LOWRES_Y_size vec2(WIDTH,HEIGHT/2)
@@ -159,9 +145,6 @@ layout(binding=3,std430) buffer Vertical { vec2 vert[]; };
 layout(binding=4,std430) buffer Guide { vec2 guide[]; };
 layout(binding=5,std430) writeonly buffer DstU { float outU[]; };
 layout(binding=6,std430) writeonly buffer DstV { float outV[]; };
-#if DEBUG_STAGE
-layout(binding=7,std430) writeonly buffer DstY { float outY[]; };
-#endif
 ivec2 q;
 float luma(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT-1)); return yy[c.y*p.sy+c.x]; }
 vec2 verticalAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT/2-1));return vert[c.y*WIDTH+c.x]; }
@@ -173,11 +156,7 @@ vec2 chromaAt(ivec2 c) {
     return vec2(uu[c.y*p.su+c.x],vv[c.y*p.sv+c.x])+vec2(0.5);
 }
 float storeValue(float value) {
-#if DEBUG_STAGE
-    return value;
-#else
     return value-0.5; // keep headroom until the core's final resize/quantization
-#endif
 }
 
 #define LOWRES_Y_pt vec2(1.0/float(WIDTH/2),1.0/float(HEIGHT/2))
@@ -233,15 +212,6 @@ vec4 hook() {
     total.xyz /= total.w;
     float localVar = sqr(noise) + abs(total.y - pow(total.x, 2.0)) + total.z;
     float radius = 1.0;
-#if DEBUG_STAGE == 3
-    return vec4(localVar,y,0.0,0.0);
-#elif DEBUG_STAGE == 4
-    return vec4(C(0,1),c(0),0.0,0.0);
-#elif DEBUG_STAGE == 6
-    return vec4(X[0].xy,0.0,0.0);
-#elif DEBUG_STAGE == 7
-    return vec4(exp(-4.0*y),inversesqrt(1.0+y),0.0,0.0);
-#endif
 
     float Mx[N*(N+1)/2];
     float b[N];
@@ -310,19 +280,9 @@ vec4 hook() {
 void main() {
     q=ivec2(gl_GlobalInvocationID.xy);
     if(q.x>=WIDTH || q.y>=HEIGHT) return;
-    vec2 value;
-#if DEBUG_STAGE == 1
-    value=verticalAt(ivec2(q.x,q.y/2));
-#elif DEBUG_STAGE == 2
-    value=guideAt(q/2);
-#else
-    value=hook().xy;
-#endif
+    vec2 value=hook().xy;
     outU[q.y*p.du+q.x]=storeValue(value.x);
     outV[q.y*p.dv+q.x]=storeValue(value.y);
-#if DEBUG_STAGE
-    outY[q.y*p.du+q.x]=luma(q);
-#endif
 }
 )KRIG";
 }

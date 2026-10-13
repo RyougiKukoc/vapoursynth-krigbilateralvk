@@ -1,3 +1,5 @@
+Version 0.4.0 removes `debug` from both public entries and removes diagnostic shader/host branches. Only normal YUV444 output is supported. Calls passing `debug` now fail. The range/depth/dither controls remain available; reconstruction equations and normal output are unchanged from v0.3.1.
+
 KrigBilateral delegates its input/output range and depth conversion to VapourSynth `resize.Point`. Full/limited range is read per frame; processing and intermediate buffers use canonical FP32. Integer 8..16-bit, FP16 and FP32 input are supported. Finite chroma headroom is retained until the core's final output conversion.
 
 Version 0.3.1 routes ordinary conversions for both public entries through the same GPU resize backend. This fixes an entry-dependent last-bit rounding difference observed with Mesa when CPU resize was used for CPU-frame callers. Error diffusion still explicitly uses CPU resize; transfers produce the requested CPU/GPU output residency.
@@ -9,7 +11,7 @@ Untagged YUV uses resize's limited-range default. Tag full-range source with `_R
 Recommended installation through [api4-wheels](https://github.com/AliceTeaParty/vapoursynth-api4-wheels/tree/main/plugins/vapoursynth-krigbilateralvk):
 
 ```console
-python -m pip install --extra-index-url https://aliceteaparty.github.io/vapoursynth-api4-wheels/simple/ "vapoursynth-krigbilateralvk==0.3.1"
+python -m pip install --extra-index-url https://aliceteaparty.github.io/vapoursynth-api4-wheels/simple/ "vapoursynth-krigbilateralvk==0.4.0"
 ```
 
 Windows/Linux x86-64 native ZIPs include licenses, manifests and SHA-256 checksums. Requires VapourSynth R81 / API 4.3 and Vulkan 1.4; Linux release binaries require glibc 2.28+.

@@ -27,7 +27,7 @@ The initial binary targets the **R81 release headers**. The GPU interface evolve
 
 ## Manual installation
 
-For manual installation, download `krigbilateralvk-0.3.1-windows-x86_64.zip` or `krigbilateralvk-0.3.1-linux-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the native library explicitly:
+For manual installation, download `krigbilateralvk-0.4.0-windows-x86_64.zip` or `krigbilateralvk-0.4.0-linux-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the native library explicitly:
 
 ```python
 import vapoursynth as vs
@@ -64,19 +64,18 @@ output = core.std.GPUDownload(gpu_output)
 ### API
 
 ```python
-core.krigvk.KrigBilateral(clip, debug=0, bits=None, sample_type=None, dither_type=None)
-core.krigvk.KrigBilateralGPU(clip, debug=0, bits=None, sample_type=None, dither_type=None)
+core.krigvk.KrigBilateral(clip, bits=None, sample_type=None, dither_type=None)
+core.krigvk.KrigBilateralGPU(clip, bits=None, sample_type=None, dither_type=None)
 ```
 
 | Argument | Default | Meaning |
 |---|---|---|
 | `clip` | required | YUV420 input. `KrigBilateral` accepts CPU frames; `KrigBilateralGPU` accepts GPU-resident frames. |
-| `debug` | `0` | Normal output at `0`. Values `1..7` expose intermediate results as YUV444PS; see [diagnostics](docs/development.md#diagnostics). |
 | `bits` | input depth | Output integer depth `8..16`, or float depth `16/32`. `32` selects float; depths below `16` select integer. At `16`, the input sample type is retained unless `sample_type` is supplied. |
 | `sample_type` | inferred as above | `vs.INTEGER` or `vs.FLOAT`. Use this to distinguish integer 16-bit from FP16. |
 | `dither_type` | `"none"` | Core resize mode: `"none"`, `"ordered"`, `"random"`, or `"error_diffusion"`. Python `None` selects the default. Dithering applies only to integer output. |
 
-With `debug=0`, output is YUV444 with the input's dimensions, frame count and frame rate. At unchanged type/depth, luma is shared unchanged even when chroma dithering is requested. When type/depth changes, luma is converted directly from the original input by core resize with the selected dither mode. Range, colorimetry, timestamps and custom properties are retained; `_ChromaLocation` is removed because chroma is no longer subsampled. Diagnostic output removes colorimetry/range tags and sets `KrigBilateralDebug`; it cannot be combined with output-format options or dithering.
+Output is YUV444 with the input's dimensions, frame count and frame rate. At unchanged type/depth, luma is shared unchanged even when chroma dithering is requested. When type/depth changes, luma is converted directly from the original input by core resize with the selected dither mode. Range, colorimetry, timestamps and custom properties are retained; `_ChromaLocation` is removed because chroma is no longer subsampled.
 
 For example:
 
@@ -111,11 +110,11 @@ Version 0.2.0 uses a single implementation derived directly from Shiandow's orig
 
 The comparison harness executes the original shader's hook bodies without rewriting the covariance or solver. Both programs receive the same texel inputs, coordinates, FP32 intermediate storage and core resize conversions. This isolates the **KrigBilateral algorithm** from renderer-specific texture interpolation and color conversions. Version 0.3.0 changes the format/range boundary, not the covariance or solver: its integer results need not match v0.2.x, which used storage-range normalization.
 
-On the tested RTX 3090 Ti, all 32 format/size configurations (256 synthetic frames) were bit-exact, including integer, FP16 and FP32 output. Tests of intermediate stages and three distinct 1080p frames also matched byte-for-byte, including unquantized FP32 reconstruction. See [the validation report](docs/validation.md) for scope and evidence.
+On the tested RTX 3090 Ti, all 32 format/size configurations (256 synthetic frames) were bit-exact, including integer, FP16 and FP32 output. The comparison also checks FP32 reconstruction without integer quantization. Historical intermediate-stage and 1080p comparisons remain recorded for their measured versions. See [the validation report](docs/validation.md) for scope and evidence.
 
 This is measured parity with the original GLSL algorithm under common inputs, not a claim that every GPU/driver produces identical results or that the complete `placebo.Shader` rendering pipeline has identical output.
 
-The former Python implementation, arithmetic-emulation path and `reference` argument have been removed. Calls using `reference=` must drop that argument.
+The former Python implementation, arithmetic-emulation path and `reference` argument have been removed. Version 0.4.0 also removes `debug` and all diagnostic output branches; calls passing either removed argument fail.
 
 ## Performance
 

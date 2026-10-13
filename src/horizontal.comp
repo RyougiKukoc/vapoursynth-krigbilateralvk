@@ -9,9 +9,6 @@ layout(binding=3,std430) buffer Vertical { vec2 vert[]; };
 layout(binding=4,std430) buffer Guide { vec2 guide[]; };
 layout(binding=5,std430) writeonly buffer DstU { float outU[]; };
 layout(binding=6,std430) writeonly buffer DstV { float outV[]; };
-#if DEBUG_STAGE
-layout(binding=7,std430) writeonly buffer DstY { float outY[]; };
-#endif
 ivec2 q;
 float luma(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT-1)); return yy[c.y*p.sy+c.x]; }
 vec2 verticalAt(ivec2 c) { c=clamp(c,ivec2(0),ivec2(WIDTH-1,HEIGHT/2-1));return vert[c.y*WIDTH+c.x]; }
@@ -23,11 +20,7 @@ vec2 chromaAt(ivec2 c) {
     return vec2(uu[c.y*p.su+c.x],vv[c.y*p.sv+c.x])+vec2(0.5);
 }
 float storeValue(float value) {
-#if DEBUG_STAGE
-    return value;
-#else
     return value-0.5; // keep headroom until the core's final resize/quantization
-#endif
 }
 
 #define LOWRES_Y_size vec2(WIDTH,HEIGHT/2)
