@@ -27,7 +27,7 @@ The initial binary targets the **R81 release headers**. The GPU interface evolve
 
 ## Manual installation
 
-For manual installation, download `krigbilateralvk-0.4.0-windows-x86_64.zip` or `krigbilateralvk-0.4.0-linux-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the native library explicitly:
+For manual installation, download `krigbilateralvk-0.4.1-windows-x86_64.zip` or `krigbilateralvk-0.4.1-linux-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the native library explicitly:
 
 ```python
 import vapoursynth as vs
@@ -64,8 +64,8 @@ output = core.std.GPUDownload(gpu_output)
 ### API
 
 ```python
-core.krigvk.KrigBilateral(clip, bits=None, sample_type=None, dither_type=None)
-core.krigvk.KrigBilateralGPU(clip, bits=None, sample_type=None, dither_type=None)
+core.krigvk.KrigBilateral(clip, bits=None, sample_type=None)
+core.krigvk.KrigBilateralGPU(clip, bits=None, sample_type=None)
 ```
 
 | Argument | Default | Meaning |
@@ -73,7 +73,6 @@ core.krigvk.KrigBilateralGPU(clip, bits=None, sample_type=None, dither_type=None
 | `clip` | required | YUV420 input. `KrigBilateral` accepts CPU frames; `KrigBilateralGPU` accepts GPU-resident frames. |
 | `bits` | 16 for integer input; input depth for float | Output integer depth `8..16`, or float depth `16/32`. `32` selects float; depths below `16` select integer. At `16`, the input sample type is retained unless `sample_type` is supplied. |
 | `sample_type` | inferred as above | `vs.INTEGER` or `vs.FLOAT`. Use this to distinguish integer 16-bit from FP16. |
-| `dither_type` | `"none"` | Compatibility option; only `"none"` or Python `None` is accepted. The fused quantizer has no dither. Other modes fail; use core resize after 16-bit or FP32 output to apply dither. |
 
 Output is YUV444 with the input's dimensions, frame count and frame rate. At unchanged type/depth, luma is shared unchanged. When type/depth changes, the last Krig kernel converts luma directly from the original samples. Range, colorimetry, timestamps and custom properties are retained; `_ChromaLocation` is removed because chroma is no longer subsampled.
 
@@ -118,7 +117,7 @@ On the tested RTX 3090 Ti, all 32 format/size configurations (256 synthetic fram
 
 This is measured parity with the original GLSL algorithm under common inputs, not a claim that every GPU/driver produces identical results or that the complete `placebo.Shader` rendering pipeline has identical output.
 
-The former Python implementation, arithmetic-emulation path and `reference` argument have been removed. Version 0.4.0 also removes `debug` and all diagnostic output branches; calls passing either removed argument fail.
+The former Python implementation, arithmetic-emulation path and `reference` argument have been removed. Version 0.4.0 removes `debug` and all diagnostic output branches. Version 0.4.1 removes `dither_type` from both entries; callers use core resize for dithering. Calls passing removed arguments fail.
 
 ## Performance
 

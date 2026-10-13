@@ -116,12 +116,12 @@ def main():
         cases.append({'case':'float-headroom-retained','gpu':gpu})
     for entry in ('KrigBilateral','KrigBilateralGPU'):
         for options in ({'bits':7},{'bits':17},{'bits':2**63-1},{'bits':-2**63},{'bits':32,'sample_type':vs.INTEGER},
-                        {'bits':8,'sample_type':vs.FLOAT},{'sample_type':99},{'dither_type':'ordered'},
+                        {'bits':8,'sample_type':vs.FLOAT},{'sample_type':99},{'dither_type':'none'},{'dither_type':'ordered'},
                         {'dither_type':'random'},{'dither_type':'error_diffusion'},{'dither_type':'none\x00ordered'},{'debug':0}):
             try: getattr(core.krigvk,entry)(blank,**options)
             except vs.Error: cases.append({'case':'invalid-options','entry':entry,'options':options})
             else: raise AssertionError(('invalid option accepted',entry,options))
-        with cpu(getattr(core.krigvk,entry)(blank,bits=None,sample_type=None,dither_type=None)).get_frame(0) as frame:
+        with cpu(getattr(core.krigvk,entry)(blank,bits=None,sample_type=None)).get_frame(0) as frame:
             assert frame.format.id==int(vs.YUV444P16)
         cases.append({'case':'None-defaults-to-16','entry':entry})
         for invalid in (-1,2,'invalid',[0,1]):

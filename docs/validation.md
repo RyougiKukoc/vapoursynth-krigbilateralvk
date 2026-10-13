@@ -1,5 +1,11 @@
 # Original-shader algorithm and platform validation
 
+## v0.4.1 parameter cleanup
+
+Version 0.4.1 removes `dither_type` from both public signatures and deletes its argument parser. Passing it fails, including `"none"`. Integer16 defaults and lower-depth banding warnings remain. The shaders are byte-for-byte unchanged from v0.4.0, so the previous source performance results remain tied to that measured version.
+
+The Windows candidate passes [732 range/depth checks](validation/v0.4.1/windows/depth.json) and [45 contracts](validation/v0.4.1/windows/contracts.json), including rejection of the removed parameter on both entries. Final release artifacts are validated separately and identified in the release attachment.
+
 ## Final v0.4.0 source
 
 The release source adds a precision boundary only to integer canonical-to-shader chroma adaptation. Mesa could otherwise contract the +0.5 shift into the normalization affine, changing some FP32 samples by one last bit. Float transport and the Krig equations are unchanged; the conversion remains fused into three dispatches. Windows RTX 3090 Ti, Linux A100 and Mesa software Vulkan each pass **730 depth/range cases, 41 contracts and the 32-configuration / 256-frame original-GLSL matrix**. The Windows real-video comparison again checks **99,532,800 integer16/FP32 output samples with zero differences**.

@@ -18,6 +18,7 @@ def check(path, registration_only=False):
     assert set(functions) == {"KrigBilateral", "KrigBilateralGPU"}
     assert all("reference:" not in signature for signature in functions.values())
     assert all("debug:" not in signature for signature in functions.values())
+    assert all("dither_type:" not in signature for signature in functions.values())
     if registration_only:
         return {"plugin_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
                 "functions": functions, "rendered": False}

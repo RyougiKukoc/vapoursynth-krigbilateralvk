@@ -32,7 +32,6 @@ def main():
     ap.add_argument('--raw',type=Path)
     ap.add_argument('--bits',type=int)
     ap.add_argument('--sample-type',choices=('integer','float'))
-    ap.add_argument('--dither-type',choices=('none','ordered','random','error_diffusion'),default='none')
     ap.add_argument('--label',default='')
     ap.add_argument('--background-workload',default='',help='Known concurrent GPU activity, recorded with results')
     ap.add_argument('--input-format',choices=('YUV420P16','YUV420PS','YUV444PS'),default='YUV420P16',
@@ -77,8 +76,6 @@ def main():
     options={}
     if args.bits is not None: options['bits']=args.bits
     if args.sample_type is not None: options['sample_type']=vs.FLOAT if args.sample_type=='float' else vs.INTEGER
-    # Old releases did not expose dither_type; omitted none is the same default.
-    if args.dither_type!='none': options['dither_type']=args.dither_type
     if args.backend=='vk':out=core.krigvk.KrigBilateral(src,**options)
     elif args.backend=='vk_gpu':out=core.krigvk.KrigBilateralGPU(src,**options)
     elif args.backend=='placebo':out=core.placebo.Shader(src,shader=str(ROOT/'reference/KrigBilateral.glsl'))
