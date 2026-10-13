@@ -1,0 +1,71 @@
+{
+  "backend": "vk_gpu",
+  "label": "v040-gpu32",
+  "width": 1920,
+  "height": 1080,
+  "plugin_sha256": "125d9604671f738b6a47b774b625f00f40704d43ff399f2758eaa8cc196aacde",
+  "output_format": "YUV444PS",
+  "output_sample_sha256": "1d8e72732307660db0ca90aa2974f7c0e5c6685f9bd83cf6d4ca07c6d020447c",
+  "source_gpu_resident": true,
+  "output_gpu_resident_before_completion_sink": true,
+  "completion": "waitGPUFrame and 1x1 CPU acknowledgement",
+  "source_template_keep": true,
+  "wait_sink_sha256": "f0a422162b7af9ee1afc3902989c73b5a2b7b43ea638c36a5ef05a05ac8bec21",
+  "options": {
+    "bits": 32
+  },
+  "frames": 2048,
+  "warmup": 16,
+  "prefetch": 4,
+  "threads": 4,
+  "seconds": 14.543786599999294,
+  "fps": 140.81614756366815,
+  "construction_seconds": 0.7970454999594949,
+  "warmup_seconds": 0.6072466000332497,
+  "source": "external 1920x1080 YUV420P16 little-endian video, eight preloaded frames",
+  "source_frame_indices": [
+    0,
+    18,
+    36,
+    54,
+    72,
+    90,
+    108,
+    126
+  ],
+  "source_sha256": "9bd42cbecbd611156f6633757d83a2c83e53c18adc7b0a3a452588bd947e798c",
+  "environment": {
+    "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+    "os": "Windows-10-10.0.19045-SP0",
+    "core": "VapourSynth Video Processing Library\nCopyright (c) 2012-2026 Fredrik Mellbin\n\tCore R81\n\tAPI R4.3\n\tOptions: -\n\tNumber of Threads: 4\n\tMax Cache Size: 32723\n",
+    "numpy": "2.5.3",
+    "plugins": [
+      {
+        "namespace": "krigvk",
+        "sha256": "125d9604671f738b6a47b774b625f00f40704d43ff399f2758eaa8cc196aacde",
+        "file": "krigbilateralvk.dll"
+      },
+      {
+        "namespace": "placebo",
+        "sha256": "b0a0689946e03f6f7467b798fba4678018bb28ba6b1caecdded8d08945049310",
+        "file": "libvs_placebo.dll"
+      }
+    ],
+    "vulkan_devices": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 3090 Ti",
+        "api_version": [
+          1,
+          4,
+          351
+        ],
+        "type": "discrete",
+        "device_memory": 25489833984,
+        "usable": true,
+        "reason": ""
+      }
+    ],
+    "gpu": "NVIDIA GeForce RTX 3090 Ti, 617.42"
+  }
+}

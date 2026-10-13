@@ -1,0 +1,138 @@
+{
+  "v020-cpu16": {
+    "fps": [
+      183.00750476385124,
+      181.74698843811242,
+      186.43358317732242
+    ],
+    "median_fps": 183.00750476385124,
+    "min_fps": 181.74698843811242,
+    "max_fps": 186.43358317732242,
+    "output_sample_sha256": "b6bdd5f7fc4d8712af1fdf5993c531f53cd21a4ed562803a6e614ccac1d46acb"
+  },
+  "v031-cpu16": {
+    "fps": [
+      106.58518728708496,
+      102.81449509465338,
+      103.3171212897134
+    ],
+    "median_fps": 103.3171212897134,
+    "min_fps": 102.81449509465338,
+    "max_fps": 106.58518728708496,
+    "output_sample_sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+  },
+  "v040-cpu16": {
+    "fps": [
+      102.48483181943679,
+      105.41897327071194,
+      100.11868121272273
+    ],
+    "median_fps": 102.48483181943679,
+    "min_fps": 100.11868121272273,
+    "max_fps": 105.41897327071194,
+    "output_sample_sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+  },
+  "v040-gpu16": {
+    "fps": [
+      121.91914691289189,
+      119.45981763688955,
+      111.18542715594484
+    ],
+    "median_fps": 119.45981763688955,
+    "min_fps": 111.18542715594484,
+    "max_fps": 121.91914691289189,
+    "output_sample_sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+  },
+  "v040-gpu32": {
+    "fps": [
+      144.93652502091035,
+      140.81614756366815,
+      131.79509155584608
+    ],
+    "median_fps": 140.81614756366815,
+    "min_fps": 131.79509155584608,
+    "max_fps": 144.93652502091035,
+    "output_sample_sha256": "1d8e72732307660db0ca90aa2974f7c0e5c6685f9bd83cf6d4ca07c6d020447c"
+  },
+  "v040-gpu8-ordered": {
+    "fps": [
+      102.73935631302479,
+      110.37780295462792,
+      93.48533391318621
+    ],
+    "median_fps": 102.73935631302479,
+    "min_fps": 93.48533391318621,
+    "max_fps": 110.37780295462792,
+    "output_sample_sha256": "9382c1898623cf4ea53a85faf4ff0c28c0549ead5e8731c4ebf7de68ce13f77c"
+  },
+  "v040-gpu8-error-diffusion": {
+    "fps": [
+      104.231333586975,
+      108.60452780130954,
+      106.11629450522756
+    ],
+    "median_fps": 106.11629450522756,
+    "min_fps": 104.231333586975,
+    "max_fps": 108.60452780130954,
+    "output_sample_sha256": "d7065ae5eba8050fe977d9e6610c401f0972d500e3230d0c8cad9ec96c6f87c8"
+  },
+  "placebo-cpu16": {
+    "fps": [
+      106.40725298870746,
+      119.7971464625779,
+      113.53307111915576
+    ],
+    "median_fps": 113.53307111915576,
+    "min_fps": 106.40725298870746,
+    "max_fps": 119.7971464625779,
+    "output_sample_sha256": "55fb8daf089e9a2282410eef2d1dc770eb3321e8e0f2a0a597afe4773b112a74"
+  },
+  "supply-cpu": {
+    "fps": [
+      7259.862672230205,
+      7690.1027522271215,
+      7774.506291149186
+    ],
+    "median_fps": 7690.1027522271215,
+    "min_fps": 7259.862672230205,
+    "max_fps": 7774.506291149186,
+    "output_sample_sha256": "4539c237b99705bc2dfda59bc1eaceb78cfb6a1cd2b9f547df14984d6441f9bd"
+  },
+  "supply-gpu": {
+    "fps": [
+      6271.673235992368,
+      6375.605091920393,
+      6511.900912389699
+    ],
+    "median_fps": 6375.605091920393,
+    "min_fps": 6271.673235992368,
+    "max_fps": 6511.900912389699,
+    "output_sample_sha256": "4539c237b99705bc2dfda59bc1eaceb78cfb6a1cd2b9f547df14984d6441f9bd"
+  },
+  "protocol": {
+    "platform": "Windows 10, RTX 3090 Ti, driver 617.42, VapourSynth R81",
+    "frames_per_filter_run": 2048,
+    "warmup": 16,
+    "threads": 4,
+    "prefetch": 4,
+    "repetitions": 3,
+    "source_sha256": "9bd42cbecbd611156f6633757d83a2c83e53c18adc7b0a3a452588bd947e798c",
+    "source_frame_indices": [
+      0,
+      18,
+      36,
+      54,
+      72,
+      90,
+      108,
+      126
+    ],
+    "order": "serial fresh processes, rotated case order",
+    "cpu_completion": "full CPU frames including required uploads/downloads",
+    "gpu_completion": "waitGPUFrame and 1x1 CPU acknowledgement; input upload is preloaded, output pixels are not downloaded",
+    "excluded": "decoding, source preloading, shader compilation and warmup",
+    "output_source_template": "one kept blank template plus eight preloaded frames under new frame numbers"
+  },
+  "removed_debug_normal_output_sample_matches_v031": true,
+  "source_delivery_much_faster_than_filter": true
+}

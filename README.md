@@ -118,14 +118,18 @@ The former Python implementation, arithmetic-emulation path and `reference` argu
 
 ## Performance
 
-The following measurements are historical **v0.2.0** results; v0.3.0's resize conversions have not been rebenchmarked. The native algorithm and original `placebo.Shader` pipeline were measured in three serial, fresh-process runs on the same 1080p YUV420P16 workload. Timings include completed CPU frames and required transfers; decoding, preloading and shader compilation are excluded.
+Version 0.4.0 was remeasured on RTX 3090 Ti / VapourSynth R81 with 1080p YUV420P16 input, three serial fresh-process runs of 2,048 timed frames after 16 warmup frames. CPU-entry timings include full output transfers. Resident timings use preloaded GPU input and wait for each output to complete without downloading its pixels. Decoding, preloading and shader compilation are excluded.
 
 | Backend | Median fps | Three-run range |
 |---|---:|---:|
-| Vulkan, original shader algorithm | **196.48** | 196.44–196.64 |
-| Original placebo.Shader pipeline | 103.63 | 102.42–105.22 |
+| v0.4.0 CPU-frame entry, 16-bit output | **102.48** | 100.12–105.42 |
+| v0.4.0 GPU-resident entry, 16-bit output | **119.46** | 111.19–121.92 |
+| v0.4.0 GPU-resident entry, FP32 output | **140.82** | 131.80–144.94 |
+| v0.3.1 CPU-frame entry, 16-bit output | 103.32 | 102.81–106.59 |
+| v0.2.0 CPU-frame entry, measured again | 183.01 | 181.75–186.43 |
+| Original placebo.Shader pipeline | 113.53 | 106.41–119.80 |
 
-Current results, repeat ranges, environment and workload details are in [the performance report](docs/validation.md#performance). The source-algorithm parity test and the whole-renderer throughput test serve different purposes: the latter includes placebo's rendering work.
+Removing `debug` leaves normal output unchanged and shows no measurable speed improvement over v0.3.1 within these run ranges. Range-aware FP32 conversion costs throughput compared with v0.2.0, whose normalization differs; its old 196 fps figure is not representative of the current CPU path. The current CPU path is also slower than placebo on this workload. Current dither results, all raw repetitions and measurement limits are in [the performance report](docs/validation.md#performance). These execution paths have different transfer/output boundaries; the table does not establish equal whole-renderer pixels or kernel-only speed.
 
 ## Building from source
 

@@ -1,5 +1,9 @@
 # Original-shader algorithm and platform validation
 
+## v0.4.0 normal-output API
+
+Version 0.4.0 removes `debug` from both public signatures and deletes all diagnostic shader/host branches, including the extra luma binding. Calls passing the removed argument fail even at zero. The original reconstruction equations, core resize conversions and output controls are unchanged from v0.3.1. On Windows RTX 3090 Ti and Linux A100, [420 depth/dither cases](validation/v0.4.0/range-depth-dither.json), [41 contracts](validation/v0.4.0/input-output-contract.json), the [32-configuration / 256-frame GLSL matrix](validation/v0.4.0/format-matrix.json) and [normal-depth/FP32 reconstruction](validation/v0.4.0/fp32-comparison.json) pass. Corresponding Linux reports are under [v0.4.0/linux](validation/v0.4.0/linux/format-matrix.json). Historical stage reports below remain tied to their measured releases.
+
 The implementation follows the original KrigBilateral GLSL algorithm directly. The Python implementation and the `reference` argument were removed in v0.2.0. Version 0.2.1 added explicit input/output contracts and standard VapourSynth signed-float chroma transport; v0.3.0 replaces integer storage-range normalization and shader-side quantization with the core's range-aware resize conversions.
 
 ## v0.3.1 conversion parity
@@ -60,6 +64,29 @@ Raw reports: [format matrix](validation/v0.2.1/format-matrix.json), [synthetic s
 This is observed numerical equivalence to the original GLSL algorithm on the tested GPU and inputs. It is not a guarantee that different GPUs/drivers compile GLSL floating-point operations identically, and it does not claim identical whole-pipeline `placebo.Shader` output.
 
 ## Performance
+
+Current v0.4.0 results are from Windows 10 / Ryzen 9 5950X / RTX 3090 Ti / driver 617.42 / VapourSynth R81 / Python 3.14.7. All configurations use the same eight preloaded 1080p YUV420P16 frames, indices 0,18,36,54,72,90,108,126, with limited-range metadata. Three fresh-process repetitions run serially in rotated order; each filter run requests 2,048 new output frame numbers after 16 warmup frames, with four core threads/prefetch. The source's kept blank template avoids unused full-frame generation during timed delivery. Construction, decoding, preloading, JIT and warmup are excluded.
+
+CPU entry and placebo wait for full CPU output, including required uploads/downloads. GPU-entry input frames are uploaded and completed before timing. A separate test-only sink calls core `waitGPUFrame` per output and returns a 1x1 CPU acknowledgement, with no output pixel readback. The latter includes completion synchronization and acknowledgement overhead; it is not a shader-only GPU timestamp. These boundaries describe practical CPU versus resident GPU usage and are not identical workloads. Error diffusion GPU output includes CPU conversion and the transfers needed to restore residency.
+
+| Configuration | Median fps | Minimum | Maximum |
+|---|---:|---:|---:|
+| v0.4.0 CPU entry, 16-bit output | 102.48 | 100.12 | 105.42 |
+| v0.4.0 resident GPU entry, 16-bit output | 119.46 | 111.19 | 121.92 |
+| v0.4.0 resident GPU entry, FP32 output | 140.82 | 131.80 | 144.94 |
+| v0.4.0 resident GPU entry, 8-bit ordered | 102.74 | 93.49 | 110.38 |
+| v0.4.0 GPU entry, 8-bit error diffusion | 106.12 | 104.23 | 108.60 |
+| v0.3.1 CPU entry, 16-bit output | 103.32 | 102.81 | 106.59 |
+| v0.2.0 CPU entry, rerun on the same setup | 183.01 | 181.75 | 186.43 |
+| Original placebo.Shader CPU output | 113.53 | 106.41 | 119.80 |
+| CPU source delivery only | 7690.10 | 7259.86 | 7774.51 |
+| GPU source delivery and completion only | 6375.61 | 6271.67 | 6511.90 |
+
+Source-delivery controls use 16,384 frames and are much faster than the filters. Removing diagnostic code does not yield a supported speedup claim: v0.3.1/v0.4.0 CPU ranges overlap, and their normal output sample hashes match. The current CPU path is about 44% slower than the rerun v0.2.0 path; that older path uses different range normalization and omits the current core conversions. This comparison measures the whole changed pipeline and does not isolate each cause. The current CPU path is slower than placebo on this workload. FP32 resident output skips final integer conversion, while the different dither measurements overlap enough that their ordering is not a general performance claim. Desktop GPU activity and driver clocks vary across runs; the reported ranges are part of the result. No Linux throughput measurement or cross-device speed claim is made.
+
+Sanitized [summary](validation/v0.4.0/performance/summary.json) and the 30 individual reports in that directory record input/output hashes, native binary hashes, frame counts, completion boundaries and environments. Exact benchmark scripts are [benchmark.py](../tests/benchmark.py), [run_benchmarks.py](../tests/run_benchmarks.py) and the test-only [completion sink](../tests/bench_wait.cpp). The full original renderer has different pixel processing; throughput comparison does not assert matching rendered pixels.
+
+### Historical v0.2.0 measurements
 
 The following throughput measurements are from v0.2.0. Version 0.2.1 adds input/frame validation and signed-float transport; it has not been rebenchmarked here.
 
