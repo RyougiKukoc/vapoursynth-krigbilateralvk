@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
+#include <functional>
 #include <limits>
 #include <memory>
 #include <stdexcept>
@@ -58,6 +59,62 @@ void validateFrameProperties(const VSFrame* frame,const VSAPI* api) {
             fail("only progressive frames (_FieldBased=0) are supported; deinterlace or separate fields before filtering");
         }
     }
+    int count=api->mapNumElements(properties,"_Range");
+    if(count>=0) {
+        int error{};
+        int64_t range=api->mapGetInt(properties,"_Range",0,&error);
+        if(count!=1 || error || (range!=0 && range!=1))
+            fail("_Range must be one integer: 0 (limited) or 1 (full)");
+    }
+}
+
+struct NodeDel { const VSAPI* api; void operator()(VSNode* node)const {if(node) api->freeNode(node);} };
+using Node=std::unique_ptr<VSNode,NodeDel>;
+struct MapDel { const VSAPI* api; void operator()(VSMap* map)const {if(map) api->freeMap(map);} };
+using Map=std::unique_ptr<VSMap,MapDel>;
+
+int64_t optionalInt(const VSMap* in,const char* key,int64_t fallback,const VSAPI* api) {
+    int count=api->mapNumElements(in,key);
+    if(count<0) return fallback;
+    int error{};
+    int64_t value=api->mapGetInt(in,key,0,&error);
+    if(count!=1 || error) fail(std::string(key)+" must be one integer");
+    return value;
+}
+
+struct OutputOptions {
+    VSVideoFormat format{};
+    std::string dither="none";
+    int debug{};
+};
+OutputOptions outputOptions(const VSMap* in,const VSVideoFormat& input,VSCore* core,const VSAPI* api) {
+    OutputOptions options;
+    options.debug=parseDebug(in,api);
+    int count=api->mapNumElements(in,"dither_type");
+    if(count>=0) {
+        int error{};
+        const char* value=api->mapGetData(in,"dither_type",0,&error);
+        if(count!=1 || error) fail("dither_type must be one string");
+        options.dither.assign(value,api->mapGetDataSize(in,"dither_type",0,nullptr));
+    }
+    if(options.dither!="none" && options.dither!="ordered" && options.dither!="random" && options.dither!="error_diffusion")
+        fail("dither_type must be none, ordered, random or error_diffusion");
+    if(options.debug) {
+        if(api->mapNumElements(in,"bits")>=0 || api->mapNumElements(in,"sample_type")>=0 || options.dither!="none")
+            fail("bits, sample_type and dithering cannot be combined with debug output");
+        api->queryVideoFormat(&options.format,cfYUV,stFloat,32,0,0,core);
+        return options;
+    }
+    int64_t bits=optionalInt(in,"bits",input.bitsPerSample,api);
+    int64_t defaultType=bits==32 ? stFloat : (bits<16 ? stInteger : input.sampleType);
+    int64_t type=optionalInt(in,"sample_type",defaultType,api);
+    if((type!=stInteger && type!=stFloat) ||
+       (type==stInteger && (bits<8 || bits>16)) ||
+       (type==stFloat && bits!=16 && bits!=32))
+        fail("output requires integer 8..16-bit or float 16/32-bit; set bits and sample_type accordingly");
+    if(!api->queryVideoFormat(&options.format,cfYUV,static_cast<int>(type),static_cast<int>(bits),0,0,core))
+        fail("could not construct the requested YUV444 output format");
+    return options;
 }
 
 struct Filter {
@@ -92,12 +149,7 @@ struct Filter {
         VkPipelineLayoutCreateInfo layout{VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO};
         layout.setLayoutCount=1; layout.pSetLayouts=&k.set; layout.pushConstantRangeCount=1; layout.pPushConstantRanges=&range;
         check(vk->vkCreatePipelineLayout(handles.device,&layout,nullptr,&k.layout),"pipeline layout");
-        const auto& f=inputFormat;
-        std::string type=f.sampleType==stFloat ? (f.bitsPerSample==16 ? "float16_t" : "float") :
-                         (f.bytesPerSample==1 ? "uint8_t" : "uint16_t");
-        std::string text="#version 460\n#define SAMPLE "+type+"\n#define INTEGER "+std::to_string(f.sampleType==stInteger)+
-            "\n#define MAXVAL "+(f.sampleType==stFloat ? "1.0" : std::to_string((1<<f.bitsPerSample)-1)+".0")+
-            "\n#define OUTPUT "+(debug ? "float" : type)+"\n#define DEBUG_STAGE "+std::to_string(debug)+
+        std::string text="#version 460\n#define DEBUG_STAGE "+std::to_string(debug)+
             "\n#define WIDTH "+std::to_string(vi.width)+"\n#define HEIGHT "+std::to_string(vi.height)+"\n"+source;
         char err[errSize]{};
         VSGPUShader* shader=gpu->compileGPUShader(core,slGLSL,text.c_str(),err,errSize);
@@ -231,15 +283,15 @@ const VSFrame* VS_CC getFrame(int n,int reason,void* instance,void**,VSFrameCont
     } catch(const std::exception& e) {api->setFilterError(e.what(),ctx);return nullptr;}
 }
 void VS_CC freeFilter(void* data,VSCore*,const VSAPI*) {delete static_cast<Filter*>(data);}
-void VS_CC createGPU(const VSMap* in,VSMap* out,void*,VSCore* core,const VSAPI* api) {
-    try {
+Node createNative(VSNode* input,int debug,VSCore* core,const VSAPI* api) {
         auto f=std::make_unique<Filter>();f->api=api;f->gpu=api->getVulkanAPI();
-        f->node=api->mapGetNode(in,"clip",0,nullptr); f->vi=*api->getVideoInfo(f->node);
+        f->node=api->addNodeRef(input); f->vi=*api->getVideoInfo(f->node);
         validateInput(f->vi);
         if(api->getNodeResidency(f->node)!=nrGPU) fail("GPU entry requires GPU-resident input");
         f->inputFormat=f->vi.format;
-        f->debug=parseDebug(in,api);
+        f->debug=debug;
         const auto& fmt=f->vi.format;
+        if(fmt.sampleType!=stFloat || fmt.bitsPerSample!=32) fail("internal input must be YUV420PS");
         char err[errSize]{};
         if(f->gpu->getVulkanHandles(core,&f->handles,err,errSize)) fail(err);
         f->vk=f->gpu->getVulkanFunctions(core,err,errSize);if(!f->vk) fail(err);
@@ -247,12 +299,6 @@ void VS_CC createGPU(const VSMap* in,VSMap* out,void*,VSCore* core,const VSAPI* 
         f->vk->vkGetPhysicalDeviceProperties2(f->handles.physicalDevice,&properties);
         const auto& limits=properties.properties.limits;
         f->maxStorageRange=limits.maxStorageBufferRange;
-        if(fmt.sampleType==stFloat && fmt.bitsPerSample==16) {
-            VkPhysicalDeviceVulkan12Features features12{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_FEATURES};
-            VkPhysicalDeviceFeatures2 features{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2};features.pNext=&features12;
-            f->vk->vkGetPhysicalDeviceFeatures2(f->handles.physicalDevice,&features);
-            if(!features12.shaderFloat16) fail("FP16 input requires the device's shaderFloat16 feature; use FP32 or integer input");
-        }
         if(limits.maxComputeWorkGroupInvocations<64 || limits.maxComputeWorkGroupSize[0]<8 || limits.maxComputeWorkGroupSize[1]<8 ||
            limits.maxPerStageDescriptorStorageBuffers<8 || limits.maxDescriptorSetStorageBuffers<8 || limits.maxPushConstantsSize<20 ||
            (uint64_t(f->vi.width)+7)/8>limits.maxComputeWorkGroupCount[0] ||
@@ -262,46 +308,126 @@ void VS_CC createGPU(const VSMap* in,VSMap* out,void*,VSCore* core,const VSAPI* 
         f->pool=f->gpu->createGPUExecPool(core,vqCompute,err,errSize);if(!f->pool) fail(err);
         f->kernel(f->kernels[0],"vertical",shader::vertical,core);f->kernel(f->kernels[1],"horizontal",shader::horizontal,core);
         f->kernel(f->kernels[2],"reconstruct",shader::reconstruct,core);
-        if(!api->queryVideoFormat(&f->vi.format,cfYUV,f->debug ? stFloat : fmt.sampleType,f->debug ? 32 : fmt.bitsPerSample,0,0,core))
+        if(!api->queryVideoFormat(&f->vi.format,cfYUV,stFloat,32,0,0,core))
             fail("could not construct the requested YUV444 output format");
         VSFilterDependency dependency{f->node,rpStrictSpatial};
-        VSNode* result=api->createVideoFilterEx2("KrigBilateralGPU",&f->vi,getFrame,freeFilter,fmParallel,
+        VSNode* result=api->createVideoFilterEx2("KrigBilateralFP32",&f->vi,getFrame,freeFilter,fmParallel,
             ffGPUOutput,&dependency,1,f.get(),core);
         if(!result) fail("filter creation failed");
-        f.release();api->mapConsumeNode(out,"clip",result,maReplace);
-    }catch(const std::exception& e){api->mapSetError(out,e.what());}
+        f.release();return Node{result,{api}};
 }
-// CPU entry builds the transfer graph once; callers with a resident GPU chain use the native entry.
-void VS_CC createCPU(const VSMap* in,VSMap* out,void*,VSCore* core,const VSAPI* api) {
-    auto invoke=[&](VSPlugin* plugin,const char* name,VSNode* node)->VSNode* {
-        VSMap* args=api->createMap(); api->mapSetNode(args,"clip",node,maReplace);
-        if(plugin==api->getPluginByID("com.ryougikukoc.krigbilateralvk",core)) {
-            int error{};int64_t debug=api->mapGetInt(in,"debug",0,&error);
-            if(!error) api->mapSetInt(args,"debug",debug,maReplace);
 
-        }
-        VSMap* result=api->invoke(plugin,name,args);api->freeMap(args);
-        const char* error=api->mapGetError(result);
-        if(error){std::string message=error;api->freeMap(result);fail(message);}
-        VSNode* r=api->mapGetNode(result,"clip",0,nullptr);api->freeMap(result);return r;
-    };
-    VSNode* node=nullptr;
+// Validate original metadata before resize can resite chroma or rewrite properties.
+const VSFrame* VS_CC guardFrame(int n,int reason,void* instance,void**,VSFrameContext* ctx,VSCore*,const VSAPI* api) {
+    auto* f=static_cast<Filter*>(instance);
+    if(reason==arInitial) {api->requestFrameFilter(n,f->node,ctx);return nullptr;}
+    if(reason!=arAllFramesReady) return nullptr;
     try {
-        node=api->mapGetNode(in,"clip",0,nullptr);
-        if(api->getNodeResidency(node)!=nrCPU) fail("CPU entry expects a CPU clip; use KrigBilateralGPU for resident input");
-        validateInput(*api->getVideoInfo(node));
-        parseDebug(in,api);
-        auto* stdPlugin=api->getPluginByID("com.vapoursynth.std",core);
-        auto* self=api->getPluginByID("com.ryougikukoc.krigbilateralvk",core);
-        for(auto [plugin,name]:std::array<std::pair<VSPlugin*,const char*>,3>{{{stdPlugin,"GPUUpload"},{self,"KrigBilateralGPU"},{stdPlugin,"GPUDownload"}}}) {
-            VSNode* next=invoke(plugin,name,node); api->freeNode(node);node=next;
+        Frame src{api->getFrameFilter(n,f->node,ctx),{api}};
+        if(!src) fail("failed to obtain input frame");
+        const auto& actual=*api->getVideoFrameFormat(src.get());
+        const auto& declared=f->vi.format;
+        if(actual.colorFamily!=declared.colorFamily || actual.sampleType!=declared.sampleType ||
+           actual.bitsPerSample!=declared.bitsPerSample || actual.subSamplingW!=1 || actual.subSamplingH!=1)
+            fail("frame format does not match the declared fixed input format");
+        for(int p=0;p<3;++p) {
+            int width=f->vi.width/(p ? 2 : 1),height=f->vi.height/(p ? 2 : 1);
+            if(api->getFrameWidth(src.get(),p)!=width || api->getFrameHeight(src.get(),p)!=height ||
+               api->getStride(src.get(),p)<int64_t(width)*declared.bytesPerSample)
+                fail("input frame dimensions or stride do not match its declared format");
         }
-        api->mapConsumeNode(out,"clip",node,maReplace);node=nullptr;
-    } catch(const std::exception& e){if(node)api->freeNode(node);api->mapSetError(out,e.what());}
+        validateFrameProperties(src.get(),api);
+        return src.release();
+    } catch(const std::exception& e){api->setFilterError(e.what(),ctx);return nullptr;}
+}
+
+struct Graph {
+    VSCore* core;
+    const VSAPI* api;
+    Node call(const char* id,const char* name,const std::function<void(VSMap*)>& fill)const {
+        auto* plugin=api->getPluginByID(id,core);
+        if(!plugin) fail(std::string("required core plugin is unavailable: ")+id);
+        Map args{api->createMap(),{api}};
+        fill(args.get());
+        Map result{api->invoke(plugin,name,args.get()),{api}};
+        if(const char* error=api->mapGetError(result.get())) fail(error);
+        int error{};
+        VSNode* node=api->mapGetNode(result.get(),"clip",0,&error);
+        if(error || !node) fail(std::string("core filter returned no clip: ")+name);
+        return Node{node,{api}};
+    }
+    Node transfer(VSNode* clip,bool gpu)const {
+        if((api->getNodeResidency(clip)==nrGPU)==gpu) return Node{api->addNodeRef(clip),{api}};
+        return call("com.vapoursynth.std",gpu ? "GPUUpload" : "GPUDownload",[&](VSMap* args){
+            api->mapSetNode(args,"clip",clip,maReplace);
+        });
+    }
+    Node resize(VSNode* clip,const VSVideoFormat& format,const std::string& dither="none")const {
+        // R81's GPU resize supports none/ordered/random. Error diffusion is a
+        // CPU recurrence; explicitly download/reupload for that requested mode.
+        bool gpu=api->getNodeResidency(clip)==nrGPU;
+        bool diffusion=format.sampleType==stInteger && dither=="error_diffusion";
+        Node input=transfer(clip,gpu && !diffusion);
+        Node result=call("com.vapoursynth.resize","Point",[&](VSMap* args){
+            api->mapSetNode(args,"clip",input.get(),maReplace);
+            int id=api->queryVideoFormatID(format.colorFamily,format.sampleType,format.bitsPerSample,
+                format.subSamplingW,format.subSamplingH,core);
+            api->mapSetInt(args,"format",id,maReplace);
+            const std::string& mode=format.sampleType==stInteger ? dither : std::string("none");
+            api->mapSetData(args,"dither_type",mode.c_str(),static_cast<int>(mode.size()),dtUtf8,maReplace);
+        });
+        return transfer(result.get(),gpu);
+    }
+    Node guard(VSNode* clip)const {
+        auto f=std::make_unique<Filter>();f->api=api;f->node=api->addNodeRef(clip);f->vi=*api->getVideoInfo(clip);
+        VSFilterDependency dependency{clip,rpStrictSpatial};
+        VSNode* node=api->createVideoFilterEx2("KrigBilateralInput",&f->vi,guardFrame,freeFilter,fmParallel,
+            api->getNodeResidency(clip)==nrGPU ? ffGPUOutput : 0,&dependency,1,f.get(),core);
+        if(!node) fail("input validation filter creation failed");
+        f.release();return Node{node,{api}};
+    }
+    Node luma(VSNode* source,VSNode* chroma)const {
+        return call("com.vapoursynth.std","ShufflePlanes",[&](VSMap* args){
+            api->mapSetNode(args,"clips",source,maAppend);
+            api->mapSetNode(args,"clips",chroma,maAppend);
+            for(int p=0;p<3;++p) api->mapSetInt(args,"planes",p,maAppend);
+            api->mapSetInt(args,"colorfamily",cfYUV,maReplace);
+            api->mapSetNode(args,"prop_src",chroma,maReplace);
+        });
+    }
+};
+
+void VS_CC create(const VSMap* in,VSMap* out,void* userData,VSCore* core,const VSAPI* api) {
+    try {
+        bool gpu=userData!=nullptr;
+        Node original{api->mapGetNode(in,"clip",0,nullptr),{api}};
+        const auto& vi=*api->getVideoInfo(original.get());
+        validateInput(vi);
+        OutputOptions options=outputOptions(in,vi.format,core,api);
+        Graph graph{core,api};
+        Node input=graph.guard(original.get());
+        VSVideoFormat working{};
+        api->queryVideoFormat(&working,cfYUV,stFloat,32,1,1,core);
+        Node converted=graph.resize(input.get(),working);
+        Node uploaded=graph.transfer(converted.get(),true);
+        Node filtered=createNative(uploaded.get(),options.debug,core,api);
+        Node result=graph.transfer(filtered.get(),gpu);
+        if(!options.debug) {
+            result=graph.resize(result.get(),options.format,options.dither);
+            Node y{api->addNodeRef(input.get()),{api}};
+            if(options.format.sampleType!=vi.format.sampleType || options.format.bitsPerSample!=vi.format.bitsPerSample) {
+                VSVideoFormat yFormat{};
+                api->queryVideoFormat(&yFormat,cfYUV,options.format.sampleType,options.format.bitsPerSample,1,1,core);
+                y=graph.resize(input.get(),yFormat,options.dither);
+            }
+            result=graph.luma(y.get(),result.get());
+        }
+        api->mapConsumeNode(out,"clip",result.release(),maReplace);
+    } catch(const std::exception& e){api->mapSetError(out,e.what());}
 }
 }
 VS_EXTERNAL_API(void) VapourSynthPluginInit2(VSPlugin* plugin,const VSPLUGINAPI* api) {
-    api->configPlugin("com.ryougikukoc.krigbilateralvk","krigvk","KrigBilateral Vulkan",VS_MAKE_VERSION(0,2),VAPOURSYNTH_API_VERSION,0,plugin);
-    api->registerFunction("KrigBilateralGPU","clip:vnode:gpu;debug:int:opt;","clip:vnode:gpu;",createGPU,nullptr,plugin);
-    api->registerFunction("KrigBilateral","clip:vnode;debug:int:opt;","clip:vnode;",createCPU,nullptr,plugin);
+    api->configPlugin("com.ryougikukoc.krigbilateralvk","krigvk","KrigBilateral Vulkan",VS_MAKE_VERSION(0,3),VAPOURSYNTH_API_VERSION,0,plugin);
+    api->registerFunction("KrigBilateralGPU","clip:vnode:gpu;debug:int:opt;bits:int:opt;sample_type:int:opt;dither_type:data:opt;","clip:vnode:gpu;",create,reinterpret_cast<void*>(1),plugin);
+    api->registerFunction("KrigBilateral","clip:vnode;debug:int:opt;bits:int:opt;sample_type:int:opt;dither_type:data:opt;","clip:vnode;",create,nullptr,plugin);
 }

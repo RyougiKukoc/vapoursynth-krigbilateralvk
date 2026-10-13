@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(krigbilateralvk VERSION 0.2.2 LANGUAGES CXX)
+project(krigbilateralvk VERSION 0.3.0 LANGUAGES CXX)
 
 set(VAPOURSYNTH_INCLUDE_DIR "" CACHE PATH "VapourSynth R81 include directory")
 if(NOT VAPOURSYNTH_INCLUDE_DIR)

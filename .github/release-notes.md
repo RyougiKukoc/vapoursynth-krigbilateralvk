@@ -1,9 +1,13 @@
-Windows and Linux x86-64 native packages, with SHA-256 checksums, licenses and autoload manifests. Linux binaries are built with a glibc 2.28 baseline and static C++/GCC runtimes. Requires VapourSynth R81 / API 4.3 and a Vulkan 1.4 GPU/driver.
+KrigBilateral now delegates its input/output range and depth conversion to VapourSynth `resize.Point`. Full/limited range is read per frame; processing and intermediate buffers use canonical FP32. Integer 8..16-bit, FP16 and FP32 input are supported. Finite chroma headroom is retained until the core's final output conversion.
 
-The recommended installation method is the central [api4-wheels package](https://github.com/AliceTeaParty/vapoursynth-api4-wheels/tree/main/plugins/vapoursynth-krigbilateralvk):
+Both `KrigBilateral` and `KrigBilateralGPU` accept `bits`, `sample_type` and `dither_type`. Output type/depth defaults to input; dithering defaults to `none` (Python `None` is accepted). Available modes are `none`, `ordered`, `random` and `error_diffusion`. At unchanged type/depth the original Y plane is preserved. R81's GPU resize lacks error diffusion, so explicitly selecting it for integer GPU output adds CPU conversion and transfers; the returned node remains GPU-resident.
+
+Untagged YUV uses resize's limited-range default. Tag full-range source with `_Range=1`; `_Range=0` denotes limited. The plugin cannot infer range from untagged pixels. The covariance equations and solver are unchanged, but integer results may differ from v0.2.x's storage-range normalization. See the README for 16-bit integer versus FP16 output selection.
+
+Recommended installation through [api4-wheels](https://github.com/AliceTeaParty/vapoursynth-api4-wheels/tree/main/plugins/vapoursynth-krigbilateralvk):
 
 ```console
-python -m pip install --extra-index-url https://aliceteaparty.github.io/vapoursynth-api4-wheels/simple/ vapoursynth-krigbilateralvk
+python -m pip install --extra-index-url https://aliceteaparty.github.io/vapoursynth-api4-wheels/simple/ "vapoursynth-krigbilateralvk==0.3.0"
 ```
 
-This patch adds dual-platform release packaging and updates installation and validation documentation. The native KrigBilateral algorithm, shaders and public filter arguments are unchanged from v0.2.1. The prior central packages passed Windows RTX 3090 Ti and Linux NVIDIA A100 rendering, including signed float chroma, exact luma preservation and CPU/GPU entry equality; the original GLSL bit-exact matrix remains a Windows result.
+Windows/Linux x86-64 native ZIPs include licenses, manifests and SHA-256 checksums. Requires VapourSynth R81 / API 4.3 and Vulkan 1.4; Linux release binaries require glibc 2.28+.

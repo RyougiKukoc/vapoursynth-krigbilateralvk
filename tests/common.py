@@ -20,12 +20,22 @@ def plugin_path():
     for path in candidates:
         if path.is_file():
             return path
+    installed=Path(vs.__file__).resolve().parent/'plugins/krigbilateralvk'/('krigbilateralvk'+suffix)
+    if installed.is_file():
+        return installed
     raise FileNotFoundError("Build the plugin first or set KRIGVK_PLUGIN to a native library")
 
 
 def load_plugin():
     path = plugin_path()
-    vs.core.std.LoadPlugin(str(path))
+    if os.environ.get('KRIGVK_TEST_DEVICE_INDEX'):
+        vs.core.set_vulkan_device(int(os.environ['KRIGVK_TEST_DEVICE_INDEX']))
+    existing=next((plugin for plugin in vs.core.plugins() if plugin.namespace=='krigvk'),None)
+    if existing:
+        if Path(existing.plugin_path).resolve()!=path.resolve():
+            raise RuntimeError('Another KrigBilateral plugin is already loaded: '+existing.plugin_path)
+    else:
+        vs.core.std.LoadPlugin(str(path))
     return path
 
 
