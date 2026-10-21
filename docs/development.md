@@ -17,6 +17,8 @@ The host shares the core Vulkan device and uses its execution pool to retain inp
 
 Install NumPy in the same Python environment as VapourSynth. Tests discover a native library in `build/` or `build-cmake/`; set `KRIGVK_PLUGIN` to select another file, such as an extracted Release DLL.
 
+If another wheel copy is installed, use `python tests/run_isolated.py tests/validate_matrix.py --output results/local-matrix.json` to disable autoload for that test process. The selected build and separate original-GLSL oracle are then loaded explicitly.
+
 ```sh
 python tests/shader_reference.py --cxx /path/to/g++
 python tests/validate_matrix.py --output results/format-matrix.json
@@ -67,11 +69,11 @@ GitHub Actions compiles Windows x86-64 and Linux x86-64 libraries against pinned
 Package an explicitly selected Windows DLL or Linux SO with licenses, an autoload manifest and build information, after committing the source:
 
 ```sh
-python tools/package_release.py --plugin build/krigbilateralvk.dll --output dist/krigbilateralvk-0.4.1-windows-x86_64.zip
-python tools/smoke.py --archive dist/krigbilateralvk-0.4.1-windows-x86_64.zip
+python tools/package_release.py --plugin build/krigbilateralvk.dll --output dist/krigbilateralvk-0.4.2-windows-x86_64.zip
+python tools/smoke.py --archive dist/krigbilateralvk-0.4.2-windows-x86_64.zip
 # Linux:
-python tools/package_release.py --plugin build/krigbilateralvk.so --output dist/krigbilateralvk-0.4.1-linux-x86_64.zip
-python tools/smoke.py --archive dist/krigbilateralvk-0.4.1-linux-x86_64.zip
+python tools/package_release.py --plugin build/krigbilateralvk.so --output dist/krigbilateralvk-0.4.2-linux-x86_64.zip
+python tools/smoke.py --archive dist/krigbilateralvk-0.4.2-linux-x86_64.zip
 ```
 
 The smoke command runs on a machine with VapourSynth R81 and a usable Vulkan device. It checks the packaged library's hash, constant-color reconstruction, signed floating-point chroma, luma preservation, format, and CPU/GPU entry equality. Use `--registration-only` when checking package loading on a host without a usable Vulkan device. Run archive smoke tests in a clean environment without another autoloaded copy of this plugin. Release source is provided by the repository's matching tag; the ZIP contains the native library, licenses, installation notes and manifests. No graphics-driver or VapourSynth libraries are bundled. Pip users should use the [central api4-wheels package](https://github.com/AliceTeaParty/vapoursynth-api4-wheels/tree/main/plugins/vapoursynth-krigbilateralvk).

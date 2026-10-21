@@ -1,0 +1,67 @@
+{
+  "backend": "vk",
+  "label": "row32",
+  "background_workload": "Ordinary desktop active; other GPU applications not controlled",
+  "width": 1920,
+  "height": 1080,
+  "plugin_sha256": "7e766d93277a71e215f125b56551bd24095230db0522f7adb0c46f5d49321410",
+  "input_format": "YUV420P16",
+  "output_format": "YUV444P16",
+  "output_sample_sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44",
+  "source_gpu_resident": false,
+  "output_gpu_resident_before_completion_sink": false,
+  "completion": "completed full CPU output frame",
+  "source_template_keep": true,
+  "wait_sink_sha256": null,
+  "options": {},
+  "frames": 2048,
+  "warmup": 16,
+  "prefetch": 4,
+  "threads": 4,
+  "seconds": 5.504128300000048,
+  "fps": 372.08434985063525,
+  "construction_seconds": 0.8010559999997895,
+  "warmup_seconds": 0.049073499999849446,
+  "source": "D:\\WorkSpace-bm3d\\sample-1080p.yuv",
+  "source_frame_indices": [
+    0,
+    18,
+    36,
+    54,
+    72,
+    90,
+    108,
+    126
+  ],
+  "source_sha256": "9bd42cbecbd611156f6633757d83a2c83e53c18adc7b0a3a452588bd947e798c",
+  "environment": {
+    "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+    "os": "Windows-10-10.0.19045-SP0",
+    "core": "VapourSynth Video Processing Library\nCopyright (c) 2012-2026 Fredrik Mellbin\n\tCore R81\n\tAPI R4.3\n\tOptions: -\n\tNumber of Threads: 4\n\tMax Cache Size: 32723\n",
+    "numpy": "2.5.3",
+    "plugins": [
+      {
+        "namespace": "krigvk",
+        "path": "D:/WorkSpace-bm3d/vapoursynth-krigbilateralvk/build/r2-study/row32.dll",
+        "sha256": "7e766d93277a71e215f125b56551bd24095230db0522f7adb0c46f5d49321410"
+      }
+    ],
+    "vulkan_devices": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 3090 Ti",
+        "api_version": [
+          1,
+          4,
+          351
+        ],
+        "type": "discrete",
+        "device_memory": 25489833984,
+        "usable": true,
+        "reason": "",
+        "uuid": "839a7c9624dcf4c502f7c5b08209b5ed"
+      }
+    ],
+    "gpu": "NVIDIA GeForce RTX 3090 Ti, 617.42"
+  }
+}

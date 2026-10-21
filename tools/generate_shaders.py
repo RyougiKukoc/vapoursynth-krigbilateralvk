@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 COMMON = r'''
-layout(local_size_x=8,local_size_y=8) in;
+layout(local_size_x=32,local_size_y=2) in;
 layout(push_constant) uniform Params { int sy; int su; int sv; int dy; int du; int dv; int full; } p;
 layout(binding=0,std430) readonly buffer SrcY { SRC_T yy[]; };
 layout(binding=1,std430) readonly buffer SrcU { SRC_T uu[]; };

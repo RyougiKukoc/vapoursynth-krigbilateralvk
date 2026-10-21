@@ -3,7 +3,7 @@
 namespace shader {
 inline constexpr const char* vertical=R"KRIG(// Adapted from KrigBilateral by Shiandow. LGPL-3.0-or-later.
 
-layout(local_size_x=8,local_size_y=8) in;
+layout(local_size_x=32,local_size_y=2) in;
 layout(push_constant) uniform Params { int sy; int su; int sv; int dy; int du; int dv; int full; } p;
 layout(binding=0,std430) readonly buffer SrcY { SRC_T yy[]; };
 layout(binding=1,std430) readonly buffer SrcU { SRC_T uu[]; };
@@ -125,7 +125,7 @@ void main(){q=ivec2(gl_GlobalInvocationID.xy);if(q.x>=WIDTH||q.y>=HEIGHT/2)retur
 )KRIG";
 inline constexpr const char* horizontal=R"KRIG(// Adapted from KrigBilateral by Shiandow. LGPL-3.0-or-later.
 
-layout(local_size_x=8,local_size_y=8) in;
+layout(local_size_x=32,local_size_y=2) in;
 layout(push_constant) uniform Params { int sy; int su; int sv; int dy; int du; int dv; int full; } p;
 layout(binding=0,std430) readonly buffer SrcY { SRC_T yy[]; };
 layout(binding=1,std430) readonly buffer SrcU { SRC_T uu[]; };
@@ -248,7 +248,7 @@ void main(){q=ivec2(gl_GlobalInvocationID.xy);if(q.x>=WIDTH/2||q.y>=HEIGHT/2)ret
 )KRIG";
 inline constexpr const char* reconstruct=R"KRIG(// Adapted from KrigBilateral by Shiandow. LGPL-3.0-or-later.
 
-layout(local_size_x=8,local_size_y=8) in;
+layout(local_size_x=32,local_size_y=2) in;
 layout(push_constant) uniform Params { int sy; int su; int sv; int dy; int du; int dv; int full; } p;
 layout(binding=0,std430) readonly buffer SrcY { SRC_T yy[]; };
 layout(binding=1,std430) readonly buffer SrcU { SRC_T uu[]; };

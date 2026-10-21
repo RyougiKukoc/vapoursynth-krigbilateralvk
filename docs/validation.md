@@ -1,5 +1,7 @@
 # Original-shader algorithm and platform validation
 
+Version 0.4.2 uses 32×2 workgroups. Its [matched performance and Windows/Linux validation](r2-optimization.md) are recorded separately from the historical releases below.
+
 ## v0.4.1 parameter cleanup
 
 Version 0.4.1 removes `dither_type` from both public signatures and deletes its argument parser. Passing it fails, including `"none"`. Integer16 defaults and lower-depth banding warnings remain. The shaders are byte-for-byte unchanged from v0.4.0, so the previous source performance results remain tied to that measured version.

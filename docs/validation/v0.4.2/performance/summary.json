@@ -1,0 +1,130 @@
+{
+  "rows": [
+    {
+      "variant": "baseline",
+      "backend": "vk",
+      "repeat": 0,
+      "fps": 197.12978835643798,
+      "sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+    },
+    {
+      "variant": "baseline",
+      "backend": "vk_gpu",
+      "repeat": 0,
+      "fps": 243.8139966353446,
+      "sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+    },
+    {
+      "variant": "row32",
+      "backend": "vk",
+      "repeat": 0,
+      "fps": 365.2662605552656,
+      "sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+    },
+    {
+      "variant": "row32",
+      "backend": "vk_gpu",
+      "repeat": 0,
+      "fps": 540.6323201826978,
+      "sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+    },
+    {
+      "variant": "baseline",
+      "backend": "vk_gpu",
+      "repeat": 1,
+      "fps": 244.80183094556762,
+      "sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+    },
+    {
+      "variant": "row32",
+      "backend": "vk",
+      "repeat": 1,
+      "fps": 372.08434985063525,
+      "sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+    },
+    {
+      "variant": "row32",
+      "backend": "vk_gpu",
+      "repeat": 1,
+      "fps": 530.3778854382938,
+      "sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+    },
+    {
+      "variant": "baseline",
+      "backend": "vk",
+      "repeat": 1,
+      "fps": 197.71254501641408,
+      "sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+    },
+    {
+      "variant": "row32",
+      "backend": "vk",
+      "repeat": 2,
+      "fps": 366.31878366278437,
+      "sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+    },
+    {
+      "variant": "row32",
+      "backend": "vk_gpu",
+      "repeat": 2,
+      "fps": 526.7949709085914,
+      "sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+    },
+    {
+      "variant": "baseline",
+      "backend": "vk",
+      "repeat": 2,
+      "fps": 196.30615463120117,
+      "sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+    },
+    {
+      "variant": "baseline",
+      "backend": "vk_gpu",
+      "repeat": 2,
+      "fps": 239.79607123877395,
+      "sha256": "0b65f716b80f17d3c7e52b6a1a63d9a47568b38ebb9f9ce29610c4fcef228b44"
+    }
+  ],
+  "summary": {
+    "baseline-vk": {
+      "fps": [
+        197.12978835643798,
+        197.71254501641408,
+        196.30615463120117
+      ],
+      "median": 197.12978835643798,
+      "min": 196.30615463120117,
+      "max": 197.71254501641408
+    },
+    "baseline-vk_gpu": {
+      "fps": [
+        243.8139966353446,
+        244.80183094556762,
+        239.79607123877395
+      ],
+      "median": 243.8139966353446,
+      "min": 239.79607123877395,
+      "max": 244.80183094556762
+    },
+    "row32-vk": {
+      "fps": [
+        365.2662605552656,
+        372.08434985063525,
+        366.31878366278437
+      ],
+      "median": 366.31878366278437,
+      "min": 365.2662605552656,
+      "max": 372.08434985063525
+    },
+    "row32-vk_gpu": {
+      "fps": [
+        540.6323201826978,
+        530.3778854382938,
+        526.7949709085914
+      ],
+      "median": 530.3778854382938,
+      "min": 526.7949709085914,
+      "max": 540.6323201826978
+    }
+  }
+}

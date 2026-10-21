@@ -1,0 +1,232 @@
+{
+  "dll_sha256": "d238976776453007082c20ec31b2c8f9dcbf4798e15ec4cebdfff64941e0e859",
+  "checks": [
+    {
+      "case": "wrong-format-268959744",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: expected constant-format, three-plane YUV420 input"
+    },
+    {
+      "case": "wrong-format-537395200",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: expected constant-format, three-plane YUV420 input"
+    },
+    {
+      "case": "wrong-format-806354944",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: expected constant-format, three-plane YUV420 input"
+    },
+    {
+      "case": "wrong-format-805961984",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: expected constant-format, three-plane YUV420 input"
+    },
+    {
+      "case": "variable-format",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: expected constant-format, three-plane YUV420 input"
+    },
+    {
+      "case": "variable-size",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: expected fixed, positive, even width and height"
+    },
+    {
+      "case": "removed-dither-KrigBilateral-none",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: Function does not take argument(s) named dither_type"
+    },
+    {
+      "case": "removed-dither-KrigBilateral-ordered",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: Function does not take argument(s) named dither_type"
+    },
+    {
+      "case": "removed-debug-KrigBilateral-0",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: Function does not take argument(s) named debug"
+    },
+    {
+      "case": "removed-debug-KrigBilateral-1",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateral: Function does not take argument(s) named debug"
+    },
+    {
+      "case": "removed-dither-KrigBilateralGPU-none",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateralGPU: Function does not take argument(s) named dither_type"
+    },
+    {
+      "case": "removed-dither-KrigBilateralGPU-ordered",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateralGPU: Function does not take argument(s) named dither_type"
+    },
+    {
+      "case": "removed-debug-KrigBilateralGPU-0",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateralGPU: Function does not take argument(s) named debug"
+    },
+    {
+      "case": "removed-debug-KrigBilateralGPU-1",
+      "phase": "node",
+      "rejected": true,
+      "reason": "KrigBilateralGPU: Function does not take argument(s) named debug"
+    },
+    {
+      "case": "core-residency-adapters",
+      "passed": true
+    },
+    {
+      "case": "unsupported-chroma-placement-1",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: only left chroma placement (_ChromaLocation=0) is supported; resite chroma before filtering"
+    },
+    {
+      "case": "unsupported-chroma-placement-2",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: only left chroma placement (_ChromaLocation=0) is supported; resite chroma before filtering"
+    },
+    {
+      "case": "unsupported-chroma-placement-3",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: only left chroma placement (_ChromaLocation=0) is supported; resite chroma before filtering"
+    },
+    {
+      "case": "unsupported-chroma-placement-4",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: only left chroma placement (_ChromaLocation=0) is supported; resite chroma before filtering"
+    },
+    {
+      "case": "unsupported-chroma-placement-5",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: only left chroma placement (_ChromaLocation=0) is supported; resite chroma before filtering"
+    },
+    {
+      "case": "interlaced-1",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: only progressive frames (_FieldBased=0) are supported; deinterlace or separate fields before filtering"
+    },
+    {
+      "case": "interlaced-2",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: only progressive frames (_FieldBased=0) are supported; deinterlace or separate fields before filtering"
+    },
+    {
+      "case": "malformed-_ChromaLocation",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: _ChromaLocation must be one integer"
+    },
+    {
+      "case": "malformed-_FieldBased",
+      "phase": "frame",
+      "rejected": true,
+      "reason": "KrigBilateral: _FieldBased must be one integer"
+    },
+    {
+      "case": "integer-properties-range-0",
+      "passed": true
+    },
+    {
+      "case": "integer-properties-range-1",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-8",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-9",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-10",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-11",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-12",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-13",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-14",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-15",
+      "passed": true
+    },
+    {
+      "case": "integer-bit-depth-16",
+      "passed": true
+    },
+    {
+      "case": "YUV420PH-signed-chroma--0.5",
+      "passed": true
+    },
+    {
+      "case": "YUV420PH-signed-chroma--0.25",
+      "passed": true
+    },
+    {
+      "case": "YUV420PH-signed-chroma-0.0",
+      "passed": true
+    },
+    {
+      "case": "YUV420PH-signed-chroma-0.25",
+      "passed": true
+    },
+    {
+      "case": "YUV420PH-signed-chroma-0.5",
+      "passed": true
+    },
+    {
+      "case": "YUV420PS-signed-chroma--0.5",
+      "passed": true
+    },
+    {
+      "case": "YUV420PS-signed-chroma--0.25",
+      "passed": true
+    },
+    {
+      "case": "YUV420PS-signed-chroma-0.0",
+      "passed": true
+    },
+    {
+      "case": "YUV420PS-signed-chroma-0.25",
+      "passed": true
+    },
+    {
+      "case": "YUV420PS-signed-chroma-0.5",
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}

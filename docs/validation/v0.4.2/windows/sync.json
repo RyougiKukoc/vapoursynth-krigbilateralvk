@@ -1,0 +1,44 @@
+{
+  "command": [
+    "C:\\green\\WPy64-31470\\python\\python.exe",
+    "tests/run_isolated.py",
+    "tests/validate_matrix.py",
+    "--output",
+    "results/r2-final-matrix.json"
+  ],
+  "returncode": 0,
+  "layer_name": "VK_LAYER_KHRONOS_validation",
+  "layer_api_version": "1.4.304",
+  "layer_files_sha256": {
+    "D:\\WorkSpace-bm3d\\vapoursynth-dfttestvk\\dependencies\\validation_layers\\mingw64\\bin\\libgcc_s_seh-1.dll": "00194fb242d0d7a731343c29accdc5f6b60cc42771224312134a9d4aa8a8c00a",
+    "D:\\WorkSpace-bm3d\\vapoursynth-dfttestvk\\dependencies\\validation_layers\\mingw64\\bin\\libSPIRV-Tools-diff.dll": "36fdb92f3cf1e807cf928626679190aec5cebc51d551c17fbca4398279034529",
+    "D:\\WorkSpace-bm3d\\vapoursynth-dfttestvk\\dependencies\\validation_layers\\mingw64\\bin\\libSPIRV-Tools-link.dll": "394ce5bad3288283c557ed79a70d8595b4064605959d77f321df59b94756173d",
+    "D:\\WorkSpace-bm3d\\vapoursynth-dfttestvk\\dependencies\\validation_layers\\mingw64\\bin\\libSPIRV-Tools-lint.dll": "538f5ab9b850d7f3f2f23ba28389ed142d7121944ba7c95a3910580459f6591a",
+    "D:\\WorkSpace-bm3d\\vapoursynth-dfttestvk\\dependencies\\validation_layers\\mingw64\\bin\\libSPIRV-Tools-opt.dll": "cf288f7e03d13f5c260ba612c596380b7143c3c7de27412ec7469a4e120f2cb8",
+    "D:\\WorkSpace-bm3d\\vapoursynth-dfttestvk\\dependencies\\validation_layers\\mingw64\\bin\\libSPIRV-Tools-reduce.dll": "0edbb38048d16d5609d6277fb14214f9408886bf1e82d0c58185cfc12f0667f4",
+    "D:\\WorkSpace-bm3d\\vapoursynth-dfttestvk\\dependencies\\validation_layers\\mingw64\\bin\\libSPIRV-Tools-shared.dll": "e254519d300b71aa1a83f604f2c2cb642f1034025a31a66235fef43baa53542d",
+    "D:\\WorkSpace-bm3d\\vapoursynth-dfttestvk\\dependencies\\validation_layers\\mingw64\\bin\\libSPIRV-Tools.dll": "045ddd194926576734fb73fda41d190901f577e61db09071331c1fb773fa75fc",
+    "D:\\WorkSpace-bm3d\\vapoursynth-dfttestvk\\dependencies\\validation_layers\\mingw64\\bin\\libstdc++-6.dll": "a5f344549ca5dd7cb00f1237deab0ce85366e32bb0b85466fecb26743a14f0cc",
+    "D:\\WorkSpace-bm3d\\vapoursynth-dfttestvk\\dependencies\\validation_layers\\mingw64\\bin\\libwinpthread-1.dll": "f00016d8c4c727ee60cea5bf94838591c2f520a599ac10f55ab683f1ac6f70e5",
+    "D:\\WorkSpace-bm3d\\vapoursynth-dfttestvk\\dependencies\\validation_layers\\mingw64\\bin\\VkLayer_khronos_validation.dll": "2684114d11430937f98aaeac9d4ea7cf5efdb9d229dafff68df8a2ecdcf9d78e",
+    "D:\\WorkSpace-bm3d\\vapoursynth-dfttestvk\\dependencies\\validation_layers\\mingw64\\bin\\VkLayer_khronos_validation.json": "be1722a7a84efca54cd0bd1625f37016b556dd696586620f81ff5fa1c155a198"
+  },
+  "environment": {
+    "VK_LAYER_PATH": "D:\\WorkSpace-bm3d\\vapoursynth-dfttestvk\\dependencies\\validation_layers\\mingw64\\bin",
+    "VS_VULKAN_VALIDATION": "1",
+    "VK_LOADER_DEBUG": "error,warn,layer",
+    "VK_LAYER_SETTINGS_PATH": "D:\\WorkSpace-bm3d\\vapoursynth-krigbilateralvk\\results\\r2-final-sync.settings"
+  },
+  "layer_settings": [
+    "khronos_validation.report_flags = error,warn",
+    "khronos_validation.enable_message_limit = false",
+    "khronos_validation.validate_sync = true",
+    "khronos_validation.thread_safety = true"
+  ],
+  "sync_validation": true,
+  "thread_safety_validation": true,
+  "log": "D:\\WorkSpace-bm3d\\vapoursynth-krigbilateralvk\\results\\r2-final-sync.log",
+  "layer_inserted": true,
+  "validation_messages": [],
+  "passed": true
+}

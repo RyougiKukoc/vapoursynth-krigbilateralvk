@@ -255,7 +255,8 @@ const VSFrame* VS_CC getFrame(int n,int reason,void* instance,void**,VSFrameCont
             info.stageFlags=VK_SHADER_STAGE_COMPUTE_BIT; info.size=sizeof(push); info.pValues=push.data();
             f->vk->vkCmdPushConstants2(cmd,&info);
             int w=f->vi.width/(i==1?2:1), h=f->vi.height/(i==2?1:2);
-            f->vk->vkCmdDispatch(cmd,(w+7)/8,(h+7)/8,1);
+            // Match the 32x2 shader workgroup: adjacent lanes read/write a row.
+            f->vk->vkCmdDispatch(cmd,(w+31)/32,(h+1)/2,1);
             if(i<2) {
                 VkMemoryBarrier2 barrier{VK_STRUCTURE_TYPE_MEMORY_BARRIER_2};
                 barrier.srcStageMask=VK_PIPELINE_STAGE_2_COMPUTE_SHADER_BIT; barrier.srcAccessMask=VK_ACCESS_2_SHADER_STORAGE_WRITE_BIT;
@@ -284,10 +285,10 @@ Node createNative(VSNode* input,const VSVideoFormat& outputFormat,VSCore* core,c
         f->vk->vkGetPhysicalDeviceProperties2(f->handles.physicalDevice,&properties);
         const auto& limits=properties.properties.limits;
         f->maxStorageRange=limits.maxStorageBufferRange;
-        if(limits.maxComputeWorkGroupInvocations<64 || limits.maxComputeWorkGroupSize[0]<8 || limits.maxComputeWorkGroupSize[1]<8 ||
+        if(limits.maxComputeWorkGroupInvocations<64 || limits.maxComputeWorkGroupSize[0]<32 || limits.maxComputeWorkGroupSize[1]<2 ||
            limits.maxPerStageDescriptorStorageBuffers<8 || limits.maxDescriptorSetStorageBuffers<8 || limits.maxPushConstantsSize<28 ||
-           (uint64_t(f->vi.width)+7)/8>limits.maxComputeWorkGroupCount[0] ||
-           (uint64_t(f->vi.height)+7)/8>limits.maxComputeWorkGroupCount[1] ||
+           (uint64_t(f->vi.width)+31)/32>limits.maxComputeWorkGroupCount[0] ||
+           (uint64_t(f->vi.height)+1)/2>limits.maxComputeWorkGroupCount[1] ||
            uint64_t(f->vi.width)*f->vi.height*4>limits.maxStorageBufferRange)
             fail("dimensions or scratch storage exceed the device's compute limits");
         f->pool=f->gpu->createGPUExecPool(core,vqCompute,err,errSize);if(!f->pool) fail(err);

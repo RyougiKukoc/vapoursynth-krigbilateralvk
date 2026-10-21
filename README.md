@@ -1,9 +1,5 @@
 # KrigBilateral Vulkan for VapourSynth
 
-A native Vulkan implementation of **KrigBilateral**, the luma-guided chroma upscaler by Shiandow. It reconstructs YUV 4:2:0 chroma at full luma resolution and returns YUV 4:4:4 at the original size. Integer input defaults to 16-bit integer output; float input retains its float depth. Both can be selected explicitly. At unchanged type/depth, the original luma plane is preserved exactly.
-
-The plugin runs three compute passes on VapourSynth's Vulkan device. It provides both a convenient CPU-frame interface and a GPU-resident interface for processing chains. NumPy is used only by optional comparison tests; neither NumPy nor libplacebo is a runtime dependency.
-
 ## Recommended installation: api4-wheels
 
 Install the Windows or Linux x86-64 wheel from [api4-wheels](https://github.com/AliceTeaParty/vapoursynth-api4-wheels) into the Python environment used by VapourSynth:
@@ -16,6 +12,12 @@ This is the recommended installation method. It installs the native plugin, auto
 
 The native source is maintained here and included in api4-wheels as a git submodule. The central repository owns pip packaging, Windows/Linux wheel publication and the package index. After installation, `vs.core.krigvk` is available automatically; see [usage](#usage). Version 0.4.0 introduces fused conversion and defaults integer input to integer16 output; earlier packages retain their documented conversion behavior.
 
+## Overview
+
+A native Vulkan implementation of **KrigBilateral**, the luma-guided chroma upscaler by Shiandow. It reconstructs YUV 4:2:0 chroma at full luma resolution and returns YUV 4:4:4 at the original size. Integer input defaults to 16-bit integer output; float input retains its float depth. Both can be selected explicitly. At unchanged type/depth, the original luma plane is preserved exactly.
+
+The plugin runs three compute passes on VapourSynth's Vulkan device. It provides both a convenient CPU-frame interface and a GPU-resident interface for processing chains. NumPy is used only by optional comparison tests; neither NumPy nor libplacebo is a runtime dependency.
+
 ## Requirements
 
 - **VapourSynth R81 / API 4.3**, with `std.GPUUpload`, `std.GPUDownload` and the core Vulkan API.
@@ -27,7 +29,7 @@ The initial binary targets the **R81 release headers**. The GPU interface evolve
 
 ## Manual installation
 
-For manual installation, download `krigbilateralvk-0.4.1-windows-x86_64.zip` or `krigbilateralvk-0.4.1-linux-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the native library explicitly:
+For manual installation, download `krigbilateralvk-0.4.2-windows-x86_64.zip` or `krigbilateralvk-0.4.2-linux-x86_64.zip` from [Releases](https://github.com/RyougiKukoc/vapoursynth-krigbilateralvk/releases). Extract it and load the native library explicitly:
 
 ```python
 import vapoursynth as vs
@@ -120,6 +122,14 @@ This is measured parity with the original GLSL algorithm under common inputs, no
 The former Python implementation, arithmetic-emulation path and `reference` argument have been removed. Version 0.4.0 removes `debug` and all diagnostic output branches. Version 0.4.1 removes `dither_type` from both entries; callers use core resize for dithering. Calls passing removed arguments fail.
 
 ## Performance
+
+Version 0.4.2 maps each 64-invocation workgroup to 32×2 pixels. On RTX 3090 Ti,
+three rotated 2,048-frame runs measured **366.32 fps for complete CPU output**
+and **530.38 fps for resident GPU output**, versus 197.13 and 243.81 fps for
+the same source with the previous 8×8 layout. Sample output hashes match.
+The arithmetic and reconstruction equations are unchanged. These are measurements
+with the ordinary desktop active; see [the r2 follow-up report](docs/r2-optimization.md)
+for raw records, numerical checks and device limits.
 
 The final v0.4.0 source and the saved pre-fusion resize build were measured together on RTX 3090 Ti / VapourSynth R81 after the user reported exiting the game; the ordinary desktop remained active. Each configuration uses the same eight preloaded 1080p YUV420P16 frames with `_Range=0`, three serial fresh-process runs of 2,048 timed frames after 16 warmup frames, and four threads/prefetch. CPU timings include full output transfers. Resident timings wait for each GPU output to complete without downloading its pixels. Decoding, preloading and shader compilation are excluded.
 
