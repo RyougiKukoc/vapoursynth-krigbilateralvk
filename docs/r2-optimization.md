@@ -50,3 +50,7 @@ Both Windows RTX 3090 Ti and Linux Mesa llvmpipe passed the 32-configuration /
 contracts. Windows additionally passed all-pixel real-video comparisons at
 integer16 and FP32 output, and the matrix under Khronos synchronization and
 thread-safety validation with no VUID or synchronization hazard.
+
+`source.json` hashes the committed source and evidence bytes. Text evidence
+uses LF line endings for portable verification; binary and pixel hashes inside
+the reports still identify the original measured data.
